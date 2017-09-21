@@ -1,79 +1,78 @@
 DROP TABLE IF EXISTS ITEM;
 DROP TABLE IF EXISTS OBJECT;
 DROP TABLE IF EXISTS PLAYER;
-DROP TABLE IF EXISTS MOCINGTABLE;
+DROP TABLE IF EXISTS MOVINGTABLE;
 DROP TABLE IF EXISTS PLACE;
 DROP TABLE IF EXISTS PLANET;
 
-CREATE TABLE Planet
+CREATE TABLE planet
 (
-  PlanetID INT NOT NULL,
-  Name VARCHAR(100) NOT NULL,
-  Description VARCHAR(255) NOT NULL,
-  PRIMARY KEY (PlanetID)
+  planetID INT NOT NULL,
+  name VARCHAR(100),
+  description VARCHAR(255),
+  PRIMARY KEY (planetID)
 );
 
-CREATE TABLE ItemGroup
+CREATE TABLE itemGroup
 (
-  GroupID INT NOT NULL,
-  ResultID INT NOT NULL,
-  PRIMARY KEY (GroupID)
+  groupID INT NOT NULL,
+  resultID INT,
+  PRIMARY KEY (groupID)
 );
 
-CREATE TABLE Place
+CREATE TABLE place
 (
-  Name VARCHAR(100) NOT NULL,
-  Description VARCHAR(255) NOT NULL,
-  PlaceID INT NOT NULL,
-  PlanetID INT NOT NULL,
-  PRIMARY KEY (PlaceID),
-  FOREIGN KEY (PlanetID) REFERENCES Planet(PlanetID)
+  placeID INT NOT NULL
+  name VARCHAR(100),
+  description VARCHAR(255),
+  planetID INT,
+  PRIMARY KEY (placeID),
+  FOREIGN KEY (planetID) REFERENCES planet(planetID)
 );
 
-CREATE TABLE Movingtable
+CREATE TABLE movingTable
 (
-  whereTo INT NOT NULL,
-  Direction INT NOT NULL,
-  MoveID INT NOT NULL,
-  PlaceID INT NOT NULL,
-  PRIMARY KEY (MoveID),
-  FOREIGN KEY (PlaceID) REFERENCES Place(PlaceID)
+  moveID INT NOT NULL,
+  whereTo INT,
+  direction INT,  
+  placeID INT,
+  PRIMARY KEY (moveID),
+  FOREIGN KEY (placeID) REFERENCES Place(placeID)
 );
 
-CREATE TABLE Player
+CREATE TABLE player
 (
-  PlayerID INT NOT NULL,
-  Money INT NOT NULL,
-  MaxWeight INT NOT NULL,
-  PlaceID INT NOT NULL,
-  PRIMARY KEY (PlayerID),
-  FOREIGN KEY (PlaceID) REFERENCES Place(PlaceID)
+  playerID INT NOT NULL,
+  money INT,
+  maxWeight INT,
+  placeID INT,
+  PRIMARY KEY (playerID),
+  FOREIGN KEY (placeID) REFERENCES place(placeID)
 );
 
-CREATE TABLE Object
+CREATE TABLE object
 (
-  ObjectID INT NOT NULL,
-  Name VARCHAR(100) NOT NULL,
-  Description VARCHAR(255) NOT NULL,
-  Takeable INT NOT NULL,
-  PlaceID INT NOT NULL,
-  PRIMARY KEY (ObjectID),
-  FOREIGN KEY (PlaceID) REFERENCES Place(PlaceID)
+  objectID INT NOT NULL,
+  name VARCHAR(100),
+  description VARCHAR(255),
+  takeable INT,
+  placeID INT,
+  PRIMARY KEY (objectID),
+  FOREIGN KEY (placeID) REFERENCES place(placeID)
 );
 
-CREATE TABLE Item
+CREATE TABLE item
 (
-  ItemID INT NOT NULL,
-  Description VARCHAR(255) NOT NULL,
-  Weight INT NOT NULL,
-  Name VARCHAR(100) NOT NULL,
-  PlayerID INT NOT NULL,
-  ObjectID INT NOT NULL,
-  GroupID INT NOT NULL,
-  ResultID INT NOT NULL,
-  PRIMARY KEY (ItemID),
-  FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID),
-  FOREIGN KEY (ObjectID) REFERENCES Object(ObjectID),
-  FOREIGN KEY (GroupID, ResultID) REFERENCES ItemGroup(GroupID, ResultID)
+  itemID INT NOT NULL,
+  description VARCHAR(255),
+  weight INT,
+  name VARCHAR(100),
+  playerID INT,
+  objectID INT,
+  groupID INT,
+  resultID INT,
+  PRIMARY KEY (itemID),
+  FOREIGN KEY (playerID) REFERENCES player(playerID),
+  FOREIGN KEY (objectID) REFERENCES object(objectID),
+  FOREIGN KEY (groupID, resultID) REFERENCES itemGroup(groupID, resultID)
 );
-Copy

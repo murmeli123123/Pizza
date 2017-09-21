@@ -17,7 +17,7 @@ CREATE TABLE ItemGroup
 (
   GroupID INT NOT NULL,
   ResultID INT NOT NULL,
-  PRIMARY KEY (GroupID, ResultID)
+  PRIMARY KEY (GroupID)
 );
 
 CREATE TABLE Place

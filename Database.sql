@@ -2,7 +2,9 @@ DROP TABLE IF EXISTS ITEM;
 DROP TABLE IF EXISTS OBJECT;
 DROP TABLE IF EXISTS PLAYER;
 DROP TABLE IF EXISTS MOVINGTABLE;
+DROP TABLE IF EXISTS OBJECTTYPE;
 DROP TABLE IF EXISTS PLACE;
+DROP TABLE IF EXISTS ITEMGROUP;
 DROP TABLE IF EXISTS PLANET;
 
 CREATE TABLE planet
@@ -22,7 +24,7 @@ CREATE TABLE itemGroup
 
 CREATE TABLE place
 (
-  placeID INT NOT NULL
+  placeID INT NOT NULL,
   name VARCHAR(100),
   description VARCHAR(255),
   planetID INT,
@@ -50,16 +52,25 @@ CREATE TABLE player
   FOREIGN KEY (placeID) REFERENCES place(placeID)
 );
 
+CREATE TABLE objecttype
+(
+  typeID INT NOT NULL,
+  name VARCHAR(100),
+  PRIMARY KEY (typeID)
+);
+
 CREATE TABLE object
 (
   objectID INT NOT NULL,
   name VARCHAR(100),
   description VARCHAR(255),
-  takeable INT,
   placeID INT,
+  usable BIT,
+  typeID INT,
   PRIMARY KEY (objectID),
-  FOREIGN KEY (placeID) REFERENCES place(placeID)
-);
+  FOREIGN KEY (placeID) REFERENCES place(placeID),
+  FOREIGN KEY (typeID) REFERENCES objecttype(typeID)
+); 
 
 CREATE TABLE item
 (
@@ -74,5 +85,5 @@ CREATE TABLE item
   PRIMARY KEY (itemID),
   FOREIGN KEY (playerID) REFERENCES player(playerID),
   FOREIGN KEY (objectID) REFERENCES object(objectID),
-  FOREIGN KEY (groupID, resultID) REFERENCES itemGroup(groupID, resultID)
+  FOREIGN KEY (groupID) REFERENCES itemGroup(groupID)
 );

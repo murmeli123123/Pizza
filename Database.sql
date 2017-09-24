@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS OBJECTTYPE;
 DROP TABLE IF EXISTS PLACE;
 DROP TABLE IF EXISTS ITEMGROUP;
 DROP TABLE IF EXISTS PLANET;
+DROP TABLE IF EXISTS ACTIONTABLE;
 
 CREATE TABLE planet
 (
@@ -20,6 +21,13 @@ CREATE TABLE itemGroup
   groupID INT NOT NULL,
   resultID INT,
   PRIMARY KEY (groupID)
+);
+
+CREATE TABLE actionTable
+(
+  actionID INT NOT NULL,
+  description TEXT,
+  PRIMARY KEY (actionID)
 );
 
 CREATE TABLE place
@@ -55,7 +63,7 @@ CREATE TABLE player
 CREATE TABLE objecttype
 (
   typeID INT NOT NULL,
-  name VARCHAR(100),
+  objectname VARCHAR(100),
   PRIMARY KEY (typeID)
 );
 
@@ -67,9 +75,11 @@ CREATE TABLE object
   placeID INT,
   usable BIT,
   typeID INT,
+  actionID INT,
   PRIMARY KEY (objectID),
   FOREIGN KEY (placeID) REFERENCES place(placeID),
-  FOREIGN KEY (typeID) REFERENCES objecttype(typeID)
+  FOREIGN KEY (typeID) REFERENCES objecttype(typeID),
+  FOREIGN KEY (actionID) REFERENCES actiontable(actionID)
 ); 
 
 CREATE TABLE item

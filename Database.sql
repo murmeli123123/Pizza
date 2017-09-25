@@ -63,7 +63,7 @@ CREATE TABLE player
 CREATE TABLE objecttype
 (
   typeID INT NOT NULL,
-  objectname VARCHAR(100),
+  typename VARCHAR(100),
   PRIMARY KEY (typeID)
 );
 

@@ -1,4 +1,3 @@
-'''
 import mysql.connector
 
 db = mysql.connector.connect(host = "localhost",
@@ -7,8 +6,9 @@ db = mysql.connector.connect(host = "localhost",
                               db = "pizzaDB",
                               buffered = True)
 cursor = db.cursor()
-# Location = Player.placeID
-location = 2
+'''
+# loc = Player.placeID
+loc = 2
 # Objecttype = objecttype.typename , Minkälainen objekti halutaan avata: ovi, laatikko yms.
 objecttype = "door"
 objecttype.upper()
@@ -16,7 +16,7 @@ objecttype.upper()
 name = "jail3"
 '''
 
-def openFunc(location, objecttype, *objectname):
+def openFunc(loc, objecttype, *objectname):
     # For getting the actions
     def getAction(result):
         for x in result:
@@ -29,10 +29,12 @@ def openFunc(location, objecttype, *objectname):
 
     sql = "SELECT object.objectID, object.name, objecttype.typename, object.actionID \
             FROM objecttype join object \
-            WHERE object.typeID = objecttype.typeID and object.placeID = %i and objecttype.typename = '%s'" % (location, objecttype)
+            WHERE object.typeID = objecttype.typeID and object.placeID = %i and objecttype.typename = '%s'" % (loc, objecttype)
     cursor.execute(sql)
     result = cursor.fetchall()
     multiple = ''
+    name = ''.join(objectname)
+    done = 0
 
     # If there is only one objecttype in place
     if len(result) == 1:
@@ -45,6 +47,7 @@ def openFunc(location, objecttype, *objectname):
             else:
                 # If player has defined which door to open and If object has actionID
                 if x[1] == name.upper():
+                    done = 1
                     if x[3] != None:
                         getAction(result)
                     else:
@@ -53,7 +56,5 @@ def openFunc(location, objecttype, *objectname):
                 else:
                     multiple += ' ' + x[1]
         # Print place objects
-        if len(multiple) > 1:
+        if done == 0:
             print("There is multiple objects: " + multiple)
-
-openFunc(location, objecttype, name)

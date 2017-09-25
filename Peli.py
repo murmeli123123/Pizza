@@ -35,31 +35,13 @@ def main():
             # get
             # move
             # inventory
-        print(action, target)
-        if action == "get" or "take":
-            getFunc( target )
+        # print(action, target)
 
-def getFunc(target):
+        if action == "get":
+            getFunc(target)
 
-    cur = db.cursor()
-    sql = "SELECT name FROM Item"
-    cur.execute(sql)
-    rez = cur.fetchall()
-    for i in rez:
-        if i[0] == target:
-            cur = db.cursor()
-            sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
-            cur.execute(sql)
-            rez = cur.fetchall()
-
-            cur = db.cursor()
-            sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
-            cur.execute(sql)
-            db.commit()
-            print ("You take a new item: " + target)
-        else:
-           print(target + " not found!")
-
+        # elif action == "drop":
+        #     dropFunc(target)
 
 
 def getFunc(target):
@@ -76,35 +58,25 @@ def getFunc(target):
             rez = cur.fetchall()
 
             cur = db.cursor()
-            sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
+            sql = "SELECT playerID FROM Item WHERE name = '%s' " % (target)
             cur.execute(sql)
-            db.commit()
-            print ("You take a new item: " + target)
-        else:
-           print(target + " not found!")
+            playerid = cur.fetchall()
+
+            if playerid[0][0] != 1:
+              cur = db.cursor()
+              sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
+              cur.execute(sql)
+              db.commit()
+              print ("You take a new item: " + target)
+            else:
+              print("Item in your inventory! ")
+            
 
 
 
-def dropFunc(target):
 
-    cur = db.cursor()
-    sql = "SELECT name FROM Item WHERE playerID = 1"
-    cur.execute(sql)
-    rez = cur.fetchall()
-    for i in rez:
-        if i[0] == target:
-            cur = db.cursor()
-            sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
-            cur.execute(sql)
-            rez = cur.fetchall()
 
-            cur = db.cursor()
-            sql = "UPDATE item SET playerID = 0 WHERE itemID = '%i'  " % (rez[0][0])
-            cur.execute(sql)
-            db.commit()
-            print ("You droped item: " + target)
-        else:
-           print(target + " not found in you inventory!")
+
 
  
 

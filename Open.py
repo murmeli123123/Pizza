@@ -53,8 +53,10 @@ def openFunc(loc, objecttype, *objectname):
                 print(getAction(objectID))   # Get action if any
             else:
                 print("You can't do that!")
-        else:    # Else print the list of objects
+        elif len(multiple) > 26:  # Else print the list of objects
             print(multiple)
+        else:
+            print("You can't do that!")
 
     elif objectname != ():      # If objectname has been defined
         name = ''.join(objectname)

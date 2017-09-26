@@ -29,7 +29,7 @@ def main():
         else:
             target = ""
 
-        if action == "location" or action == "where":
+        if action == "location" or action == "where":   # Print current location
             print("You are at ID: " + str(MOVE.getPlayerLoc()))
 
         if action == "open":        # open object
@@ -42,7 +42,7 @@ def main():
             else:
                 print("Try again")
 
-        if action == "go" or action == "move":
+        if action == "go" or action == "move":      # move around
             if target != "":
                 MOVE.movePlayer(target)
             else:

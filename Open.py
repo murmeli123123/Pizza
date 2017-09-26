@@ -13,14 +13,14 @@ def openFunc(loc, objecttype, *objectname):
             sql = "SELECT actiontable.description FROM actiontable \
                     JOIN object \
                     WHERE actiontable.actionID = object.actionID \
-                    AND object.objectID = %i" % Id
+                    AND object.objectID = %i " % Id
             cursor.execute(sql)
             result = cursor.fetchall()
             for x in result:
                 return(x[0])
 
     def setUsable(Id): # Setting object usable to 0
-        sql = "UPDATE object SET usable = 0 WHERE object.objectID = %s" % Id
+        sql = "UPDATE object SET usable = 0 WHERE object.objectID = '%s' " % Id
         cursor.execute(sql)
 
     def getUsable(Id): # Getting the object usable state
@@ -36,8 +36,8 @@ def openFunc(loc, objecttype, *objectname):
     cursor.execute(sql)
 
     result = cursor.fetchall()
-    multiple = 'There is multiple objects:'
-    y = 0
+    multiple = 'There is multiple objects:'     # Sting for multiple objects
+    y = 0       # Used for counting
     objectID = None
 
     if objectname == ():    # If no name for object
@@ -47,7 +47,7 @@ def openFunc(loc, objecttype, *objectname):
                 multiple += ' ' + x[1] + ' ' +  x[2]
                 if y != len(result):
                     multiple += ','
-        if y == 1:   # If there is only one object set objectID.
+        if y == 1:   # If there is only one object, set objectID.
             objectID = x[0]
             if getUsable(objectID) != 0:     # Check if the object is usable
                 print(getAction(objectID))   # Get action if any
@@ -57,15 +57,20 @@ def openFunc(loc, objecttype, *objectname):
             print(multiple)
         else:
             print("You can't do that!")
+        y = 0
 
     elif objectname != ():      # If objectname has been defined
         name = ''.join(objectname)
         for x in result:
             if name.upper() == x[1] and objecttype.upper() == x[2]:
                 objectID = x[0] # Set objectID if name and objecttypename matches
-        if getUsable(objectID) != 0:    # Check if its usable
+        if objectID == None:
+            print("You can't do that!")
+        elif getUsable(objectID) != 0:    # Check if its usable
             if getAction(objectID) != None: # Get actions if any
                 print(getAction(objectID))
+            elif objecttype.upper() == 'BUTTON':
+                print("Jack pushes the " + name + ' ' + objecttype)
             else:
                 print("Jack opens the " + name + ' ' + objecttype)
         else:

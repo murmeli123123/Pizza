@@ -32,7 +32,7 @@ def main():
         if action == "location" or action == "where":   # Print current location
             print("You are at ID: " + str(MOVE.getPlayerLoc()))
 
-        if action == "open":        # open object
+        if action == "open" or action == "press" or action == 'push':   # open object
             if target != '':
                 if len(input_command) == 3:
                     objectname = input_command[1]

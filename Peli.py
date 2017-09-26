@@ -10,14 +10,14 @@ db = mysql.connector.connect(host = "localhost",
 cursor = db.cursor()
 
 def main():
-    location = 1
+    location = 0
     action = ""
                             # location is current location
                             # command is action verb
                             # target object
 
     while action!="quit" and location!="EXIT":
-
+        location = MOVE.getPlayerLoc()
         input_command=input("> ").split()
 
         if len(input_command) >= 1:

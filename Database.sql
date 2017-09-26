@@ -44,7 +44,7 @@ CREATE TABLE movingTable
 (
   moveID INT NOT NULL,
   whereTo INT,
-  direction INT,  
+  direction VARCHAR(1),
   placeID INT,
   PRIMARY KEY (moveID),
   FOREIGN KEY (placeID) REFERENCES Place(placeID)
@@ -80,7 +80,7 @@ CREATE TABLE object
   FOREIGN KEY (placeID) REFERENCES place(placeID),
   FOREIGN KEY (typeID) REFERENCES objecttype(typeID),
   FOREIGN KEY (actionID) REFERENCES actiontable(actionID)
-); 
+);
 
 CREATE TABLE item
 (

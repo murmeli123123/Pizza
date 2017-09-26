@@ -48,7 +48,7 @@ def openFunc(loc, objecttype, *objectname):
                 getAction(result)
                 setUsable(x[0])
             else:
-                print("The door is not usable!")
+                print("The object is not usable!")
     else:
         for x in result:
             # If there is no objectname defined
@@ -63,10 +63,10 @@ def openFunc(loc, objecttype, *objectname):
                     if x[3] != None:
                         getAction(result)
                     else:
-                        print("Jack opens the %s door" % x[1])
+                        print("Jack opens the %s object" % x[1])
                 # If door is not usable
                 elif x[1] == name.upper() and x[4] != 1:
-                    print("The door is not usable!")
+                    print("The object is not usable!")
                     done = 1
                 # If objectname doesn't match any objects in place
                 else:

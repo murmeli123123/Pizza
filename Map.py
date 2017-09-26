@@ -30,10 +30,10 @@ def currentmap():
     for x in movements:
         if x == "N":
             base[4] = "N"
-        elif x == "E":
-            base[13] = "E"
         elif x == "W":
-            base[15] = "W"
+            base[13] = "W"
+        elif x == "E":
+            base[15] = "E"
         elif x == "S":
             base[21] = "S"
     for x in base:

@@ -1,5 +1,6 @@
 import mysql.connector
 import OPEN
+import MOVE
 
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
@@ -9,7 +10,7 @@ db = mysql.connector.connect(host = "localhost",
 cursor = db.cursor()
 
 def main():
-    location = 2
+    location = 1
     action = ""
                             # location is current location
                             # command is action verb
@@ -28,12 +29,24 @@ def main():
         else:
             target = ""
 
-        if action == "open":
-            if len(input_command) == 3:
-                objectname = input_command[1]
-                OPEN.openFunc(location,target,objectname)
+        if action == "location" or action == "where":
+            print("You are at ID: " + str(MOVE.getPlayerLoc()))
+
+        if action == "open":        # open object
+            if target != '':
+                if len(input_command) == 3:
+                    objectname = input_command[1]
+                    OPEN.openFunc(location,target,objectname)
+                else:
+                    OPEN.openFunc(location, target)
             else:
-                OPEN.openFunc(location, target)
+                print("Try again")
+
+        if action == "go" or action == "move":
+            if target != "":
+                MOVE.movePlayer(target)
+            else:
+                print("Try again")
 
         if action == "get":      #get item
             if target!="":
@@ -41,7 +54,7 @@ def main():
             else:
               print("It's just a verb!, Try again!")
 
-        elif action == "drop":
+        if action == "drop":
             if target!="":
                 getFunc(target)
             else:

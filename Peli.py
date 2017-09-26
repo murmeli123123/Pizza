@@ -32,7 +32,7 @@ def main():
             target = ""     
 
 
-        if action == "get":      #get item
+        if action == "get":    
             if target!="": 
                 getFunc(target)
             else:
@@ -40,10 +40,78 @@ def main():
 
         elif action == "drop": 
             if target!="": 
-                getFunc(target)
+                dropFunc(target)
             else:
                 print("It's just a verb!, Try again!")   
+
+        elif action == "combine":
+            combFunc(input_command)
+
+        elif action == "show":
+            showFunc()
             
+
+
+def showFunc():
+    cur = db.cursor()
+    sql = "SELECT name FROM item WHERE playerid = 1"
+    cur.execute(sql)
+    rez = cur.fetchall()
+
+    for i in rez:
+        print(str(i[0]))
+       
+
+    return
+
+def combFunc(input_command):
+    item_one = input_command[1].lower()
+    item_two = input_command[len(input_command)-1].lower()
+    if len(input_command) >= 3:
+        count = 0
+        cur = db.cursor()
+        sql = "SELECT name, groupID FROM item WHERE playerID = 1 and groupID > 0"
+        cur.execute(sql)
+        item_one_rez = cur.fetchall()
+        for i in item_one_rez:
+
+            if i[0] == item_one or i[0] == item_two:
+                count = count + 1
+
+        cur = db.cursor()
+        sql = "SELECT groupID FROM item WHERE name = '%s' or name = '%s'" % (item_one, item_two)
+        cur.execute(sql)
+        result = cur.fetchall()
+
+        if result[0][0] == result[1][0]:
+            print(result[0][0])
+            print(result[1][0])
+            cur = db.cursor()
+            sql = "UPDATE item SET playerID = NULL WHERE groupID = '%i'" % (result[0][0])
+            cur.execute(sql)
+
+            cur = db.cursor()
+            sql =  "SELECT resultID FROM item WHERE groupID = '%i'" % (result[0][0])
+            cur.execute(sql)
+            groupid = cur.fetchall()
+
+            cur = db.cursor()
+            sql =  "SELECT resultID FROM itemGroup WHERE groupID = '%i'" % (result[0][0])
+            cur.execute(sql)
+            groupid = cur.fetchall()
+
+
+            cur = db.cursor()
+            sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (groupid[0][0])
+            cur.execute(sql)
+            db.commit
+            print("Its done!")
+        else:
+            print("You can't do it! Try other items!")
+    else:
+        print("What you want to combine? ")
+     
+
 
 
 def getFunc(target):
@@ -119,7 +187,7 @@ def dropFunc(target):
 
 
 
- 
+
 
 
 

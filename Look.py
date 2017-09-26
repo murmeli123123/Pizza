@@ -13,26 +13,38 @@ def lookplace():
             WHERE place.placeID = player.placeID"
     cursor.execute(sql)
     result = cursor.fetchall()
-    print(result)
+    for x in result:
+        print(x[0])
 
 # Hakee description katsotusta esineestä tai objektista
 def lookitem():
+    y = int(0)
+    string = ''.join(command[-1])
     itemsaround = placeitems()
     objectsaround = placeobjects()
     carrying = inventory()
     allitems = itemsaround + carrying
-    print(allitems)
-    print(objectsaround)
-    print(command)
-    if command in allitems:
-        sql = "SELECT item.description \
-                FROM item \
-                WHERE item.name  = %s" % command[-1]
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
+    for x in allitems:
+        if string in x:
+            sql = "SELECT item.description \
+                    FROM item \
+                    WHERE item.name  = '%s'" % string
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            y = 1
+    for x in objectsaround:
+        if string in x:
+            sql = "SELECT object.description \
+                    FROM object \
+                    WHERE object.name  = '%s'" % string
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            y = 1
+    if y == 1:
+        for x in result:
+            print(x[0])
     else:
-        print("There's no such item around! ")
+        print("What do you mean by " + str(string) + "?")
 
 # Hakee paikassa olevat objektit
 def placeobjects():

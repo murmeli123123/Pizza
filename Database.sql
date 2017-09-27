@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS ACTIONTABLE;
 
 CREATE TABLE planet
 (
-  planetID INT NOT NULL,
+  planetID INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100),
   description VARCHAR(255),
   PRIMARY KEY (planetID)
@@ -42,7 +42,7 @@ CREATE TABLE place
 
 CREATE TABLE movingTable
 (
-  moveID INT NOT NULL,
+  moveID INT NOT NULL AUTO_INCREMENT,
   whereTo INT,
   direction VARCHAR(1),
   placeID INT,

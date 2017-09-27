@@ -12,7 +12,7 @@ CREATE TABLE planet
 (
   planetID INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100),
-  description VARCHAR(255),
+  description TEXT,
   PRIMARY KEY (planetID)
 );
 

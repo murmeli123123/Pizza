@@ -15,6 +15,14 @@ def lookplace():
     result = cursor.fetchall()
     for x in result:
         print(x[0])
+    itemsaround = placeitems()
+    objectsaround = placeobjects()
+    print("Objects in here are:")
+    for x in objectsaround:
+        print(x[0])
+    print("Items in here are:")
+    for x in itemsaround:
+        print(x[0])
 
 # Hakee description katsotusta esineestä tai objektista
 def lookitem():
@@ -26,7 +34,7 @@ def lookitem():
     allitems = itemsaround + carrying
     for x in allitems:
         if string in x:
-            sql = "SELECT item.description \
+            sql = "SELECT item.description, item.weight \
                     FROM item \
                     WHERE item.name  = '%s'" % string
             cursor.execute(sql)

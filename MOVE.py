@@ -10,7 +10,6 @@ cursor = db.cursor()
 def getPlayerLoc():
     sql = "SELECT player.placeID \
             FROM player"
-
     cursor.execute(sql)
     result = cursor.fetchall()
     for x in result:
@@ -21,11 +20,12 @@ def movePlayer(destination):
 	       FROM movingtable	WHERE movingtable.placeID = %i" % getPlayerLoc()
     cursor.execute(sql)
     result = cursor.fetchall()
-    goto = 0
+
+    goto = None
     for x in result:
-        if destination == x[0]:
+        if destination.upper() == x[0].upper():
             goto = x[1]
-    if goto != 0:
+    if goto != None:
         sql = "UPDATE player SET placeID = %i WHERE player.playerID = 1" % goto
         cursor.execute(sql)
         print("You are now at ID: " + str(getPlayerLoc()))

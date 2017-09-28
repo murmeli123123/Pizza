@@ -85,14 +85,16 @@ CREATE TABLE object
 CREATE TABLE item
 (
   itemID INT NOT NULL,
+  name VARCHAR(100),
   description TEXT,
   weight INT,
-  name VARCHAR(100),
   playerID INT,
   objectID INT,
   groupID INT,
   resultID INT,
+  actionID INT,
   PRIMARY KEY (itemID),
+  FOREIGN KEY (actionID) REFERENCES actiontable(actionID),
   FOREIGN KEY (playerID) REFERENCES player(playerID),
   FOREIGN KEY (objectID) REFERENCES object(objectID),
   FOREIGN KEY (groupID) REFERENCES itemGroup(groupID)

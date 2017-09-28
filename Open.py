@@ -7,7 +7,7 @@ db = mysql.connector.connect(host = "localhost",
                               buffered = True)
 cursor = db.cursor()
 
-def openFunc(loc, objecttype, *objectname):
+def openFunc(loc, request, *objectname):
 
     def getAction(Id): # For getting actions
             sql = "SELECT actiontable.description FROM actiontable \
@@ -23,60 +23,63 @@ def openFunc(loc, objecttype, *objectname):
         sql = "UPDATE object SET usable = 0 WHERE object.objectID = '%s' " % Id
         cursor.execute(sql)
 
-    def getUsable(Id): # Getting the object usable state
-        sql = "SELECT object.usable FROM object WHERE object.objectID = %i" % Id
+    def getObjectType(request): # Getting the objecttype.typeID
+        typename = request.upper()
+        sql = "SELECT objecttype.typename, object.typeID \
+                FROM objecttype join object \
+                WHERE objecttype.typename = '%s' and objecttype.typeID = object.typeID and object.placeID = %i" % (typename, loc)
         cursor.execute(sql)
         result = cursor.fetchall()
         for x in result:
-            return x[0]
+            if typename == x[0]:
+                return x[1]
 
-    sql = "SELECT object.objectID, object.name, objecttype.typename, object.actionID, object.usable \
-            FROM objecttype join object \
-            WHERE object.typeID = objecttype.typeID and object.placeID = %i and objecttype.typename = '%s'" % (loc, objecttype)
-    cursor.execute(sql)
-
-    result = cursor.fetchall()
     multiple = 'There is multiple objects:'     # String for multiple objects
     y = 0       # Used for counting
-    objectID = None
-    action = None
+    objectID = None # object.objectID
+    objectType = getObjectType(request) # objecttype.typeID
+    action = None # actiontable.actionID
 
-    if objectname == ():   # If name for object is not defined
-        for x in result:
-            y += 1
-            if objecttype.upper() == x[2]:
-                multiple += ' ' + x[1] + ' ' +  x[2]
-                if y != len(result):
-                    multiple += ','
-        if y == 1:   # If there is only one object, set objectID.
-            objectID = x[0]
-            if getUsable(objectID) != 0:     # Check if the object is usable
-                action = getAction(objectID)   # Get action if any
-                if action == None:
-                    print("Jack opens the " + objecttype)
-                else:
-                    print(action)
-            else:
-                print("You can't do that!")
-        elif len(multiple) > 26:  # Else print the list of objects
-            print(multiple)
-        else:
-            print("You can't do that!")
-        y = 0
+    if objectType != None: # if objectType has been initialized get results
+        sql = "SELECT object.objectID, object.name, objecttype.typename, object.actionID, object.usable \
+                FROM objecttype join object \
+                WHERE object.typeID = objecttype.typeID and object.placeID = %i and objecttype.typeID = %i" % (loc, objectType)
+        cursor.execute(sql)
+        result = cursor.fetchall()
+    else:
+        print("You can't do that!")
+        return
 
-    elif objectname != ():      # If objectname has been defined
-        name = ''.join(objectname)
+    if objectname != ():    # If objectname is given
+        objectname = ''.join(objectname).upper() # Make it into string
         for x in result:
-            if name.upper() == x[1] and objecttype.upper() == x[2]:
-                objectID = x[0] # Set objectID if name and objecttypename matches
-        if objectID == None:
+            if objectname == x[1] and x[4] == 1: # If objectname matches and
+                objectID = x[0]               # is usable -> Set objectID.
+                action = getAction(objectID)   # Get actions
+        if objectID == None:    #If no objectID was stored
             print("You can't do that!")
-        elif getUsable(objectID) != 0:    # Check if its usable
-            if getAction(objectID) != None: # Get actions if any
-                print(getAction(objectID))
-            elif objecttype.upper() == 'BUTTON':
-                print("Jack pushes the " + name + ' ' + objecttype)
+        elif action == None and objectID != None: #If objectID was found and no action
+            print("Jack opens the " + objectname + ' ' + request.upper())
+            return
+
+    elif len(result) > 1:   # If there is multiple objects
+        for x in result:
+            y += 1  # start the counter
+            multiple += ' ' + x[1] + ' ' + x[2] # Add to the string
+            if y != len(result):        # While y is smaller than lenght of result
+                multiple += ','      # add a comma
+        print(multiple)
+        return
+
+    elif len(result) == 1 : # If there is only one result
+        for x in result:
+            if x[4] == 1:   # If it's usable
+                action = getAction(x[0]) # Get actions
+                objectname = x[2]       # Set objectname
             else:
-                print("Jack opens the " + name + ' ' + objecttype)
-        else:
-            print("You can't do that!")
+                print("The "+ x[1] + " is not usable")
+
+    if action != None: # If there is actions
+        print(action)
+    elif action == None and request.upper() == objectname:
+        print("Jack opens the " + objectname)

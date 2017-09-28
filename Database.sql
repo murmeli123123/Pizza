@@ -34,7 +34,7 @@ CREATE TABLE place
 (
   placeID INT NOT NULL,
   name VARCHAR(100),
-  description VARCHAR(255),
+  description TEXT,
   planetID INT,
   PRIMARY KEY (placeID),
   FOREIGN KEY (planetID) REFERENCES planet(planetID)
@@ -71,7 +71,7 @@ CREATE TABLE object
 (
   objectID INT NOT NULL,
   name VARCHAR(100),
-  description VARCHAR(255),
+  description TEXT,
   placeID INT,
   usable BIT,
   typeID INT,
@@ -85,7 +85,7 @@ CREATE TABLE object
 CREATE TABLE item
 (
   itemID INT NOT NULL,
-  description VARCHAR(255),
+  description TEXT,
   weight INT,
   name VARCHAR(100),
   playerID INT,

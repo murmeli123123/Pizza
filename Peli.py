@@ -58,7 +58,7 @@ def drop_all_func():
     sql = "UPDATE item SET playerID = NULL WHERE playerID = 1"
     cur.execute(sql)
     db.commit
-    print("You droped all items! ")
+    print("You droped all items! Your inventory is empty. ")
 
 
 def showFunc():
@@ -140,6 +140,7 @@ def getFunc(target):
     for i in rez:
         if i[0] == target:
             item = 1
+
     # Place id where item is
     cur = db.cursor()  
     sql = "SELECT placeID FROM object, item WHERE item.objectID = object.objectID \
@@ -153,36 +154,35 @@ def getFunc(target):
     cur.execute(sql)
     player_place_id = cur.fetchall()
 
-    print(item_place_id[0][0])
-    print(player_place_id[0][0] )
 
-    if item_place_id[0][0] == player_place_id[0][0]:
 
-        cur = db.cursor()
-        sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
-        cur.execute(sql)
-        rez = cur.fetchall()
+    cur = db.cursor()
+    sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
+    cur.execute(sql)
+    rez = cur.fetchall()
 
-        cur = db.cursor()
-        sql = "SELECT playerID FROM Item WHERE name = '%s' " % (target)
-        cur.execute(sql)
-        playerid = cur.fetchall()
+    cur = db.cursor()
+    sql = "SELECT playerID FROM Item WHERE name = '%s' " % (target)
+    cur.execute(sql)
+    playerid = cur.fetchall()
 
 
 
-        if item == 1:
+    if item == 1:
+        if item_place_id[0][0] == player_place_id[0][0]:
             if playerid[0][0] != 1: 
-              cur = db.cursor()
-              sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
-              cur.execute(sql)
-              db.commit()
-              print ("You take a new item: " + target)
+                  cur = db.cursor()
+                  sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
+                  cur.execute(sql)
+                  db.commit()
+                  print ("You take a new item: " + target)
             else:
               print("Item in your inventory! ")
         else:
-          print("Item not found")
+            print("Place dont contain this item!")
     else:
-        print("Place dont contain this item!")
+        print("Item not found")
+    
 
 
 def dropFunc(target):

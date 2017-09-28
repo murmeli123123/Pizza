@@ -36,11 +36,12 @@ def openFunc(loc, objecttype, *objectname):
     cursor.execute(sql)
 
     result = cursor.fetchall()
-    multiple = 'There is multiple objects:'     # Sting for multiple objects
+    multiple = 'There is multiple objects:'     # String for multiple objects
     y = 0       # Used for counting
     objectID = None
+    action = None
 
-    if objectname == ():    # If no name for object
+    if objectname == ():   # If name for object is not defined
         for x in result:
             y += 1
             if objecttype.upper() == x[2]:
@@ -50,7 +51,11 @@ def openFunc(loc, objecttype, *objectname):
         if y == 1:   # If there is only one object, set objectID.
             objectID = x[0]
             if getUsable(objectID) != 0:     # Check if the object is usable
-                print(getAction(objectID))   # Get action if any
+                action = getAction(objectID)   # Get action if any
+                if action == None:
+                    print("Jack opens the " + objecttype)
+                else:
+                    print(action)
             else:
                 print("You can't do that!")
         elif len(multiple) > 26:  # Else print the list of objects

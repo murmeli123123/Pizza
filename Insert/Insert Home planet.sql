@@ -13,7 +13,7 @@ INSERT INTO actiontable VALUES (5, 'You press the button and nothing happens... 
 INSERT INTO place VALUES (1, 'HOME', 'Its your home and as you look around you can see door located in west, small bed, food store, shower, table, computer and cloths lying on the floor (you migth want to wear them.)', 1);
 INSERT INTO place VALUES (2, 'GOVERMENT BUILDING', 'Nothing special here its just a giant hall for fancy people. The agents seems to wait at the door in west', 1);
 INSERT INTO place VALUES (3, 'POORLY FITTED SPACE SHIP', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 1);
-INSERT INTO place VALUES (4, 'CONTROL ROOM', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.')
+INSERT INTO place VALUES (4, 'CONTROL ROOM', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 
 INSERT INTO movingtable VALUES (1, 2, 'W', 1);
 INSERT INTO movingtable VALUES (2, 3, 'W', 2);

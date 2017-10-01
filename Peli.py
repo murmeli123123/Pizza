@@ -1,11 +1,21 @@
 import mysql.connector
 
+
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
                               passwd = "salasana",
                               db = "pizzaDB",
                               buffered = True)
-cursor = db.cursor()
+
+
+# db = mysql.connector.connect(host = "localhost",
+#                                 port="4444",
+#                               user = "andreiva",
+#                               passwd = "root",
+#                               db = "andreiva",
+#                               buffered = True)
+
+cur = db.cursor()
 
 #main function is a game core!! Function call on the end of code!
 
@@ -16,8 +26,8 @@ def main():
     action = ""
                             # location is current location
                             # command is action verb
-                            # target object 
-
+                            # target object
+    cur = db.cursor()
     while action!="quit" and location!="EXIT":
 
         input_command=input("> ").split()
@@ -25,201 +35,115 @@ def main():
         if len(input_command) >= 1:
             action = input_command[0].lower()
         else:
-            action = ""     
+            action = ""
         if len(input_command) >= 2:
             target = input_command[len(input_command)-1].lower() #lower make the string to lowercase
         else:
-            target = ""     
+            target = ""
 
 
-        if action == "get":    
-            if target!="": 
+        if action == "get":
+            if target!="":
                 getFunc(target)
             else:
               print("It's just a verb!, Try again!")
 
-        elif action == "drop": 
-            if target!="": 
-                dropFunc(target)
+        elif action == "drop":
+            if target!="":
+                dropfunc(target)
             else:
-                print("It's just a verb!, Try again!")   
-
-        elif action == "combine":
-            combFunc(input_command)
-
+                print("It's just a verb!, Try again!")
+        #
+        # elif action == "combine":
+        #     combFunc(input_command)
+        #
         elif action == "show":
-            showFunc()
+            inventoryfunc()
 
-        elif action =="dropall":
-            drop_all_func()
+        elif action =="n" or 's' or 'w' or 'e':
+            movefunc(action)
 
-def drop_all_func():
-    cur = db.cursor()
-    sql = "UPDATE item SET playerID = NULL WHERE playerID = 1"
-    cur.execute(sql)
-    db.commit
-    print("You droped all items! Your inventory is empty. ")
+def movefunc(dist):
+    cur.execute("SELECT placeID FROM player;")
+    player_placeid = cur.fetchall()[0][0]
 
-
-def showFunc():
-    cur = db.cursor()
-    sql = "SELECT name FROM item WHERE playerid = 1"
-    cur.execute(sql)
-    rez = cur.fetchall()
-
-    for i in rez:
-        print(str(i[0]))
-       
-
-    return
-
-def combFunc(input_command):
-
-    if len(input_command) >= 3:
-
-        item_one = input_command[1].lower()
-        item_two = input_command[len(input_command)-1].lower()
-        # if len(input_command) >= 3:
-    
-        count = 0
-        cur = db.cursor()
-        sql = "SELECT name FROM item WHERE playerID = 1 and groupID > 0"
-        cur.execute(sql)
-        itemrez = cur.fetchall()
-        for i in itemrez:
-
-            if i[0] == item_one or i[0] == item_two:
-                count = count + 1
-
-        if count == 2:
-            cur = db.cursor()
-            sql = "SELECT groupID FROM item WHERE name = '%s' or name = '%s'" % (item_one, item_two)
-            cur.execute(sql)
-            result = cur.fetchall()
-
-            if result[0][0] == result[1][0]:
-                print(result[0][0])
-                print(result[1][0])
-                cur = db.cursor()
-                sql = "UPDATE item SET playerID = NULL WHERE groupID = '%i'" % (result[0][0])
-                cur.execute(sql)
-
-                cur = db.cursor()
-                sql =  "SELECT resultID FROM item WHERE groupID = '%i'" % (result[0][0])
-                cur.execute(sql)
-                groupid = cur.fetchall()
-
-                cur = db.cursor()
-                sql =  "SELECT resultID FROM itemGroup WHERE groupID = '%i'" % (result[0][0])
-                cur.execute(sql)
-                groupid = cur.fetchall()
-
-
-                cur = db.cursor()
-                sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (groupid[0][0])
-                cur.execute(sql)
-                db.commit
-            else:
-                print("You can't do it! Try other items!")
-        else:
-            print("You dont have this item")
-
+    try:
+        cur.execute("SELECT whereTo FROM movingtable WHERE placeID = '%i' AND \
+    	       direction = '%s';" % (player_placeid, dist))
+        rez = cur.fetchall()[0][0]
+        print(rez)
+    except IndexError:
+        print("you can't go there!")
     else:
-        print("What you want to combine? ")
+        cur.execute("UPDATE player SET placeID = %i WHERE player.playerID = 1" % (rez))
+        cur.execute("SELECT name FROM place WHERE placeID = '%i'" % (rez))
+        new_place_name = cur.fetchall()[0][0]
+        print("Your lacation is: " + new_place_name)
 
-         
 
+
+
+
+
+
+
+def inventoryfunc():
+    cur.execute("SELECT name FROM item WHERE playerID = 1;")
+    all_items = cur.fetchall()
+    print("In you inventory :", end=" ")
+    for i in all_items:
+        print(" | " + i[0] + " | ", end=" ")
+    print()
+
+
+
+def dropfunc(target):
+    cur.execute("SELECT name FROM item WHERE playerID = 1;")
+    all_items = cur.fetchall()
+    item_list = []
+    for i in all_items:
+        item_list.append(*i)
+
+    cur.execute("SELECT name FROM item WHERE playerID = 1;")
+
+
+    if target in item_list:
+        cur.execute("SELECT itemID FROM item WHERE name = '%s';" % (target))
+        item_name = cur.fetchall()[0][0]
+        cur.execute("UPDATE item SET playerID = NULL WHERE itemID = '%i'  " % (item_name))
+        print("You dropped " + target)
+    else:
+        print("Item not found in your inventory!")
 
 
 def getFunc(target):
-    item = 0
-    cur = db.cursor()
-    sql = "SELECT name FROM Item"
+    cur.execute("SELECT placeID FROM player;")
+    player_placeid = cur.fetchall()
+
+    sql = "SELECT item.name FROM item, object \
+    WHERE item.objectID = object.objectID AND object.placeID = '%i'" % (player_placeid[0][0])
     cur.execute(sql)
-    rez = cur.fetchall()
-    for i in rez:
-        if i[0] == target:
-            item = 1
+    item_list = cur.fetchall()
 
-    # Place id where item is
-    cur = db.cursor()  
-    sql = "SELECT placeID FROM object, item WHERE item.objectID = object.objectID \
-    AND item.name = '%s';" % (target)
-    cur.execute(sql)
-    item_place_id = cur.fetchall()
+    ilist = []   #new list for items
 
-    # Place id where player is
-    cur = db.cursor()
-    sql = "SELECT placeID FROM player"
-    cur.execute(sql)
-    player_place_id = cur.fetchall()
+    for i in item_list:
+        ilist.append(*i)   #append all items to list
 
+    if target in ilist:
+        cur.execute("SELECT itemID FROM item WHERE name = '%s';" % (target))
+        target_item_id = cur.fetchall()[0][0]
 
+        cur.execute("SELECT playerID FROM item WHERE name = '%s';" % (target))
+        player_id = cur.fetchall()[0][0]
 
-    cur = db.cursor()
-    sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
-    cur.execute(sql)
-    rez = cur.fetchall()
-
-    cur = db.cursor()
-    sql = "SELECT playerID FROM Item WHERE name = '%s' " % (target)
-    cur.execute(sql)
-    playerid = cur.fetchall()
-
-
-
-    if item == 1:
-        if item_place_id[0][0] == player_place_id[0][0]:
-            if playerid[0][0] != 1: 
-                  cur = db.cursor()
-                  sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'  " % (rez[0][0])
-                  cur.execute(sql)
-                  db.commit()
-                  print ("You take a new item: " + target)
-            else:
-              print("Item in your inventory! ")
+        if player_id != 1:
+            cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))
+            print( target + " in your inventory")
         else:
-            print("Place dont contain this item!")
+            print("This item is already in your inventory")
     else:
-        print("Item not found")
-    
-
-
-def dropFunc(target):
-    item = 0
-    cur = db.cursor()
-    sql = "SELECT name FROM Item"
-    cur.execute(sql)
-    rez = cur.fetchall()
-    for i in rez:
-        if i[0] == target:
-            item = 1
-
-
-    cur = db.cursor()
-    sql = "SELECT itemID FROM Item WHERE name = '%s' " % (target)
-    cur.execute(sql)
-    rez = cur.fetchall()
-
-    cur = db.cursor()
-    sql = "SELECT playerID FROM Item WHERE name = '%s' " % (target)
-    cur.execute(sql)
-    playerid = cur.fetchall()
-
-
-    if item == 1:
-        if playerid[0][0] == 1: 
-            cur = db.cursor()
-            sql = "UPDATE item SET playerID = NULL WHERE itemID = '%i'  " % (rez[0][0])
-            cur.execute(sql)
-            db.commit()
-            print ("You droped item: " + target)
-        else:
-            print("You just droped it")
-        
-    else:
-      print("Item not found")
-
+        print("This item not founded")
 
 
 

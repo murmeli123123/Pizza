@@ -36,7 +36,8 @@ CREATE TABLE movingTable
 (
   moveID INT NOT NULL,
   whereTo INT,
-  direction INT,  
+  direction VARCHAR(10),
+  locked BIT,
   placeID INT,
   PRIMARY KEY (moveID),
   FOREIGN KEY (placeID) REFERENCES Place(placeID)

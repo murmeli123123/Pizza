@@ -1,6 +1,7 @@
 import mysql.connector
 import OPEN
 import MOVE
+import Map
 
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
@@ -47,6 +48,9 @@ def main():
                 MOVE.movePlayer(target)
             else:
                 print("Try again")
+
+        if action == "map" or action == "m":        # Get map
+            Map.getMap()
 
         if action == "get":      #get item
             if target!="":

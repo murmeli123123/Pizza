@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS ITEM;
-DROP TABLE IF EXISTS OBJECT;
+
 DROP TABLE IF EXISTS PLAYER;
 DROP TABLE IF EXISTS MOVINGTABLE;
+DROP TABLE IF EXISTS OBJECT;
 DROP TABLE IF EXISTS OBJECTTYPE;
 DROP TABLE IF EXISTS PLACE;
 DROP TABLE IF EXISTS ITEMGROUP;
@@ -40,15 +41,7 @@ CREATE TABLE place
   FOREIGN KEY (planetID) REFERENCES planet(planetID)
 );
 
-CREATE TABLE movingTable
-(
-  moveID INT NOT NULL AUTO_INCREMENT,
-  whereTo INT,
-  direction VARCHAR(1),
-  placeID INT,
-  PRIMARY KEY (moveID),
-  FOREIGN KEY (placeID) REFERENCES Place(placeID)
-);
+
 
 CREATE TABLE player
 (
@@ -74,12 +67,25 @@ CREATE TABLE object
   description TEXT,
   placeID INT,
   usable BIT,
+  locked BIT,
   typeID INT,
   actionID INT,
   PRIMARY KEY (objectID),
   FOREIGN KEY (placeID) REFERENCES place(placeID),
   FOREIGN KEY (typeID) REFERENCES objecttype(typeID),
   FOREIGN KEY (actionID) REFERENCES actiontable(actionID)
+);
+
+CREATE TABLE movingTable
+(
+  moveID INT NOT NULL AUTO_INCREMENT,
+  whereTo INT,
+  direction VARCHAR(1),
+  placeID INT,
+  objectID INT,
+  PRIMARY KEY (moveID),
+  FOREIGN KEY (objectID) REFERENCES object(objectID),
+  FOREIGN KEY (placeID) REFERENCES Place(placeID)
 );
 
 CREATE TABLE item

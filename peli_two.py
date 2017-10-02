@@ -72,8 +72,10 @@ def main():
             else:
                 print("Try again")
 
-        elif action == "use":
-            pass
+        elif action == "use":  # Use objects
+            if target != '':
+                useFunc(target)
+
 
         elif action == "show":
             if target != "":
@@ -158,7 +160,8 @@ def inventoryfunc():
     print()
 
 def getAction(Id, Req): # For getting actions, Req 0 = Object, Req 1 = Item
-    Type = ''
+    Type = ''           # Id is the id of object or item
+
     if Req == 0:
         Type = 'Object'
     elif Req == 1:
@@ -309,6 +312,15 @@ def getObjectType(request, loc): # Getting the objecttype.typeID
     for x in result:
         if typename == x[0]:
             return x[1]
+
+def useFunc(target):
+    target = target.upper()         # POISTA KUN OLLAAN SAATU KAIKKI NIMET LOWERCASE
+    cur.execute("SELECT object.name, object.actionID, object.objectID FROM object WHERE name = '%s'" % target)
+    result = cur.fetchall()
+    if result[0][1] != None:
+        print(getAction(result[0][2], 0)[0])
+    else:
+        print("You can't use that!")
 
 
 

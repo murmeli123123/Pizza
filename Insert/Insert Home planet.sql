@@ -10,8 +10,8 @@ INSERT INTO actiontable VALUES (3, 'As you go into shower and star to feel like 
 INSERT INTO actiontable VALUES (4, 'You press the button in food store, it makes little explosion and pops a banana out. After that it breaks down and starts to smoke. Great now you have to fix it');
 INSERT INTO actiontable VALUES (5, 'You press the button and nothing happens... You tougth that if you press the button it will work agian didnt you?');
 
-INSERT INTO place VALUES (1, 'HOME', 'Its your home and as you look around you can see door located in west, small bed, food store, shower, table, computer and cloths lying on the floor (you migth want to wear them.)', 1);
-INSERT INTO place VALUES (2, 'GOVERMENT BUILDING', 'Nothing special here its just a giant hall for fancy people. The agents seems to wait at the door in west', 1);
+INSERT INTO place VALUES (1, 'HOME', 'Its your home and as you look around you can see door located in east, small bed, food store, shower, table, computer and cloths lying on the floor (you migth want to wear them.)', 1);
+INSERT INTO place VALUES (2, 'GOVERMENT BUILDING', 'Nothing special here its just a giant hall for fancy people. The agents seems to wait at the door in east', 1);
 INSERT INTO place VALUES (3, 'POORLY FITTED SPACE SHIP', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 1);
 INSERT INTO place VALUES (4, 'CONTROL ROOM', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 
@@ -32,7 +32,7 @@ INSERT INTO object VALUES (6, 'FOOD STORE', 'Its a food store, here you can buy 
 INSERT INTO object VALUES (7, 'BROKEN FOOD STORE', 'Its broken and it smokes.', NULL, 1, 2, 5);
 INSERT INTO object VALUES (8, 'SMALL BED', 'Its a one person bed', 1, NULL, NULL, NULL);
 
-INSERT INTO item VALUES (1, 'Its an ordinary drives license nothing more', 1, 'DRIVERS LICENSE', NULL, 1, NULL, NULL);
-INSERT INTO item VALUES (2, 'Old dusty starchip key card for your poorly fitted space ship.', 1, 'STARCHIP KEY CARD', NULL, NULL, NULL, NULL);
-INSERT INTO item VALUES (3, 'These are your clothes, nothing special about them.', 5, 'CLOTHES', NULL, 3, NULL, NULL);
-INSERT INTO item VALUES (4, 'Even tough the food store broke the banana that popped out looks edible', 2, 'BANANA', NULL, 7, NULL, NULL);
+INSERT INTO item VALUES (1, 'DRIVERS LICENSE', 'Its an ordinary drives license nothing more', 1, NULL, 1, NULL, NULL);
+INSERT INTO item VALUES (2, 'STARCHIP KEY CARD', 'Old dusty starchip key card for your poorly fitted space ship.', 1, NULL, NULL, NULL, NULL);
+INSERT INTO item VALUES (3, 'CLOTHES', 'These are your clothes, nothing special about them.', 5, NULL, 3, NULL, NULL);
+INSERT INTO item VALUES (4, 'BANANA', 'Even tough the food store broke the banana that popped out looks edible', 2, NULL, 7, NULL, NULL);

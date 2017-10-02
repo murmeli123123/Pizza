@@ -268,7 +268,7 @@ def openFunc(loc, request, *objectname):
         return
 
     if objectname != ():    # If objectname is given
-        objectname = ''.join(objectname).upper() # Make it into string
+        objectname = ''.join(objectname) # Make it into string
         for x in result:
             if objectname == x[1] and x[4] == 1: # If objectname matches and
                 objectID = x[0]               # is usable -> Set objectID.
@@ -276,7 +276,7 @@ def openFunc(loc, request, *objectname):
         if objectID == None:    #If no objectID was stored
             print("You can't do that!")
         elif action == None and objectID != None: #If objectID was found and no action
-            print("Jack opens the " + objectname + ' ' + request.upper())
+            print("Jack opens the " + objectname + ' ' + request)
             sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
             cur.execute(sql)
             return
@@ -300,14 +300,14 @@ def openFunc(loc, request, *objectname):
 
     if action != None: # If there is actions
         print(action[0])
-    elif action == None and request.upper() == objectname:
+    elif action == None and request == objectname:
         print("Jack opens the " + objectname)
         sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
         cur.execute(sql)
 
 
 def getObjectType(request, loc): # Getting the objecttype.typeID
-    typename = request.upper()
+    typename = request
     sql = "SELECT objecttype.typename, object.typeID \
             FROM objecttype join object \
             WHERE objecttype.typename = '%s' and objecttype.typeID = object.typeID and object.placeID = %i" % (typename, loc)
@@ -318,7 +318,6 @@ def getObjectType(request, loc): # Getting the objecttype.typeID
             return x[1]
 
 def useFunc(target, locID):
-    target = target.upper()    # POISTA KUN OLLAAN SAATU KAIKKI NIMET LOWERCASE
     try:
         cur.execute("SELECT object.name, object.actionID, object.objectID FROM object WHERE name = '%s' and placeID = '%i' " % (target, locID))
         result = cur.fetchall()

@@ -29,6 +29,7 @@ def main():
     while action!="quit" and location!="EXIT":
         location = getLocName()        # location is current location
 
+
         input_command=input("> ").split()
 
         if len(input_command) >= 1:
@@ -61,7 +62,7 @@ def main():
         # elif action == "look":
         #     lookaroundfunc()
 
-        elif action == "open" or action == "press" or action == 'push':   # open object
+        elif action == "open":   # open object
             if target != '':
                 if len(input_command) == 3:
                     objectname = input_command[1]
@@ -70,6 +71,9 @@ def main():
                     openFunc(getLocID(), target)
             else:
                 print("Try again")
+
+        elif action == "use":
+            pass
 
         elif action == "show":
             if target != "":
@@ -82,7 +86,6 @@ def main():
 
         else:
             print("I dont understand this command")
-
 
 def showitemfunc(target):
 
@@ -104,10 +107,6 @@ def showitemfunc(target):
         print(item_desc[0][1])
 
 
-
-
-
-
 def lookaroundfunc():
     cur.execute("SELECT place.description, player.placeID FROM place, player WHERE player.placeID = place.placeID;")
     rez = cur.fetchall()
@@ -122,22 +121,30 @@ def lookaroundfunc():
     print()
     print("Input 'show' and objcet, if you want to see it.")
 
-
-
 def movefunc(dist):
     cur.execute("SELECT placeID FROM player;")
     player_placeid = cur.fetchall()[0][0]
 
     try:
-        cur.execute("SELECT whereTo FROM movingtable WHERE placeID = '%i' AND \
+        cur.execute("SELECT whereTo, objectID FROM movingtable WHERE placeID = '%i' AND \
     	       direction = '%s';" % (player_placeid, dist))
-        rez = cur.fetchall()[0][0]
+        rez = cur.fetchall()
+        whereTo = rez[0][0]
+        objectID = rez[0][1]
 
     except IndexError:
         print("you can't go there!")
     else:
-        cur.execute("UPDATE player SET placeID = %i WHERE player.playerID = 1" % (rez))
-        cur.execute("SELECT name FROM place WHERE placeID = '%i'" % (rez))
+        if objectID != None:
+            cur.execute("SELECT locked, name FROM object WHERE ObjectID = '%i';" % objectID)
+            rez = cur.fetchall()
+            locked = rez[0][0]
+            name = rez[0][1]
+            if locked == 1:
+                print("You can't go there. A " + name + " is blocking the way")
+                return
+        cur.execute("UPDATE player SET placeID = %i WHERE player.playerID = 1" % (whereTo))
+        cur.execute("SELECT name FROM place WHERE placeID = '%i'" % (whereTo))
         new_place_name = cur.fetchall()[0][0]
         print("Your lacation is: " + new_place_name)
 
@@ -150,8 +157,23 @@ def inventoryfunc():
         print(" | " + i[0] + " | ", end=" ")
     print()
 
+def getAction(Id, Req): # For getting actions, Req 0 = Object, Req 1 = Item
+    Type = ''
+    if Req == 0:
+        Type = 'Object'
+    elif Req == 1:
+        Type = 'Item'
 
-
+    sql = "SELECT actiontable.description FROM actiontable \
+            JOIN %s \
+            WHERE actiontable.actionID = %s.actionID \
+            AND %s.%sID = %i " % (Type, Type, Type, Type, Id)
+    try:
+        cur.execute(sql)
+        result = cur.fetchall()
+        return result[[0][0]]
+    except IndexError:
+        return None
 
 def dropfunc(target):
     cur.execute("SELECT name FROM item WHERE playerID = 1;")
@@ -170,7 +192,6 @@ def dropfunc(target):
         print("You dropped " + target)
     else:
         print("Item not found in your inventory!")
-
 
 def getFunc(target):
     cur.execute("SELECT placeID FROM player;")
@@ -192,6 +213,10 @@ def getFunc(target):
 
         cur.execute("SELECT playerID FROM item WHERE name = '%s';" % (target))
         player_id = cur.fetchall()[0][0]
+
+        action = getAction(target_item_id, 1)
+        if action != None:
+            cur.execute(action[0])
 
         if player_id != 1:
             cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))
@@ -216,15 +241,6 @@ def getLocID():
     result = cur.fetchall()
     return(result[0][0])
 
-def getAction(Id): # For getting actions
-        sql = "SELECT actiontable.description FROM actiontable \
-                JOIN object \
-                WHERE actiontable.actionID = object.actionID \
-                AND object.objectID = %i " % Id
-        cur.execute(sql)
-        result = cur.fetchall()
-        for x in result:
-            return(x[0])
 
 def openFunc(loc, request, *objectname):
 
@@ -249,11 +265,13 @@ def openFunc(loc, request, *objectname):
         for x in result:
             if objectname == x[1] and x[4] == 1: # If objectname matches and
                 objectID = x[0]               # is usable -> Set objectID.
-                action = getAction(objectID)   # Get actions
+                action = getAction(objectID, 0)   # Get actions
         if objectID == None:    #If no objectID was stored
             print("You can't do that!")
         elif action == None and objectID != None: #If objectID was found and no action
             print("Jack opens the " + objectname + ' ' + request.upper())
+            sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
+            cur.execute(sql)
             return
 
     elif len(result) > 1:   # If there is multiple objects
@@ -266,17 +284,19 @@ def openFunc(loc, request, *objectname):
         return
 
     elif len(result) == 1 : # If there is only one result
-        for x in result:
-            if x[4] == 1:   # If it's usable
-                action = getAction(x[0]) # Get actions
-                objectname = x[2]       # Set objectname
-            else:
-                print("The "+ x[1] + " is not usable")
+        if result[0][4] == 1:   # If it's usable
+            action = getAction(result[0][0], 0) # Get actions
+            objectname = result[0][2]       # Set objectname
+            objectID = result[0][0]
+        else:
+            print("The "+ result[0][1] + " is not usable")
 
     if action != None: # If there is actions
-        print(action)
+        print(action[0])
     elif action == None and request.upper() == objectname:
         print("Jack opens the " + objectname)
+        sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
+        cur.execute(sql)
 
 
 def getObjectType(request, loc): # Getting the objecttype.typeID

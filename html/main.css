@@ -1,0 +1,51 @@
+.nav{
+    margin-top: 15px;
+}
+.nav-link{
+    color: #333;
+}
+.main-section{
+    height: 370px;
+
+}
+.main-section h1{
+    padding-top: 100px;
+    font-size: 50px;
+
+}
+
+.btn{
+    margin-top: 45px;
+    height: 50px;
+    width: 250px;
+}
+.section_one{
+    margin-top: 20px;
+}
+.powerby{
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+.immg{
+    width: 150px;
+    height: 150px;
+}
+.pow_desc{
+    margin-top: 15px;
+    font-weight: bold;
+}
+hr{
+    width: : 2px;
+}
+.section_two{
+    margin-top: 80px;
+}
+.abouth{
+    margin-bottom: 30px;
+}
+.section_gdd{
+    margin-top: 50px;
+}
+footer{
+    margin-top: 50px;
+}

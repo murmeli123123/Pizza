@@ -87,7 +87,7 @@ def main():
             else:
                 lookaroundfunc()
 
-        elif action == "n" or 's' or 'w' or 'e':
+        elif action == "n" or action == 's' or action == 'w' or action == 'e':
             movefunc(action)
 
         else:
@@ -152,7 +152,7 @@ def movefunc(dist):
         cur.execute("UPDATE player SET placeID = %i WHERE player.playerID = 1" % (whereTo))
         cur.execute("SELECT name FROM place WHERE placeID = '%i'" % (whereTo))
         new_place_name = cur.fetchall()[0][0]
-        print("Your lacation is: " + new_place_name)
+        print("Your location is: " + new_place_name)
 
 
 def inventoryfunc():

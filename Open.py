@@ -1,13 +1,7 @@
 import mysql.connector
 
-db = mysql.connector.connect(host = "localhost",
-                              user = "dbuser",
-                              passwd = "salasana",
-                              db = "pizzaDB",
-                              buffered = True)
-cursor = db.cursor()
-
 def openFunc(loc, request, *objectname):
+
 
     def getAction(Id): # For getting actions
             sql = "SELECT actiontable.description FROM actiontable \

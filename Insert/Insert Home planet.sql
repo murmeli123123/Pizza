@@ -15,8 +15,8 @@ INSERT INTO place VALUES (2, 'goverment-building', 'Nothing special here its jus
 INSERT INTO place VALUES (3, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 1);
 INSERT INTO place VALUES (4, 'control-room', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 
-INSERT INTO movingtable VALUES (1, 2, 'e', 1);
-INSERT INTO movingtable VALUES (2, 3, 'e', 2);
+INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
+INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
 
 INSERT INTO player VALUES (1, 0, 80, 1);
 

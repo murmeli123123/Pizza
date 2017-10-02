@@ -28,6 +28,7 @@ def main():
 
     while action!="quit" and location!="EXIT":
         location = getLocName()        # location is current location
+        locationID = getLocID()
 
 
         input_command=input("> ").split()
@@ -74,8 +75,11 @@ def main():
 
         elif action == "use":  # Use objects
             if target != '':
-                useFunc(target)
+                useFunc(target, locationID)
 
+        elif action == "press":
+            if target != '':
+                pressFunc(target)
 
         elif action == "show":
             if target != "":
@@ -313,15 +317,21 @@ def getObjectType(request, loc): # Getting the objecttype.typeID
         if typename == x[0]:
             return x[1]
 
-def useFunc(target):
-    target = target.upper()         # POISTA KUN OLLAAN SAATU KAIKKI NIMET LOWERCASE
-    cur.execute("SELECT object.name, object.actionID, object.objectID FROM object WHERE name = '%s'" % target)
-    result = cur.fetchall()
-    if result[0][1] != None:
-        print(getAction(result[0][2], 0)[0])
-    else:
+def useFunc(target, locID):
+    target = target.upper()    # POISTA KUN OLLAAN SAATU KAIKKI NIMET LOWERCASE
+    try:
+        cur.execute("SELECT object.name, object.actionID, object.objectID FROM object WHERE name = '%s' and placeID = '%i' " % (target, locID))
+        result = cur.fetchall()
+        if result[0][1] != None:
+            print(getAction(result[0][2], 0)[0])
+        else:
+            print("You can't use that!")
+    except:
+        IndexError
         print("You can't use that!")
 
+def pressFunc(target):
+    pass
 
 
 

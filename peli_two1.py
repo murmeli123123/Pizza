@@ -57,9 +57,9 @@ def main():
         elif action == "i":
             inventoryfunc()
         #
-        # elif action == "combine":
-        #     combFunc(input_command)
-        #
+        elif action == "combine":
+            combFunc(input_command)
+
         # elif action == "look":
         #     lookaroundfunc()
 
@@ -78,7 +78,8 @@ def main():
                 useFunc(target, locationID)
 
         elif action == "press":
-            pressFunc(locationID)
+            if target != '':
+                pressFunc(target)
 
         elif action == "show":
             if target != "":
@@ -105,10 +106,10 @@ def showitemfunc(target):
         cur.execute("SELECT name, description FROM item WHERE objectID = '%i';" % item_desc[0][0])
         items = cur.fetchall()
     except IndexError:
-        print("This place doesn't contain this object")
+        print("This place dont't contain this object")
     else:
 
-        print("This object contain some items, input 'get' + object, if you want to take it")
+        print("Ihis object contain some objests, input 'get' + object, if you want to get it")
         for i in items:
             print("| " + i[0] + " |",end=" : ")
             print(i[1])
@@ -160,7 +161,7 @@ def movefunc(dist):
 def inventoryfunc():
     cur.execute("SELECT name FROM item WHERE playerID = 1;")
     all_items = cur.fetchall()
-    print("You are carrying: ", end=" ")
+    print("In you inventory :", end=" ")
     for i in all_items:
         print(" | " + i[0] + " | ", end=" ")
     print()
@@ -200,7 +201,7 @@ def dropfunc(target):
         cur.execute("UPDATE item SET playerID = NULL WHERE itemID = '%i'  " % (item_name))
         print("You dropped " + target)
     else:
-        print("Item is not in your inventory!")
+        print("Item not found in your inventory!")
 
 def getFunc(target):
     cur.execute("SELECT placeID FROM player;")
@@ -229,11 +230,13 @@ def getFunc(target):
 
         if player_id != 1:
             cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))
-            print("You pick up: " + target)
+            print( target + " in your inventory") #playerID = 1
+            cur.execute("UPDATE item SET objectID = NULL WHERE itemID = '%i'" % (target_item_id))
+            print( target + " in your inventory") #objectID = NULL
         else:
             print("This item is already in your inventory")
     else:
-        print("This item is not found")
+        print("This item not founded")
 
 def getLocName():
     sql = "SELECT place.name \
@@ -306,7 +309,6 @@ def openFunc(loc, request, *objectname):
         print("Jack opens the " + objectname)
         sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
         cur.execute(sql)
-        return
 
 
 def getObjectType(request, loc): # Getting the objecttype.typeID
@@ -329,94 +331,105 @@ def useFunc(target, locID):
         else:
             print("You can't use that!")
     except:
-        IndexError
         print("You can't use that!")
 
 def pressFunc(target):
     pass
 
-def mapbase():
-    base = list(" _______\n|\t|\n|\t|\n|_______|")
-    return base
-
-# Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
-def moving():
-    sql = "SELECT movingTable.direction \
-            FROM player, place, movingTable \
-            WHERE player.placeID = place.placeID \
-            AND place.placeID = movingTable.placeID"
-    cur.execute(sql)
-    move = cur.fetchall()
-    movements = str(move)
-    return movements
-
-# Kartta siitä ruudusta missä pelaaja on
 def getmap():
-    base = mapbase()
-    movements = moving()
-    for x in movements:
-        if x == "n":
-            base[4] = "n"
-        elif x == "w":
-            base[13] = "w"
-        elif x == "e":
-            base[15] = "e"
-        elif x == "s":
-            base[21] = "s"
-    for x in base:
-        print(x, end='')
-    print('\n')
+    # Kartan malli
+    def mapbase():
+        base = list(" _______\n|\t|\n|\t|\n|_______|")
+        return base
 
-def storyMode(index):
-    if index == 1:
-        wait = 0
-        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 995 or actionID = 996 or actionID = 997 or actionID = 998;")
-        result = cur.fetchall()
-        if wait == 0:
-            print(result[0][0])
-            while wait == 0:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            print(result[1][0])
-            while wait == 1:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            print(result[2][0])
-            while wait == 2:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            print(result[3][0])
-            command = input("> BÄÄBÄÄ :D")
-    elif index == 2:
-         pass
+    # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
+    def moving():
+        sql = "SELECT movingTable.direction \
+                FROM player, place, movingTable \
+                WHERE player.placeID = place.placeID \
+                AND place.placeID = movingTable.placeID"
+        cur.execute(sql)
+        move = cur.fetchall()
+        movements = str(move)
+        return movements
+
+    # Kartta siitä ruudusta missä pelaaja on
+    def currentmap():
+        base = mapbase()
+        movements = moving()
+        for x in movements:
+            if x == "n":
+                base[4] = "n"
+            elif x == "w":
+                base[13] = "w"
+            elif x == "e":
+                base[15] = "e"
+            elif x == "s":
+                base[21] = "s"
+        for x in base:
+            print(x, end='')
+        print('\n')
+
+    currentmap()
+
+
+
+
+
+
+def combFunc(input_command):
+
+    if len(input_command) >= 3:
+
+        item_one = input_command[1].lower()
+        item_two = input_command[len(input_command)-1].lower()
+        # if len(input_command) >= 3:
+
+        count = 0
+        cur = db.cursor()
+        sql = "SELECT name FROM item WHERE playerID = 1 and groupID > 0"
+        cur.execute(sql)
+        itemrez = cur.fetchall()
+        for i in itemrez:
+
+            if i[0] == item_one or i[0] == item_two:
+                count = count + 1
+
+        if count == 2:
+            cur = db.cursor()
+            sql = "SELECT groupID FROM item WHERE name = '%s' or name = '%s'" % (item_one, item_two)
+            cur.execute(sql)
+            result = cur.fetchall()
+
+            if result[0][0] == result[1][0]:
+                print(result[0][0])
+                print(result[1][0])
+                cur = db.cursor()
+                sql = "UPDATE item SET playerID = NULL WHERE groupID = '%i'" % (result[0][0])
+                cur.execute(sql)
+
+                cur = db.cursor()
+                sql =  "SELECT resultID FROM item WHERE groupID = '%i'" % (result[0][0])
+                cur.execute(sql)
+                groupid = cur.fetchall()
+
+                cur = db.cursor()
+                sql =  "SELECT resultID FROM itemGroup WHERE groupID = '%i'" % (result[0][0])
+                cur.execute(sql)
+                groupid = cur.fetchall()
+
+
+                cur = db.cursor()
+                sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (groupid[0][0])
+                cur.execute(sql)
+                db.commit
+            else:
+                print("You can't do it! Try other items!")
+        else:
+            print("You dont have this item")
+
     else:
-        pass
-
-def pressFunc(locationID):
-    def travel():
-        if locationID == 3:
-            storyMode(1)
-            # cur.execute("UPDATE player SET placeID = %i WHERE playerID = 1")
-        elif locationID == 4:
-            pass
-        elif locationID == 5:
-            pass
-
-    cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
-            and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
-    result = cur.fetchall()
-
-    if len(result) > 0 and result[0][0] == 1:
-        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
-        if ask == 'Y' or ask == 'y':
-            travel()
-    else:
-        print("You can't press that!")
-
-
+        print("What you want to combine? ")
 
 
 

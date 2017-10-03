@@ -90,6 +90,9 @@ def main():
         elif action == "n" or action == 's' or action == 'w' or action == 'e':
             movefunc(action)
 
+        elif action == 'map':
+            getmap()
+
         else:
             print("I dont understand this command")
 
@@ -332,7 +335,41 @@ def useFunc(target, locID):
 def pressFunc(target):
     pass
 
+def getmap():
+    # Kartan malli
+    def mapbase():
+        base = list(" _______\n|\t|\n|\t|\n|_______|")
+        return base
 
+    # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
+    def moving():
+        sql = "SELECT movingTable.direction \
+                FROM player, place, movingTable \
+                WHERE player.placeID = place.placeID \
+                AND place.placeID = movingTable.placeID"
+        cur.execute(sql)
+        move = cur.fetchall()
+        movements = str(move)
+        return movements
+
+    # Kartta siitä ruudusta missä pelaaja on
+    def currentmap():
+        base = mapbase()
+        movements = moving()
+        for x in movements:
+            if x == "n":
+                base[4] = "n"
+            elif x == "w":
+                base[13] = "w"
+            elif x == "e":
+                base[15] = "e"
+            elif x == "s":
+                base[21] = "s"
+        for x in base:
+            print(x, end='')
+        print('\n')
+
+    currentmap()
 
 
 

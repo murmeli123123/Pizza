@@ -26,11 +26,11 @@ INSERT INTO place VALUES (3, 'poorly-fitted-space-ship', 'This ship has seen bet
 INSERT INTO place VALUES (4, 'control-room', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 # Proteus
 INSERT INTO place VALUES (21,"Shop", "In the shop you can to buy all what you need, from food to engine parts", 21);
-INSERT INTO place VALUES (22,"Front Gate", "Front Gate is big hall with a halographic device in the center and a big security in the corner.", 21);
-INSERT INTO place VALUES (23,"Sewer entrance", "This is grim small place, this is only a serwer door not more...", 21);
-INSERT INTO place VALUES (24,"Proteus Landing", "dProteus landing is a main starship station in the planet, this is a lot of differents starships all around the galaxy.", 21);
-INSERT INTO place VALUES (25,"Pizza-hat", "his is a secret room in the planet, you can find a some tools here.", 21);
-INSERT INTO place VALUES (26,"Sewer", "This is a ordinary room with ladder that leads to the shop.", 21);
+INSERT INTO place VALUES (22,"Front Gate", "descriptions", 21);
+INSERT INTO place VALUES (23,"Sewer entrance", "descriptions", 21);
+INSERT INTO place VALUES (24,"Proteus Landing", "descriptions", 21);
+INSERT INTO place VALUES (25,"Pizza-hat", "descriptions", 21);
+INSERT INTO place VALUES (26,"Sewer", "descriptions", 21);
 # HIP-17710
 INSERT INTO place VALUES (31, 'intergalactic-refueling-station', "This fueling station orbits the system at a close distance. The public transportation system can be used to travel to the other planets. They also sell all kinds of alien grocerys", NULL);
 INSERT INTO place VALUES (32, 'landing-Zone', "This is the landing zone of planet 1. The sandy dunes seem to continue to the horizon and it's unlikely there is anything useful here", 31);
@@ -64,7 +64,6 @@ INSERT INTO player VALUES (1, 0, 80, 1);
 
 # actionID , description
 # home-planet
-INSERT INTO actiontable VALUES (1, 'You opened THE DOOR... congrats.');
 INSERT INTO actiontable VALUES (2, 'You read your email... you tougth that id tell you whats in it... Well... Okay just this once.');
 INSERT INTO actiontable VALUES (3, 'As you go into shower, you start to feel like your life is being drained away. When you open the faucet and water comes down to you, you star to feel like your skin is melting away and you start to panick, you slip down and you hit your head... You are dead');
 INSERT INTO actiontable VALUES (4, 'You press the button in food store, it makes little explosion and pops a banana out. After that it breaks down and starts to smoke. Great now you have to fix it');
@@ -94,17 +93,18 @@ INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
 INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 3000.');
 INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
-<<<<<<< HEAD
+
 #storyMode
+INSERT INTO actiontable VALUES (990, "You opened THE DOOR... congrats. Outside the door is standing two big guys clad in black suits, they just stares you and in a moment they take something out of their pocket. It seems to be a goverments secret agents card. After that they put the cards away and asks you to come whit them. do you accept the offer? ");
+INSERT INTO actiontable VALUES (991, "You desided to follow the agents. You arive at the goverment building whit the agents, as you go inside the agents asks you to wait here for a while. The agents enters a room and ");
+INSERT INTO actiontable VALUES (992, "After a while the agents comes out of the room and asks you to go in. you enter the room and you can see the president sitting on the far end of the table. the president asks you to sit down and offers you a cup of tea. alltough you much more prefer coffee you take the offer and sit down. After you have sitted down, the president tells you that his wive has been kidnapped and he wants you to go rescue her, because you are the famous hero who has saved the humanity many times. Obviosly the guy that the president is talking about is not you, but you seem to have some problems opening your mouth to correct the fact, so you have to settle whit the idea of being a hero. The president dissmisses you and you leave the room.");
+INSERT INTO actiontable VALUES (993, "The two agents gives you a starchip key card and points you to your space ship.");
 INSERT INTO actiontable VALUES (995, "You feel the thrusters starting up and a quick yank as you begin to ascend away from your home planet. The poorly fitted space ship trembles and shakes vigorously, it feels like the ship is not meant to handle situations like this. You hear metallic rattling behind you but it’s impossible to turn your head around and see what’s making the noise as the acceleration pulls you to your seat. Your only option is to wait and see what happens.");
 INSERT INTO actiontable VALUES (996, "A moment passes and you can feel the gravity fading away. Your arms feel light and they begin to float. The poorly fitted space ship is not fitted with windows, the only information you can get is from the graphical interface that has been projected in front of you. The green sphere that represents your former home planet is slowly fading away, when suddenly the metallic rattling and all other noises disappear, you have entered the deep cold space. The graphical interface informs you that the ship is lining for outer space hyperdrive acceleration. You must wait for the engines to power up.");
 INSERT INTO actiontable VALUES (997, "The graphical interface informs you that hyperdrive acceleration is ready and begins the countdown. As the countdown hits zero your chair starts to shake and the poorly fitted space ship leaves the solar system. The graphical interface starts broadcasting the latest Adam Sandler movie. You try to set the chair to a comfort setting but the lever breaks. You must wait for the movie to finish.");
 INSERT INTO actiontable VALUES (998, "Just as the movie is about to reach its climax large asteroid hurls to the side of your ship. It rips of one of the engines and the ship starts to spin uncontrollable. Your life starts to flash before your eyes, you mostly see a lot of pizza. All the warning lights turn on and a loud alarm starts to blare. You have no idea how to react to the situation, you were not trained for this! The ships emergency systems activate, but the movie doesn't stop. A text appears on the graphical interface:");
 
-=======
 INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID = 410');
->>>>>>> ed2902fdce5e3e13de9e859527dd38d2fd783cd3
-
 
 # typeID , typename
 #home-planet
@@ -137,7 +137,7 @@ INSERT INTO itemgroup VALUES (43, 49);
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, NULL);
+INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, 990);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
@@ -161,7 +161,7 @@ INSERT INTO object VALUES (213, "Chair", "It's a old red chair", 22, 1, NULL, NU
 INSERT INTO object VALUES (214, "Soldier", "I dont want to speak with him", 22, 1, NULL, NULL, 27);
 INSERT INTO object VALUES (215, "Garbage", "Garbage is garbage", 22, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (216, "Woman", "She do something, I don't understand what exactly.", 23, NULL, NULL, NULL, 28);
-INSERT INTO object VALUES (217, "table", "It s just a small table", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (217, "Sewer-door", "Door to proteus Sewer", 23, 1, NULL, NULL, 22);
 INSERT INTO object VALUES (218, "Proteus landing door", "Door to the place where you ship", 23, 1, NULL, NULL, 22);
 INSERT INTO object VALUES (219, "Camera", "Big brother see you.", 23, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (220, "Ladder", "It's ladder to the shop.", 26, NULL, NULL, NULL, NULL);
@@ -196,9 +196,6 @@ INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 41
 #home-planet
 INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
-INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
-INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
-INSERT INTO movingtable VALUES (5, 2, 'w', 3, NULL);
 # Proteus
 INSERT INTO movingTable VALUES (21 , 22, "n", 24, NULL);
 INSERT INTO movingTable VALUES (22 , 25, "s", 24, NULL);

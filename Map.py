@@ -6,7 +6,7 @@ db = mysql.connector.connect(host = "localhost",
                               db = "pizzaDB",
                               buffered = True)
 cursor = db.cursor()
-def getMap():
+def getmap():
     # Kartan malli
     def mapbase():
         base = list(" _______\n|\t|\n|\t|\n|_______|")

@@ -21,7 +21,7 @@ cur = db.cursor()
 
 def main():
   # Initialize player location
-    location = ''
+    location = ""
     action = ""
                             # command is action verb
                             # target object
@@ -79,9 +79,9 @@ def main():
 
         elif action == "press":
             if target != '':
-                pressFunc(target, locationID)
+                pressFunc(target)
 
-        elif action == "show" or action == "look":
+        elif action == "show":
             if target != "":
                 showitemfunc(target)
             else:
@@ -89,6 +89,9 @@ def main():
 
         elif action == "n" or action == 's' or action == 'w' or action == 'e':
             movefunc(action)
+
+        elif action == 'map':
+            getmap()
 
         else:
             print("I dont understand this command")
@@ -329,22 +332,45 @@ def useFunc(target, locID):
         IndexError
         print("You can't use that!")
 
-def pressFunc(target, locationID):
-    def travel():
-        if locationID == 3:
-            pass
-        elif locationID == 3:
-            pass
-        elif locationID == 3:
-            pass
-    cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
-            and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
-    result = cur.fetchall()
+def pressFunc(target):
+    pass
 
-    if result[0][0] == 1:
-        travel()
-    else:
-        print("You can't press that!")
+def getmap():
+    # Kartan malli
+    def mapbase():
+        base = list(" _______\n|\t|\n|\t|\n|_______|")
+        return base
+
+    # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
+    def moving():
+        sql = "SELECT movingTable.direction \
+                FROM player, place, movingTable \
+                WHERE player.placeID = place.placeID \
+                AND place.placeID = movingTable.placeID"
+        cur.execute(sql)
+        move = cur.fetchall()
+        movements = str(move)
+        return movements
+
+    # Kartta siitä ruudusta missä pelaaja on
+    def currentmap():
+        base = mapbase()
+        movements = moving()
+        for x in movements:
+            if x == "n":
+                base[4] = "n"
+            elif x == "w":
+                base[13] = "w"
+            elif x == "e":
+                base[15] = "e"
+            elif x == "s":
+                base[21] = "s"
+        for x in base:
+            print(x, end='')
+        print('\n')
+
+    currentmap()
+
 
 
 

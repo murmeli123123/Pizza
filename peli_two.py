@@ -106,10 +106,10 @@ def showitemfunc(target):
         cur.execute("SELECT name, description FROM item WHERE objectID = '%i';" % item_desc[0][0])
         items = cur.fetchall()
     except IndexError:
-        print("This place dont't contain this object")
+        print("This place doesn't contain this object")
     else:
 
-        print("Ihis object contain some objests, input 'get' + object, if you want to get it")
+        print("This object contain some items, input 'get' + object, if you want to take it")
         for i in items:
             print("| " + i[0] + " |",end=" : ")
             print(i[1])
@@ -161,7 +161,7 @@ def movefunc(dist):
 def inventoryfunc():
     cur.execute("SELECT name FROM item WHERE playerID = 1;")
     all_items = cur.fetchall()
-    print("In you inventory :", end=" ")
+    print("You are carrying: ", end=" ")
     for i in all_items:
         print(" | " + i[0] + " | ", end=" ")
     print()
@@ -201,7 +201,7 @@ def dropfunc(target):
         cur.execute("UPDATE item SET playerID = NULL WHERE itemID = '%i'  " % (item_name))
         print("You dropped " + target)
     else:
-        print("Item not found in your inventory!")
+        print("Item is not in your inventory!")
 
 def getFunc(target):
     cur.execute("SELECT placeID FROM player;")
@@ -230,11 +230,11 @@ def getFunc(target):
 
         if player_id != 1:
             cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))
-            print( target + " in your inventory")
+            print("You pick up: " target)
         else:
             print("This item is already in your inventory")
     else:
-        print("This item not founded")
+        print("This item is not found")
 
 def getLocName():
     sql = "SELECT place.name \
@@ -335,41 +335,37 @@ def useFunc(target, locID):
 def pressFunc(target):
     pass
 
+def mapbase():
+    base = list(" _______\n|\t|\n|\t|\n|_______|")
+    return base
+
+# Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
+def moving():
+    sql = "SELECT movingTable.direction \
+            FROM player, place, movingTable \
+            WHERE player.placeID = place.placeID \
+            AND place.placeID = movingTable.placeID"
+    cur.execute(sql)
+    move = cur.fetchall()
+    movements = str(move)
+    return movements
+
+# Kartta siitä ruudusta missä pelaaja on
 def getmap():
-    # Kartan malli
-    def mapbase():
-        base = list(" _______\n|\t|\n|\t|\n|_______|")
-        return base
-
-    # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
-    def moving():
-        sql = "SELECT movingTable.direction \
-                FROM player, place, movingTable \
-                WHERE player.placeID = place.placeID \
-                AND place.placeID = movingTable.placeID"
-        cur.execute(sql)
-        move = cur.fetchall()
-        movements = str(move)
-        return movements
-
-    # Kartta siitä ruudusta missä pelaaja on
-    def currentmap():
-        base = mapbase()
-        movements = moving()
-        for x in movements:
-            if x == "n":
-                base[4] = "n"
-            elif x == "w":
-                base[13] = "w"
-            elif x == "e":
-                base[15] = "e"
-            elif x == "s":
-                base[21] = "s"
-        for x in base:
-            print(x, end='')
-        print('\n')
-
-    currentmap()
+    base = mapbase()
+    movements = moving()
+    for x in movements:
+        if x == "n":
+            base[4] = "n"
+        elif x == "w":
+            base[13] = "w"
+        elif x == "e":
+            base[15] = "e"
+        elif x == "s":
+            base[21] = "s"
+    for x in base:
+        print(x, end='')
+    print('\n')
 
 
 

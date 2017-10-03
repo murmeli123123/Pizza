@@ -94,6 +94,7 @@ INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
 INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 3000.');
 INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
+INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID = 410');
 
 
 # typeID , typename
@@ -129,7 +130,7 @@ INSERT INTO itemgroup VALUES (43, 49);
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, NULL);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
 INSERT INTO object VALUES (6, 'food-store', 'Its a food store, here you can buy food and its deliverd into this device instantly. It has a button on it', 1, 1, NULL, 2, 4);
 INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 2, 5);
@@ -230,7 +231,7 @@ INSERT INTO movingtable VALUES (423, 410, 'w', 411, NULL);
 INSERT INTO movingtable VALUES (424, 49, 'e', 412, NULL);
 INSERT INTO movingtable VALUES (425, 413, 'w', 412, NULL);
 INSERT INTO movingtable VALUES (426, 412, 'e', 413, NULL);
-INSERT INTO movingtable VALUES (427, 414, 'n', 413, NULL);
+INSERT INTO movingtable VALUES (427, 414, 'n', 413, 410);
 INSERT INTO movingtable VALUES (428, 413, 's', 414, NULL);
 
 
@@ -258,13 +259,13 @@ INSERT INTO item VALUES (37, 'glowing-vial', "Glows with a faint blue light, mig
 INSERT INTO item VALUES (38, 'vial-with-Quantum-flux', "Now glows even brighter. Definitely radioactive.", 2, NULL, NULL, 33, NULL, NULL);
 INSERT INTO item VALUES (39, 'alien-fuel', "High power fuel for space ships.", 1, NULL, NULL, NULL, NULL, NULL);
 # Cernobog
-INSERT INTO item VALUES (41, 'pizza-dough', 'From this pizza dough yuo can make a good pizza', 2, NULL, 44, 41, 45, 42);
-INSERT INTO item VALUES (42, 'alien-mushroom', 'Looks almost like normal mushrooms, but they smell like your socks.', 1, NULL, 43, 41, 45, 42);
-INSERT INTO item VALUES (43, 'alien-cheese', 'Looks like normal cheese, exept its blue.', 5, NULL, 42, 41, 45, 42);
-INSERT INTO item VALUES (44, 'alien-meat', 'Its meat, thats all.', 5, NULL, 42, 41, 45, 42);
-INSERT INTO item VALUES (45, 'raw-pizza', 'Looks good but its still raw.', 5, NULL, NULL, 42, 46, 43);
-INSERT INTO item VALUES (46, 'pizza', 'Freshly made pizza, its smells a bit odd.', 5, NULL, NULL, 43, 49, 44);
-INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, dont f***ing drink it, dont even smell it, just by looking it hurts. So did you get the point? I hope so...', 3, NULL, 45, 43, 49, 44);
-INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, 44);
-INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, 45);
-INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, NULL);
+INSERT INTO item VALUES (41, 'pizza-dough', 'From this pizza dough yuo can make a good pizza', 2, NULL, 44, 41, 45, NULL);
+INSERT INTO item VALUES (42, 'alien-mushroom', 'Looks almost like normal mushrooms, but they smell like your socks.', 1, NULL, 43, 41, 45, NULL);
+INSERT INTO item VALUES (43, 'alien-cheese', 'Looks like normal cheese, exept its blue.', 5, NULL, 42, 41, 45, NULL);
+INSERT INTO item VALUES (44, 'alien-meat', 'Its meat, thats all.', 5, NULL, 42, 41, 45, NULL);
+INSERT INTO item VALUES (45, 'raw-pizza', 'Looks good but its still raw.', 5, NULL, NULL, 42, 46, NULL);
+INSERT INTO item VALUES (46, 'pizza', 'Freshly made pizza, its smells a bit odd.', 5, NULL, NULL, 43, 49, NULL);
+INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, dont f***ing drink it, dont even smell it, just by looking it hurts. So did you get the point? I hope so...', 3, NULL, 45, 43, 49, NULL);
+INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, NULL);
+INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 46);

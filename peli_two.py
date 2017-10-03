@@ -230,7 +230,7 @@ def getFunc(target):
 
         if player_id != 1:
             cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))
-            print("You pick up: " target)
+            print("You pick up: " + target)
         else:
             print("This item is already in your inventory")
     else:

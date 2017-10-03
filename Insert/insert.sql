@@ -196,6 +196,9 @@ INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 41
 #home-planet
 INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
+INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
+INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
+INSERT INTO movingtable VALUES (5, 2, 'w', 3, NULL);
 # Proteus
 INSERT INTO movingTable VALUES (21 , 22, "n", 24, NULL);
 INSERT INTO movingTable VALUES (22 , 25, "s", 24, NULL);

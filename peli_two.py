@@ -370,26 +370,52 @@ def getmap():
 def storyMode(index):
     if index == 1:
         wait = 0
-        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 995 or actionID = 996 or actionID = 997 or actionID = 998;")
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 995 AND 998")
         result = cur.fetchall()
+
         if wait == 0:
-            print(result[0][0])
+            print('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print(result[1][0])
+            print('\n' + result[1][0] + '\n')
             while wait == 1:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print(result[2][0])
+            print('\n' + result[2][0] + '\n')
             while wait == 2:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print(result[3][0])
-            command = input("> BÄÄBÄÄ :D")
+            print('\n' + result[3][0] + '\n')
+
+            cur.execute("SELECT planet.name, planet.description FROM planet WHERE planet.planetID BETWEEN 21 and 26")
+            result = cur.fetchall()
+            y = 1
+            print("SYSTEM: " + '{:>2}'.format('PROTEUS'))
+            for x in result:
+                print(str(y) + '{:>25}'.format(x[0]))
+                y += 1
+            while True:
+                try:
+                    command = int(input("\nORBITAL BODIES DISCOVERED! EMERCENCY LANDING POSSIBLE! CHOOSE A PLANET TO LAND ON: "))
+                    if command > 6 or command < 1:
+                        continue
+                except:
+                    ValueError
+                    continue
+                break
+
+            print(result[command - 1][1])
+            if command == 4 or command == 6:
+                print("GAME OVER LOSER")
+            else:
+                cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
+                print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.')
+
+
     elif index == 2:
          pass
     else:
@@ -413,6 +439,10 @@ def pressFunc(locationID):
         ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
         if ask == 'Y' or ask == 'y':
             travel()
+        elif ask == 'N' or ask == 'n':
+            print("Okay")
+        else:
+            print("What?")
     else:
         print("You can't press that!")
 

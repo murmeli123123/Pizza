@@ -78,8 +78,7 @@ def main():
                 useFunc(target, locationID)
 
         elif action == "press":
-            if target != '':
-                pressFunc(target)
+            pressFunc(locationID)
 
         elif action == "show":
             if target != "":
@@ -307,6 +306,7 @@ def openFunc(loc, request, *objectname):
         print("Jack opens the " + objectname)
         sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
         cur.execute(sql)
+        return
 
 
 def getObjectType(request, loc): # Getting the objecttype.typeID
@@ -370,6 +370,55 @@ def getmap():
         print('\n')
 
     currentmap()
+
+def storyMode(index):
+    if index == 1:
+        wait = 0
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 995 or actionID = 996 or actionID = 997 or actionID = 998;")
+        result = cur.fetchall()
+        if wait == 0:
+            print(result[0][0])
+            while wait == 0:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print(result[1][0])
+            while wait == 1:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print(result[2][0])
+            while wait == 2:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print(result[3][0])
+            command = input("> BÄÄBÄÄ :D")
+    elif index == 2:
+         pass
+    else:
+        pass
+
+def pressFunc(locationID):
+    def travel():
+        if locationID == 3:
+            storyMode(1)
+            # cur.execute("UPDATE player SET placeID = %i WHERE playerID = 1")
+        elif locationID == 4:
+            pass
+        elif locationID == 5:
+            pass
+
+    cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
+            and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
+    result = cur.fetchall()
+
+    if len(result) > 0 and result[0][0] == 1:
+        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
+        if ask == 'Y' or ask == 'y':
+            travel()
+    else:
+        print("You can't press that!")
 
 
 

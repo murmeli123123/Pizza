@@ -94,6 +94,12 @@ INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
 INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 3000.');
 INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
+#storyMode
+INSERT INTO actiontable VALUES (995, "You feel the thrusters starting up and a quick yank as you begin to ascend away from your home planet. The poorly fitted space ship trembles and shakes vigorously, it feels like the ship is not meant to handle situations like this. You hear metallic rattling behind you but it’s impossible to turn your head around and see what’s making the noise as the acceleration pulls you to your seat. Your only option is to wait and see what happens.");
+INSERT INTO actiontable VALUES (996, "A moment passes and you can feel the gravity fading away. Your arms feel light and they begin to float. The poorly fitted space ship is not fitted with windows, the only information you can get is from the graphical interface that has been projected in front of you. The green sphere that represents your former home planet is slowly fading away, when suddenly the metallic rattling and all other noises disappear, you have entered the deep cold space. The graphical interface informs you that the ship is lining for outer space hyperdrive acceleration. You must wait for the engines to power up.");
+INSERT INTO actiontable VALUES (997, "The graphical interface informs you that hyperdrive acceleration is ready and begins the countdown. As the countdown hits zero your chair starts to shake and the poorly fitted space ship leaves the solar system. The graphical interface starts broadcasting the latest Adam Sandler movie. You try to set the chair to a comfort setting but the lever breaks. You must wait for the movie to finish.");
+INSERT INTO actiontable VALUES (998, "Just as the movie is about to reach its climax large asteroid hurls to the side of your ship. It rips of one of the engines and the ship starts to spin uncontrollable. Your life starts to flash before your eyes, you mostly see a lot of pizza. All the warning lights turn on and a loud alarm starts to blare. You have no idea how to react to the situation, you were not trained for this! The ships emergency systems activate, but the movie doesn't stop. A text appears on the graphical interface:");
+
 
 
 # typeID , typename
@@ -132,8 +138,9 @@ INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pa
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
 INSERT INTO object VALUES (6, 'food-store', 'Its a food store, here you can buy food and its deliverd into this device instantly. It has a button on it', 1, 1, NULL, 2, 4);
-INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 2, 5);
+INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 32, 5);
 INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
 # Proteus
 INSERT INTO object VALUES (21, "Pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
 INSERT INTO object VALUES (22, "Front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);

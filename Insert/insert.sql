@@ -26,11 +26,11 @@ INSERT INTO place VALUES (3, 'poorly-fitted-space-ship', 'This ship has seen bet
 INSERT INTO place VALUES (4, 'control-room', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 # Proteus
 INSERT INTO place VALUES (21,"Shop", "In the shop you can to buy all what you need, from food to engine parts", 21);
-INSERT INTO place VALUES (22,"Front Gate", "descriptions", 21);
-INSERT INTO place VALUES (23,"Sewer entrance", "descriptions", 21);
-INSERT INTO place VALUES (24,"Proteus Landing", "descriptions", 21);
-INSERT INTO place VALUES (25,"Pizza-hat", "descriptions", 21);
-INSERT INTO place VALUES (26,"Sewer", "descriptions", 21);
+INSERT INTO place VALUES (22,"Front Gate", "Front Gate is big hall with a halographic device in the center and a big security in the corner.", 21);
+INSERT INTO place VALUES (23,"Sewer entrance", "This is grim small place, this is only a serwer door not more...", 21);
+INSERT INTO place VALUES (24,"Proteus Landing", "dProteus landing is a main starship station in the planet, this is a lot of differents starships all around the galaxy.", 21);
+INSERT INTO place VALUES (25,"Pizza-hat", "his is a secret room in the planet, you can find a some tools here.", 21);
+INSERT INTO place VALUES (26,"Sewer", "This is a ordinary room with ladder that leads to the shop.", 21);
 # HIP-17710
 INSERT INTO place VALUES (31, 'intergalactic-refueling-station', "This fueling station orbits the system at a close distance. The public transportation system can be used to travel to the other planets. They also sell all kinds of alien grocerys", NULL);
 INSERT INTO place VALUES (32, 'landing-Zone', "This is the landing zone of planet 1. The sandy dunes seem to continue to the horizon and it's unlikely there is anything useful here", 31);
@@ -161,7 +161,7 @@ INSERT INTO object VALUES (213, "Chair", "It's a old red chair", 22, 1, NULL, NU
 INSERT INTO object VALUES (214, "Soldier", "I dont want to speak with him", 22, 1, NULL, NULL, 27);
 INSERT INTO object VALUES (215, "Garbage", "Garbage is garbage", 22, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (216, "Woman", "She do something, I don't understand what exactly.", 23, NULL, NULL, NULL, 28);
-INSERT INTO object VALUES (217, "Sewer-door", "Door to proteus Sewer", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (217, "table", "It s just a small table", 23, 1, NULL, NULL, 22);
 INSERT INTO object VALUES (218, "Proteus landing door", "Door to the place where you ship", 23, 1, NULL, NULL, 22);
 INSERT INTO object VALUES (219, "Camera", "Big brother see you.", 23, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (220, "Ladder", "It's ladder to the shop.", 26, NULL, NULL, NULL, NULL);

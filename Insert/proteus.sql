@@ -80,9 +80,9 @@ INSERT INTO object VALUES (26, "seller", "Seller look like my boss", 1, 1, NULL 
 INSERT INTO object VALUES (27, "camera", "Big brother see you.", 1, 1, NULL ,10);
 INSERT INTO object VALUES (28, "box", "In this box a lot of different parts.", 1, 1, NULL ,10);
 
-INSERT INTO item VALUES (1, 'engine-parts', 'Its a part for you ship.', 1, NULL, 28, 77, NULL, NULL);
+INSERT INTO item VALUES (1, 'engine-parts', 'It is a part for you ship.', 1, NULL, 28, 77, NULL, NULL);
 INSERT INTO item VALUES (2, 'tools', 'Its a special engine tools, combine it with you parts.', 1, NULL, 31, 77, NULL, NULL);
-INSERT INTO item VALUES (88, 'new-engine', 'Its a new engine for you starship, use it to starship.', 1, NULL, 31, NULL, NULL, NULL);
+INSERT INTO item VALUES (88, 'new-engine', 'It is a new engine for you starship, use it to starship.', 1, NULL, 31, NULL, NULL, NULL);
 INSERT INTO item VALUES (3, 'key', 'Its a key from Pizza-hat door.', 1, NULL, 31, NULL, NULL, NULL);
 
 

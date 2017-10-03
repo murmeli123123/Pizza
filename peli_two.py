@@ -21,7 +21,7 @@ cur = db.cursor()
 
 def main():
   # Initialize player location
-    location = ""
+    location = ''
     action = ""
                             # command is action verb
                             # target object
@@ -79,9 +79,9 @@ def main():
 
         elif action == "press":
             if target != '':
-                pressFunc(target)
+                pressFunc(target, locationID)
 
-        elif action == "show":
+        elif action == "show" or action == "look":
             if target != "":
                 showitemfunc(target)
             else:
@@ -329,11 +329,22 @@ def useFunc(target, locID):
         IndexError
         print("You can't use that!")
 
-def pressFunc(target):
-    pass
+def pressFunc(target, locationID):
+    def travel():
+        if locationID == 3:
+            pass
+        elif locationID == 3:
+            pass
+        elif locationID == 3:
+            pass
+    cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
+            and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
+    result = cur.fetchall()
 
-
-
+    if result[0][0] == 1:
+        travel()
+    else:
+        print("You can't press that!")
 
 
 

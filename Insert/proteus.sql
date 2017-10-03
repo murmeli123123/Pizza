@@ -7,11 +7,11 @@ INSERT INTO planet VALUES (6, "Marian", "Its a lethal planet");
 
 
 INSERT INTO place VALUES (1,"Shop", "In the shop you can to buy all what you need, from food to engine parts", 1);
-INSERT INTO place VALUES (2,"Front Gate", "descriptions", 1);
-INSERT INTO place VALUES (3,"Sewer entrance", "descriptions", 1);
-INSERT INTO place VALUES (4,"Proteus Landing", "descriptions", 1);
-INSERT INTO place VALUES (5,"Pizza-hat", "descriptions", 1);
-INSERT INTO place VALUES (6,"Sewer", "descriptions", 1);
+INSERT INTO place VALUES (2,"Front Gate", "Front Gate is big hall with a halographic device in the center and a big security in the corner. ", 1);
+INSERT INTO place VALUES (3,"Sewer entrance", "This is grim small place, this is only a serwer door not more...", 1);
+INSERT INTO place VALUES (4,"Proteus Landing", "Proteus landing is a main starship station in the planet, this is a lot of differents starships all around the galaxy.", 1);
+INSERT INTO place VALUES (5,"Pizza-hat", "This is a secret room in the planet, you can find a some tools here.", 1);
+INSERT INTO place VALUES (6,"Sewer", "This is a ordinary room with ladder that leads to the shop.", 1);
 
 INSERT INTO movingTable VALUES (1 , 2, "n", 4);
 INSERT INTO movingTable VALUES (2 , 5, "s", 4);
@@ -69,10 +69,10 @@ INSERT INTO object VALUES (18, "Proteus landing door", "Door to the place where 
 INSERT INTO object VALUES (19, "Camera", "Big brother see you.", 3, NULL ,NULL);
 
 
-INSERT INTO object VALUES (20, "Ladder", "It's ladder to the shop.", 6, NULL ,NULL);
-INSERT INTO object VALUES (21, "Sewer door", "Door to proteus Sewer", 6, 1 ,NULL, NULL);
-INSERT INTO object VALUES (22, "Proteus-landing-door", "Door to the place where you ship", 6, 1 ,NULL, NULL);
-INSERT INTO object VALUES (23, "Camera", "Big brother see you.", 6, NULL ,NULL, 10);
+INSERT INTO object VALUES (20, "ladder", "It's ladder to the shop.", 6, NULL ,NULL);
+INSERT INTO object VALUES (21, "table", "its just a table", 6, 1 ,NULL, NULL);
+INSERT INTO object VALUES (22, "proteus-landing-door", "Door to the place where you ship", 6, 1 ,NULL, NULL);
+INSERT INTO object VALUES (23, "camera", "Big brother see you.", 6, NULL ,NULL, 10);
 
 
 INSERT INTO object VALUES (25, "ladder-to-serwer", "Ladder to serwer", 1, 1 ,NULL, NULL);
@@ -80,9 +80,9 @@ INSERT INTO object VALUES (26, "seller", "Seller look like my boss", 1, 1, NULL 
 INSERT INTO object VALUES (27, "camera", "Big brother see you.", 1, 1, NULL ,10);
 INSERT INTO object VALUES (28, "box", "In this box a lot of different parts.", 1, 1, NULL ,10);
 
-INSERT INTO item VALUES (1, 'engine-parts', 'Its a part for you ship.', 1, NULL, 28, 77, NULL, NULL);
+INSERT INTO item VALUES (1, 'engine-parts', 'It is a part for you ship.', 1, NULL, 28, 77, NULL, NULL);
 INSERT INTO item VALUES (2, 'tools', 'Its a special engine tools, combine it with you parts.', 1, NULL, 31, 77, NULL, NULL);
-INSERT INTO item VALUES (88, 'new-engine', 'Its a new engine for you starship, use it to starship.', 1, NULL, 31, NULL, NULL, NULL);
+INSERT INTO item VALUES (88, 'new-engine', 'It is a new engine for you starship, use it to starship.', 1, NULL, 31, NULL, NULL, NULL);
 INSERT INTO item VALUES (3, 'key', 'Its a key from Pizza-hat door.', 1, NULL, 31, NULL, NULL, NULL);
 
 
@@ -95,5 +95,3 @@ INSERT INTO itemGroup VALUES (77, 88);
 INSERT INTO object VALUES (29, "Exit door", "Door to landing place", 5, NULL ,NULL, 2);
 INSERT INTO object VALUES (30, "camera", "Big brother see you.", 5, NULL, NULL ,10);
 INSERT INTO object VALUES (31, "table", "Big brother see you.", 5, NULL, NULL ,11);
-
-

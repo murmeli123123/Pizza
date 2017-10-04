@@ -25,12 +25,15 @@ INSERT INTO place VALUES (2, 'goverment-building', 'Nothing special here its jus
 INSERT INTO place VALUES (3, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 1);
 INSERT INTO place VALUES (4, 'control-room', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
 # Proteus
+
 INSERT INTO place VALUES (21,"Shop", "In the shop you can to buy all what you need, from food to engine parts", 21);
-INSERT INTO place VALUES (22,"Front Gate", "descriptions", 21);
-INSERT INTO place VALUES (23,"Sewer entrance", "descriptions", 21);
-INSERT INTO place VALUES (24,"Proteus Landing", "descriptions", 21);
-INSERT INTO place VALUES (25,"Pizza-hat", "descriptions", 21);
-INSERT INTO place VALUES (26,"Sewer", "descriptions", 21);
+INSERT INTO place VALUES (22,"Front Gate", "Front Gate is big hall with a halographic device in the center and a big security in the corner. ", 21);
+INSERT INTO place VALUES (23,"Sewer entrance", "This is grim small place, this is only a serwer door not more...", 1);
+INSERT INTO place VALUES (24,"Proteus Landing", "Proteus landing is a main starship station in the planet, this is a lot of differents starships all around the galaxy.", 21);
+INSERT INTO place VALUES (25,"Pizza-hat", "This is a secret room in the planet, you can find a some tools here.", 21);
+INSERT INTO place VALUES (26,"Sewer", "This is a ordinary room with ladder that leads to the shop.", 21);
+
+
 # HIP-17710
 INSERT INTO place VALUES (31, 'intergalactic-refueling-station', "This fueling station orbits the system at a close distance. The public transportation system can be used to travel to the other planets. They also sell all kinds of alien grocerys", NULL);
 INSERT INTO place VALUES (32, 'landing-Zone', "This is the landing zone of planet 1. The sandy dunes seem to continue to the horizon and it's unlikely there is anything useful here", 31);
@@ -158,33 +161,38 @@ INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL
 INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in', 1, 0, NULL, 2, NULL);
 # Proteus
-INSERT INTO object VALUES (21, "Pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
-INSERT INTO object VALUES (22, "Front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
-INSERT INTO object VALUES (23, "Sewer-entrance door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
-INSERT INTO object VALUES (25, "Empty box", "Some box on the floor", 24, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (26, "Floor", "Dirty floor, where is cleaner?", 24, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (27, "Notebook", "It defenitely doesn't work.", 24, NULL, NULL, NULL, 23);
-INSERT INTO object VALUES (28, "Security", "I dont want to say nothing to him.", 24,NULL, NULL, NULL, 24);
-INSERT INTO object VALUES (29, "Starship", "Its my starship.", 24, NULL, NULL, NULL, 25);
-INSERT INTO object VALUES (210, "Holographic device ", "You can use it", 22, 1, NULL, NULL, 21);
-INSERT INTO object VALUES (211, "Proteus landing door", "Door to proteus landing place", 22, 1, NULL, NULL, 22);
-INSERT INTO object VALUES (212, "Table", "Its just a table in the corner", 22, 1,NULL, NULL, 210);
-INSERT INTO object VALUES (213, "Chair", "It's a old red chair", 22, 1, NULL, NULL, 26);
-INSERT INTO object VALUES (214, "Soldier", "I dont want to speak with him", 22, 1, NULL, NULL, 27);
-INSERT INTO object VALUES (215, "Garbage", "Garbage is garbage", 22, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (216, "Woman", "She do something, I don't understand what exactly.", 23, NULL, NULL, NULL, 28);
-INSERT INTO object VALUES (217, "Sewer-door", "Door to proteus Sewer", 23, 1, NULL, NULL, 22);
-INSERT INTO object VALUES (218, "Proteus landing door", "Door to the place where you ship", 23, 1, NULL, NULL, 22);
-INSERT INTO object VALUES (219, "Camera", "Big brother see you.", 23, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (220, "Ladder", "It's ladder to the shop.", 26, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (221, "Sewer door", "Door to proteus Sewer", 26, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (222, "Proteus-landing-door", "Door to the place where you ship", 26, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (223, "Camera", "Big brother see you.", 26, NULL, NULL, NULL, 210);
+INSERT INTO object VALUES (21, "pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
+INSERT INTO object VALUES (22, "front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
+INSERT INTO object VALUES (23, "sewer-entrance door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
+INSERT INTO object VALUES (25, "empty box", "Some box on the floor", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (26, "floor", "Dirty floor, where is cleaner?", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (27, "notebook", "It defenitely doesn't work.", 24, NULL, NULL, NULL, 23);
+INSERT INTO object VALUES (28, "security", "I dont want to say nothing to him.", 24,NULL, NULL, NULL, 24);
+INSERT INTO object VALUES (29, "starship", "Its my starship.", 24, NULL, NULL, NULL, 25);
+
+INSERT INTO object VALUES (210, "holographic device ", "You can use it", 22, 1, NULL, NULL, 21);
+INSERT INTO object VALUES (211, "proteus landing door", "Door to proteus landing place", 22, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (212, "table", "Its just a table in the corner", 22, 1,NULL, NULL, 210);
+INSERT INTO object VALUES (213, "chair", "It's a old red chair", 22, 1, NULL, NULL, 26);
+INSERT INTO object VALUES (214, "soldier", "I dont want to speak with him", 22, 1, NULL, NULL, 27);
+INSERT INTO object VALUES (215, "garbage", "Garbage is garbage", 22, 1, NULL, NULL, NULL);
+
+INSERT INTO object VALUES (216, "woman", "She do something, I don't understand what exactly.", 23, NULL, NULL, NULL, 28);
+INSERT INTO object VALUES (217, "sewer-door", "Door to proteus Sewer", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (218, "proteus landing door", "Door to the place where you ship", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (219, "camera", "Big brother see you.", 23, NULL, NULL, NULL, NULL);
+
+INSERT INTO object VALUES (220, "ladder", "It's ladder to the shop.", 26, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (221, "serwer-entrance-door", "Door to Serwer entrance", 26, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (222, "animal", " It's animal look like cat", 26, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (223, "camera", "Big brother see you.", 26, NULL, NULL, NULL, 210);
+
 INSERT INTO object VALUES (225, "ladder-to-serwer", "Ladder to serwer", 21, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (226, "seller", "Seller look like my boss", 21, 1, NULL, NULL, 212);
 INSERT INTO object VALUES (227, "camera", "Big brother see you.", 21, 1, NULL, NULL, 210);
 INSERT INTO object VALUES (228, "box", "In this box a lot of different parts.", 21, 1, NULL, NULL, 210);
-INSERT INTO object VALUES (229, "Exit door", "Door to landing place", 25, NULL ,NULL, NULL, 22);
+
+INSERT INTO object VALUES (229, "exit-door", "Door to landing place", 25, NULL ,NULL, NULL, 22);
 INSERT INTO object VALUES (230, "camera", "Big brother see you.", 25, NULL, NULL, NULL, 210);
 INSERT INTO object VALUES (231, "table", "Big brother see you.", 25, NULL, NULL, NULL, 211);
 # HIP-17710
@@ -208,6 +216,9 @@ INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 41
 #home-planet
 INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
+INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
+INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
+INSERT INTO movingtable VALUES (5, 2, 'w', 3, NULL);
 # Proteus
 INSERT INTO movingTable VALUES (21 , 22, "n", 24, NULL);
 INSERT INTO movingTable VALUES (22 , 25, "s", 24, NULL);

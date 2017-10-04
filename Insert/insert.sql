@@ -157,6 +157,7 @@ INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', 
 INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in', 1, 0, NULL, 2, NULL);
+INSERT INTO object VALUES (11, 'two-agents', 'They look pretty dense, they just stand ther doing nothing.', 2, NULL, NULL, NULL, NULL);
 # Proteus
 INSERT INTO object VALUES (21, "Pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
 INSERT INTO object VALUES (22, "Front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
@@ -260,7 +261,7 @@ INSERT INTO movingtable VALUES (428, 413, 's', 414, NULL);
 # itemID , name , description , #weight , playerID , objectID , #groupID , resultID , actionID
 # home-planet
 INSERT INTO item VALUES (1, 'drivers-license', 'Its an ordinary drives license nothing more', 1, NULL, 1, NULL, NULL, 6);
-INSERT INTO item VALUES (2, 'starchip-key-card', 'Old dusty starchip key card for your poorly fitted space ship.', 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO item VALUES (2, 'starchip-key-card', 'Old dusty starchip key card for your poorly fitted space ship.', 1, NULL, 11, NULL, NULL, NULL);
 INSERT INTO item VALUES (3, 'clothes', 'These are your clothes, nothing special about them.', 5, NULL, 3, NULL, NULL, NULL);
 INSERT INTO item VALUES (4, 'banana', 'Even tough the food store broke the banana that popped out looks edible', 2, NULL, 7, NULL, NULL, 7);
 INSERT INTO item VALUES (5, 'banana-peel', 'its a banana peel, very slipery if you step on it.', 1, NULL, NULL, NULL, NULL, NULL);

@@ -30,9 +30,9 @@ def main():
     # Dont ask
     title = "*"*40 + "\n*" + '{:>28}'.format('PIZZA-HAT EXPRESS') + '{:>11}'.format('*') + ("\n*" + '{:>39}'.format('*')) +  '{:>2}'.format('\nTHE BEST TEXT ADVENTURE GAME IN THE WORLD') + ("\n*" + '{:>39}'.format('*'))*2 + "\n" + "*"*40
     print(title)
-    intro = "\n\nYour name is Jack. The year is 2318. You are just an ordinary pizza delivery guy for an intergalactic pizza company.\n\nYou have just woken from a late night shift. Please experience the world around you and maybe put on some clothes..\n\n"
+    intro = "\n\nYour name is Jack. The year is 2318. You are just an ordinary pizza delivery guy for an intergalactic pizza company.\n\nYou have just woken from a late night shift. There seems to be some email on the computer. Please experience the world around you and maybe put on some clothes..\n\n"
     print(intro)
-    
+
     while action!="quit" and location!="EXIT":
         location = getLocName()        # location is current location
         locationID = getLocID()
@@ -125,15 +125,14 @@ def lookaroundfunc():
     cur.execute("SELECT place.description, player.placeID FROM place, player WHERE player.placeID = place.placeID;")
     rez = cur.fetchall()
     print(rez[0][0])
-    print(rez[0][1])
+    # print(rez[0][1])
 
     cur.execute("SELECT name FROM object WHERE object.placeID = '%i';" % (rez[0][1]))
     objects = cur.fetchall()
-    print("In this place are: ", end=" ")
+    print("\nIn this place are: ", end=" ")
     for i in objects:
         print(i[0], end=" | ")
-    print()
-    print("Input 'show' and objcet, if you want to see it.")
+    print("Input 'show' and object, if you want to see it.")
 
 def movefunc(dist):
     cur.execute("SELECT placeID FROM player;")
@@ -451,7 +450,7 @@ def pressFunc(locationID):
         else:
             print("What?")
     else:
-        print("You can't press that!")
+        print("You can't press that yet!")
 
 
 def combFunc(input_command):

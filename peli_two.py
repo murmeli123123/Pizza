@@ -62,7 +62,7 @@ def main():
                 dropfunc(target)
             else:
                 print("It's just a verb!, Try again!")
-        elif action == "i":
+        elif action == "i" or action == "inventory":
             inventoryfunc()
         #
         elif action == "combine":
@@ -88,7 +88,7 @@ def main():
         elif action == "press":
             pressFunc(locationID)
 
-        elif action == "show":
+        elif action == "show" or action == "look":
             if target != "":
                 showitemfunc(target)
             else:
@@ -104,21 +104,28 @@ def main():
             print("I dont understand this command")
 
 def showitemfunc(target):
-
     try:
         cur.execute("SELECT objectID, description \
         FROM object, player WHERE player.placeID = object.placeID AND object.name = '%s';" % (target))
         item_desc = cur.fetchall()
         #
+
         cur.execute("SELECT name, description FROM item WHERE objectID = '%i';" % item_desc[0][0])
         items = cur.fetchall()
     except IndexError:
-        print("This place doesn't contain this object")
-    else:
+        desc = ''
+        for x in getInventory():
+            if x[0] == target:
+                desc = x[1]
+        if len(desc) > 1:
+            myprint(desc)
+        else:
+            print("This place doesn't contain this object")
 
+    else:
         # print("This object contain some items, input 'get' + object, if you want to take it")
         # print()
-        print(item_desc[0][1])
+        myprint(item_desc[0][1])
         for i in items:
             print("| " + i[0] + " |",end=" : ")
             print(i[1])
@@ -133,18 +140,13 @@ def lookaroundfunc():
 
     cur.execute("SELECT name FROM object WHERE object.placeID = '%i';" % (rez[0][1]))
     objects = cur.fetchall()
-    print("\nIn this place are: ", end=" ")
-    print()
+    print("\nIn this place are:", end="\n")
+
     for i in objects:
-<<<<<<< HEAD
         # print(i[0], end=" | ")
         myprint(i[0])
-
-    print("Input 'show' and object, if you want to see it.")
-=======
-        print(i[0], end=" | ")
+    #print(i[0], end=" | ")
     print("\nInput 'show' and object, if you want to see it.")
->>>>>>> a618cd4b95ccabea2d58dfa74cfcdc01b6337d43
 
 def movefunc(dist):
     cur.execute("SELECT placeID FROM player;")
@@ -181,6 +183,13 @@ def inventoryfunc():
     for i in all_items:
         print(" | " + i[0] + " | ", end=" ")
     print()
+
+def getInventory():
+    cur.execute("SELECT item.name, item.description \
+            FROM item INNER JOIN player \
+            ON item.playerID = player.playerID")
+    carrying = cur.fetchall()
+    return carrying
 
 def getAction(Id, Req): # For getting actions, Req 0 = Object, Req 1 = Item
     Type = ''           # Id is the id of object or item

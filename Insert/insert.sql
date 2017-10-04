@@ -158,14 +158,11 @@ INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL
 INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in', 1, 0, NULL, 2, NULL);
 # Proteus
-INSERT INTO object VALUES (21, "Pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
-INSERT INTO object VALUES (22, "Front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
-INSERT INTO object VALUES (23, "Sewer-entrance door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
 INSERT INTO object VALUES (25, "Empty box", "Some box on the floor", 24, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (26, "Floor", "Dirty floor, where is cleaner?", 24, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (27, "Notebook", "It defenitely doesn't work.", 24, NULL, NULL, NULL, 23);
 INSERT INTO object VALUES (28, "Security", "I dont want to say nothing to him.", 24,NULL, NULL, NULL, 24);
-INSERT INTO object VALUES (29, "Starship", "Its my starship.", 24, NULL, NULL, NULL, 25);
+INSERT INTO object VALUES (29, "poorly-fitted-space-ship", "It's a miracle this survived in one piece. One of the engines is missing", 24, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (210, "Holographic device ", "You can use it", 22, 1, NULL, NULL, 21);
 INSERT INTO object VALUES (211, "Proteus landing door", "Door to proteus landing place", 22, 1, NULL, NULL, 22);
 INSERT INTO object VALUES (212, "Table", "Its just a table in the corner", 22, 1,NULL, NULL, 210);

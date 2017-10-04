@@ -415,7 +415,7 @@ def storyMode(index):
                 print("GAME OVER LOSER")
                 gameOver(result[command -1][0])
             else:
-                cur.execute("UPDATE player SET placeID = 29 WHERE playerID = 1" )
+                cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
                 print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
 
 
@@ -424,7 +424,7 @@ def storyMode(index):
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 990 AND 993")
         result = cur.fetchall()
 
-         if wait == 0:
+        if wait == 0:
             print('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
@@ -454,11 +454,7 @@ def pressFunc(locationID):
         if locationID == 3:
             storyMode(1)
         elif locationID == 1:
-<<<<<<< HEAD
-            pass
-=======
             storyMode(2)
->>>>>>> 3bcc4c224c60d3c99632dcb1edf47068bbaec27a
         elif locationID == 5:
             pass
 

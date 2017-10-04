@@ -30,8 +30,9 @@ def main():
     # Dont ask
     title = "*"*40 + "\n*" + '{:>28}'.format('PIZZA-HAT EXPRESS') + '{:>11}'.format('*') + ("\n*" + '{:>39}'.format('*')) +  '{:>2}'.format('\nTHE BEST TEXT ADVENTURE GAME IN THE WORLD') + ("\n*" + '{:>39}'.format('*'))*2 + "\n" + "*"*40
     print(title)
+    print()
     intro = "\n\nYour name is Jack. The year is 2318. You are just an ordinary pizza delivery guy for an intergalactic pizza company.\n\nYou have just woken from a late night shift. There seems to be some email on the computer. Please experience the world around you and maybe put on some clothes.\n\n"
-    print(intro)
+    myprint(intro)
 
     while action!="quit" and location!="EXIT":
         location = getLocName()        # location is current location
@@ -114,24 +115,29 @@ def showitemfunc(target):
         print("This place doesn't contain this object")
     else:
 
-        print("This object contain some items, input 'get' + object, if you want to take it")
+        # print("This object contain some items, input 'get' + object, if you want to take it")
+        # print()
+        print(item_desc[0][1])
         for i in items:
             print("| " + i[0] + " |",end=" : ")
             print(i[1])
-        print(item_desc[0][1])
+        # print(item_desc[0][1])
 
 
 def lookaroundfunc():
     cur.execute("SELECT place.description, player.placeID FROM place, player WHERE player.placeID = place.placeID;")
     rez = cur.fetchall()
-    print(rez[0][0])
+    myprint(rez[0][0])
     # print(rez[0][1])
 
     cur.execute("SELECT name FROM object WHERE object.placeID = '%i';" % (rez[0][1]))
     objects = cur.fetchall()
     print("\nIn this place are: ", end=" ")
+    print()
     for i in objects:
-        print(i[0], end=" | ")
+        # print(i[0], end=" | ")
+        myprint(i[0])
+
     print("Input 'show' and object, if you want to see it.")
 
 def movefunc(dist):
@@ -386,17 +392,20 @@ def storyMode(index):
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[1][0] + '\n')
+            myprint(result[1][0])
+            # print('\n' + result[1][0] + '\n')
             while wait == 1:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[2][0] + '\n')
+            myprint(result[2][0])
+            # print('\n' + result[2][0] + '\n')
             while wait == 2:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[3][0] + '\n')
+            myprint(result[3][0])
+            # print('\n' + result[3][0] + '\n')
 
             cur.execute("SELECT planet.name, planet.description FROM planet WHERE planet.planetID BETWEEN 21 and 26")
             result = cur.fetchall()
@@ -508,7 +517,22 @@ def combFunc(input_command):
         print("What you want to combine? ")
 
 
-
+def myprint(text):
+    max_length = 70
+    arr = text.split()
+    count = 0
+    for i in arr:
+        if count + len(i) <= max_length:
+            if count > 0:
+                print(" ", end='')
+                count = count + 1
+            print(i, end='')
+        else:
+            print("")
+            count = 0
+            print(i, end='')
+        count = count + len(i)
+    print("")
 
 
 

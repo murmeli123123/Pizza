@@ -160,7 +160,29 @@ INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', 
 INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in', 1, 0, NULL, 2, NULL);
+INSERT INTO object VALUES (11, 'two-agents', 'They look pretty dense, they just stand ther doing nothing.', 2, NULL, NULL, NULL, NULL);
 # Proteus
+<<<<<<< HEAD
+INSERT INTO object VALUES (25, "Empty box", "Some box on the floor", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (26, "Floor", "Dirty floor, where is cleaner?", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (27, "Notebook", "It defenitely doesn't work.", 24, NULL, NULL, NULL, 23);
+INSERT INTO object VALUES (28, "Security", "I dont want to say nothing to him.", 24,NULL, NULL, NULL, 24);
+INSERT INTO object VALUES (29, "poorly-fitted-space-ship", "It's a miracle this survived in one piece. One of the engines is missing", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (210, "Holographic device ", "You can use it", 22, 1, NULL, NULL, 21);
+INSERT INTO object VALUES (211, "Proteus landing door", "Door to proteus landing place", 22, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (212, "Table", "Its just a table in the corner", 22, 1,NULL, NULL, 210);
+INSERT INTO object VALUES (213, "Chair", "It's a old red chair", 22, 1, NULL, NULL, 26);
+INSERT INTO object VALUES (214, "Soldier", "I dont want to speak with him", 22, 1, NULL, NULL, 27);
+INSERT INTO object VALUES (215, "Garbage", "Garbage is garbage", 22, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (216, "Woman", "She do something, I don't understand what exactly.", 23, NULL, NULL, NULL, 28);
+INSERT INTO object VALUES (217, "Sewer-door", "Door to proteus Sewer", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (218, "Proteus landing door", "Door to the place where you ship", 23, 1, NULL, NULL, 22);
+INSERT INTO object VALUES (219, "Camera", "Big brother see you.", 23, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (220, "Ladder", "It's ladder to the shop.", 26, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (221, "Sewer door", "Door to proteus Sewer", 26, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (222, "Proteus-landing-door", "Door to the place where you ship", 26, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (223, "Camera", "Big brother see you.", 26, NULL, NULL, NULL, 210);
+=======
 INSERT INTO object VALUES (21, "pizza-hat-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
 INSERT INTO object VALUES (22, "front-Gate-door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
 INSERT INTO object VALUES (23, "sewer-entrance door", "Simple metal door", 24, 1 ,NULL, NULL, 22);
@@ -187,6 +209,7 @@ INSERT INTO object VALUES (221, "serwer-entrance-door", "Door to Serwer entrance
 INSERT INTO object VALUES (222, "animal", " It's animal look like cat", 26, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (223, "camera", "Big brother see you.", 26, NULL, NULL, NULL, 210);
 
+>>>>>>> 3bcc4c224c60d3c99632dcb1edf47068bbaec27a
 INSERT INTO object VALUES (225, "ladder-to-serwer", "Ladder to serwer", 21, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (226, "seller", "Seller look like my boss", 21, 1, NULL, NULL, 212);
 INSERT INTO object VALUES (227, "camera", "Big brother see you.", 21, 1, NULL, NULL, 210);
@@ -271,7 +294,7 @@ INSERT INTO movingtable VALUES (428, 413, 's', 414, NULL);
 # itemID , name , description , #weight , playerID , objectID , #groupID , resultID , actionID
 # home-planet
 INSERT INTO item VALUES (1, 'drivers-license', 'Its an ordinary drives license nothing more', 1, NULL, 1, NULL, NULL, 6);
-INSERT INTO item VALUES (2, 'starchip-key-card', 'Old dusty starchip key card for your poorly fitted space ship.', 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO item VALUES (2, 'starchip-key-card', 'Old dusty starchip key card for your poorly fitted space ship.', 1, NULL, 11, NULL, NULL, NULL);
 INSERT INTO item VALUES (3, 'clothes', 'These are your clothes, nothing special about them.', 5, NULL, 3, NULL, NULL, NULL);
 INSERT INTO item VALUES (4, 'banana', 'Even tough the food store broke the banana that popped out looks edible', 2, NULL, 7, NULL, NULL, 7);
 INSERT INTO item VALUES (5, 'banana-peel', 'its a banana peel, very slipery if you step on it.', 1, NULL, NULL, NULL, NULL, NULL);

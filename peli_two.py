@@ -1,5 +1,4 @@
 import mysql.connector
-import random
 
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
@@ -25,6 +24,7 @@ def main():
     action = ""
 
 
+
                             # command is action verb
                             # target object
     # Dont ask
@@ -35,8 +35,9 @@ def main():
     myprint(intro)
 
     while action!="quit" and location!="EXIT":
-        location = getLocName()        # location is current location
+        # location is current location
         locationID = getLocID()
+        location = getLocName()
 
         input_command=input("> ").split()
 
@@ -74,9 +75,9 @@ def main():
             if target != '':
                 if len(input_command) == 3:
                     objectname = input_command[1]
-                    openFunc(getLocID(),target,objectname)
+                    openFunc(locationID,target,objectname)
                 else:
-                    openFunc(getLocID(), target)
+                    openFunc(locationID, target)
             else:
                 print("Try again")
 
@@ -135,10 +136,15 @@ def lookaroundfunc():
     print("\nIn this place are: ", end=" ")
     print()
     for i in objects:
+<<<<<<< HEAD
         # print(i[0], end=" | ")
         myprint(i[0])
 
     print("Input 'show' and object, if you want to see it.")
+=======
+        print(i[0], end=" | ")
+    print("\nInput 'show' and object, if you want to see it.")
+>>>>>>> a618cd4b95ccabea2d58dfa74cfcdc01b6337d43
 
 def movefunc(dist):
     cur.execute("SELECT placeID FROM player;")
@@ -263,7 +269,6 @@ def getLocID():
     result = cur.fetchall()
     return(result[0][0])
 
-
 def openFunc(loc, request, *objectname):
 
     multiple = 'There is multiple objects:'     # String for multiple objects
@@ -292,8 +297,7 @@ def openFunc(loc, request, *objectname):
             print("You can't do that!")
         elif action == None and objectID != None: #If objectID was found and no action
             print("Jack opens the " + objectname + ' ' + request)
-            sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
-            cur.execute(sql)
+            cur.execute("UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID)
             return
 
     elif len(result) > 1:   # If there is multiple objects
@@ -317,10 +321,8 @@ def openFunc(loc, request, *objectname):
         print(action[0])
     elif action == None and request == objectname:
         print("Jack opens the " + objectname)
-        sql = "UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID
-        cur.execute(sql)
+        cur.execute("UPDATE object SET locked = 0 WHERE object.objectID = %i;" % objectID)
         return
-
 
 def getObjectType(request, loc): # Getting the objecttype.typeID
     typename = request
@@ -345,8 +347,6 @@ def useFunc(target, locID):
         IndexError
         print("You can't use that!")
 
-def pressFunc(target):
-    pass
 
 def mapbase():
     base = list(" _______\n|\t|\n|\t|\n|_______|")
@@ -427,13 +427,39 @@ def storyMode(index):
             print(result[command - 1][1])
             if command == 4 or command == 6:
                 print("GAME OVER LOSER")
+                gameOver(result[command -1][0])
             else:
-                cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
-                print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.')
+                cur.execute("UPDATE player SET placeID = 29 WHERE playerID = 1" )
+                print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
 
 
     elif index == 2:
-         pass
+        wait = 0
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 990 AND 993")
+        result = cur.fetchall()
+
+         if wait == 0:
+            print('\n' + result[0][0] + '\n')
+            while wait == 0:
+                command = input("> ")
+                if command == 'yes' or command == 'YES' or command == 'y' or command == 'Y':
+                    wait += 1
+            print('\n' + result[1][0] + '\n')
+            while wait == 1:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print('\n' + result[2][0] + '\n')
+            while wait == 2:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print('\n' + result[3][0] + '\n')
+
+            cur.execute("UPDATE player SET placeID = 2;")
+            target = "starchip-key-card"
+            getFunc(target)
+
     else:
         pass
 
@@ -441,8 +467,12 @@ def pressFunc(locationID):
     def travel():
         if locationID == 3:
             storyMode(1)
-        elif locationID == 4:
+        elif locationID == 1:
+<<<<<<< HEAD
             pass
+=======
+            storyMode(2)
+>>>>>>> 3bcc4c224c60d3c99632dcb1edf47068bbaec27a
         elif locationID == 5:
             pass
 
@@ -460,6 +490,10 @@ def pressFunc(locationID):
             print("What?")
     else:
         print("You can't press that yet!")
+
+def gameOver(location):
+    print("Jack dies a horrible death on " + location)
+
 
 
 def combFunc(input_command):

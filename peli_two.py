@@ -420,7 +420,32 @@ def storyMode(index):
 
 
     elif index == 2:
-         pass
+        wait = 0
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 990 AND 993")
+        result = cur.fetchall()
+
+         if wait == 0:
+            print('\n' + result[0][0] + '\n')
+            while wait == 0:
+                command = input("> ")
+                if command == 'yes' or command == 'YES' or command == 'y' or command == 'Y':
+                    wait += 1
+            print('\n' + result[1][0] + '\n')
+            while wait == 1:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print('\n' + result[2][0] + '\n')
+            while wait == 2:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+            print('\n' + result[3][0] + '\n')
+
+            cur.execute("UPDATE player SET placeID = 2;")
+            target = "starchip-key-card"
+            getFunc(target)
+
     else:
         pass
 
@@ -429,7 +454,11 @@ def pressFunc(locationID):
         if locationID == 3:
             storyMode(1)
         elif locationID == 1:
+<<<<<<< HEAD
             pass
+=======
+            storyMode(2)
+>>>>>>> 3bcc4c224c60d3c99632dcb1edf47068bbaec27a
         elif locationID == 5:
             pass
 

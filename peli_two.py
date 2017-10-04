@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
                               passwd = "salasana",
@@ -391,57 +392,63 @@ def getmap():
     print('\n')
 
 def storyMode(index):
+
     if index == 1:
-        wait = 0
-        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 995 AND 998")
-        result = cur.fetchall()
-
-        if wait == 0:
-            print('\n' + result[0][0] + '\n')
-            while wait == 0:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            myprint(result[1][0])
-            # print('\n' + result[1][0] + '\n')
-            while wait == 1:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            myprint(result[2][0])
-            # print('\n' + result[2][0] + '\n')
-            while wait == 2:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            myprint(result[3][0])
-            # print('\n' + result[3][0] + '\n')
-
-            cur.execute("SELECT planet.name, planet.description FROM planet WHERE planet.planetID BETWEEN 21 and 26")
+        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
+        if ask == 'yes' or ask == 'Y' or ask == 'y':
+            wait = 0
+            cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 995 AND 998")
             result = cur.fetchall()
-            y = 1
-            print("SYSTEM: " + '{:>2}'.format('PROTEUS'))
-            for x in result:
-                print(str(y) + '{:>25}'.format(x[0]))
-                y += 1
-            while True:
-                try:
-                    command = int(input("\nORBITAL BODIES DISCOVERED! EMERCENCY LANDING POSSIBLE! CHOOSE A PLANET TO LAND ON: "))
-                    if command > 6 or command < 1:
+
+            if wait == 0:
+                myprint(result[0][0])
+                while wait == 0:
+                    command = input("> ")
+                    if command == 'wait' or command == 'WAIT':
+                        wait += 1
+                myprint(result[1][0])
+                # print('\n' + result[1][0] + '\n')
+                while wait == 1:
+                    command = input("> ")
+                    if command == 'wait' or command == 'WAIT':
+                        wait += 1
+                myprint(result[2][0])
+                # print('\n' + result[2][0] + '\n')
+                while wait == 2:
+                    command = input("> ")
+                    if command == 'wait' or command == 'WAIT':
+                        wait += 1
+                myprint(result[3][0])
+                # print('\n' + result[3][0] + '\n')
+
+                cur.execute("SELECT planet.name, planet.description FROM planet WHERE planet.planetID BETWEEN 21 and 26")
+                result = cur.fetchall()
+                y = 1
+                print("SYSTEM: " + '{:>2}'.format('PROTEUS'))
+                for x in result:
+                    print(str(y) + '{:>25}'.format(x[0]))
+                    y += 1
+                while True:
+                    try:
+                        command = int(input("\nORBITAL BODIES DISCOVERED! EMERCENCY LANDING POSSIBLE! CHOOSE A PLANET TO LAND: "))
+                        if command > 6 or command < 1:
+                            continue
+                    except ValueError:
                         continue
-                except:
-                    ValueError
-                    continue
-                break
+                    break
 
-            print(result[command - 1][1])
-            if command == 4 or command == 6:
-                print("GAME OVER LOSER")
-                gameOver(result[command -1][0])
-            else:
-                cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
-                print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
-
+                print(result[command - 1][1])
+                if command == 4 or command == 6:
+                    print("GAME OVER LOSER")
+                    gameOver(result[command -1][0])
+                else:
+                    cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
+                    print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
+        elif ask == 'n' or ask == 'N' or ask == 'no':
+            print("press again when you are ready")
+            return
+        else:
+            return
 
     elif index == 2:
         wait = 0
@@ -470,8 +477,36 @@ def storyMode(index):
             target = "starchip-key-card"
             getFunc(target)
 
-    else:
+    elif index == 101:
         pass
+
+    elif index == 4:
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 895 AND 897")
+        result = cur.fetchall()
+        selection = ''
+        myprint(result[0][0])
+        while len(selection) < 3:
+            number = input("> ")
+            print("*beep*")
+            selection += number
+        if selection == '123':
+            myprint(result[1][0])
+            cur.execute("UPDATE object SET placeID = 27 WHERE objectID = 236")
+        else:
+            myprint(result[2][0])
+            gameOver("Proteus")
+    elif index == 5:
+
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 880 AND 883")
+        result = cur.fetchall()
+        myprint(result[0][0])
+        myprint(result[1][0])
+        myprint(result[2][0])
+        myprint(result[3][0])
+
+    elif index == 6:
+        pass
+
 
 def pressFunc(locationID):
     def travel():
@@ -479,27 +514,26 @@ def pressFunc(locationID):
             storyMode(1)
         elif locationID == 1:
             storyMode(2)
-        elif locationID == 5:
+        elif locationID == 0:
             pass
+        elif locationID == 27:
+            storyMode(4)
+        elif locationID == 26:
+            storyMode(5)
 
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
 
     if len(result) > 0 and result[0][0] == 1:
-        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
-        if ask == 'Y' or ask == 'y':
-            travel()
-        elif ask == 'N' or ask == 'n':
-            print("Okay")
-        else:
-            print("What?")
+        travel()
     else:
         print("You can't press that yet!")
 
 def gameOver(location):
+    import sys
     print("Jack dies a horrible death on " + location + '\n\n\n\n')
-    main()
+    sys.exit()
 
 def combFunc(input_command):
 

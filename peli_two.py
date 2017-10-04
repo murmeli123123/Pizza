@@ -34,13 +34,12 @@ def main():
     intro = "\n\nYour name is Jack. The year is 2318. You are just an ordinary pizza delivery guy for an intergalactic pizza company.\n\nYou have just woken from a late night shift. There seems to be some email on the computer. Please experience the world around you and maybe put on some clothes.\n\n"
     myprint(intro)
 
-    while action!="quit" and location!="EXIT":
+    while action!="quit" or location!="EXIT":
         # location is current location
         locationID = getLocID()
         location = getLocName()
 
         input_command=input("> ").split()
-
         if len(input_command) >= 1:
             action = input_command[0].lower()
         else:
@@ -101,6 +100,8 @@ def main():
             getmap()
 
         else:
+            if action == 'quit':
+                return
             print("I dont understand this command")
 
 def showitemfunc(target):
@@ -497,9 +498,8 @@ def pressFunc(locationID):
         print("You can't press that yet!")
 
 def gameOver(location):
-    print("Jack dies a horrible death on " + location)
-
-
+    print("Jack dies a horrible death on " + location + '\n\n\n\n')
+    main()
 
 def combFunc(input_command):
 

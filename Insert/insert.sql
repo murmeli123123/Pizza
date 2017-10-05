@@ -99,6 +99,7 @@ INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 30
 INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
 INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID = 411');
 INSERT INTO actiontable VALUES (47, 'UPDATE object SET usable = 1 WHERE objectID = 413');
+INSERT INTO actiontable VALUES (48, 'UPDATE object SET usable = 1 WHERE objectID = 410');
 #storyMode
 INSERT INTO actiontable VALUES (880, "The ladder shoots down from the ceiling and you begin to climb it. You stop for a moment to wait if you could hear what the creatures are speaking in the shop. As you get closer to the ceiling it's obvious to you that you have no idea even what language they are speaking.");
 INSERT INTO actiontable VALUES (881, "The holographic device suddenly starts to translate the ongoing conversation to you. It surely is a remarkable piece of technology.");
@@ -126,8 +127,6 @@ INSERT INTO actiontable VALUES (1044, "Finaly its your turn to use the wc. You p
 INSERT INTO actiontable VALUES (1045, "");
 INSERT INTO actiontable VALUES (1046, "");
 INSERT INTO actiontable VALUES (1047, "");
-
-INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID = 410');
 
 # typeID , typename
 #home-planet
@@ -212,7 +211,7 @@ INSERT INTO object VALUES (46, 'pizza-oven', 'Its used to make delicios pizzas',
 INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 1, NULL, 41, NULL);
 INSERT INTO object VALUES (48, 'doorbell', 'Its a white button that rings a doorbell.', 48, 1, NULL, 42, 45);
 INSERT INTO object VALUES (49, 'fallen-guard', 'Seem like the pizza did its job.', 411, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 0, NULL, NULL, NULL);
 INSERT INTO object VALUES (411, 'pizza-maker', 'Its used to make pizza base by putting ingredints in it, it has a button in it.', 45, 0, NULL, 2, 1040);
 INSERT INTO object VALUES (412, 'wc-turn-ticket-button', 'It gives you a turn ticket to wc.', 415, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (413, 'red-button', 'Its a red button', 416, 0, NULL, 2, NULL);
@@ -313,5 +312,5 @@ INSERT INTO item VALUES (46, 'pizza', 'Freshly made pizza, its smells a bit odd.
 INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, dont f***ing drink it, dont even smell it, just by looking it hurts. So did you get the point? I hope so...', 3, NULL, 45, 43, 49, NULL);
 INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, NULL);
-INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 46);
+INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 48);
 INSERT INTO item VALUES (411, 'cernobog-note', "This note contains detailed location of the third planet thats is in Cernobog.", 1, NULL, NULL, NULL, NULL, 47);

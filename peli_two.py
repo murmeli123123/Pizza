@@ -50,7 +50,6 @@ def main():
         else:
             target = ""
 
-
         if action == "get":
             if target!="":
                 getFunc(target)
@@ -70,6 +69,9 @@ def main():
         #
         # elif action == "look":
         #     lookaroundfunc()
+
+        elif action == "help":
+            getHelp()
 
         elif action == "open":   # open object
             if target != '':
@@ -94,7 +96,7 @@ def main():
             else:
                 lookaroundfunc()
 
-        elif action == "n" or action == 's' or action == 'w' or action == 'e':
+        elif action == "n" or action == 's' or action == 'w' or action == 'e' or action == 'north' or action == 'south' or action == 'west' or action == 'e':
             movefunc(action)
 
         elif action == 'map':
@@ -496,7 +498,7 @@ def storyMode(index):
             myprint(result[2][0])
             gameOver("Proteus")
     elif index == 5:
-
+        wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 880 AND 883")
         result = cur.fetchall()
         myprint(result[0][0])
@@ -529,6 +531,22 @@ def pressFunc(locationID):
         travel()
     else:
         print("You can't press that yet!")
+
+def getHelp():
+    print("Use these commands to interact with the game:\n\n \
+    Look or show: To look around or to examine objects.\n \
+    N, S, W, E or north, south, west, east: To move around the game world.\n \
+    Use: To use an object.\n \
+    Press: To press a button.\n \
+    Wait: To wait when you are told to.\n \
+    Map: To print out a map, for navigation purposes.\n \
+    Open: To open doors and various objects.\n \
+    Inventory or i: To examine your inventory.\n \
+    Get or take: To pick up an item.\n \
+    Drop: To drop an item to the ground.\n \
+    Combine: To combine two items together.\n \
+    Quit: To quit the game. You wouldn't want to do that, would you?")
+
 
 def gameOver(location):
     import sys

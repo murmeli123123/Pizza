@@ -32,6 +32,7 @@ INSERT INTO place VALUES (24,"Proteus Landing", "Proteus landing is a main stars
 INSERT INTO place VALUES (25,"Pizza-hat", "A Pizza-hat restaurant. They don't recognise you as one of their own. Down the road to south there is a vehicle parked.", 21);
 INSERT INTO place VALUES (26,"Sewer", "This stinky place has all kinds of living and dead junk in it. There seems to be a ladder at the end of it.", 21);
 INSERT INTO place VALUES (27, "Near the Pizza-Hat", "A vehicle is parked here. It seems like no one has touched the vehicle for weeks.", 21);
+INSERT INTO place VALUES (28, 'poorly-fitted-space-ship', "The new repaired ship. You have no idea how you got it to work, but it works like a charm.",21);
 
 
 # HIP-17710
@@ -78,7 +79,7 @@ INSERT INTO actionTable VALUES(21, 'Hello men i am a halographic device');
 INSERT INTO actionTable VALUES(22, 'You opened the door');
 INSERT INTO actionTable VALUES(23, 'Old notebook, not interested');
 INSERT INTO actionTable VALUES(24, 'I am security number 185749464.');
-INSERT INTO actionTable VALUES(25, 'Go next');
+INSERT INTO actionTable VALUES(25, 'You have to repair it first!');
 INSERT INTO actionTable VALUES(26, 'No now');
 INSERT INTO actionTable VALUES(27, '...');
 INSERT INTO actionTable VALUES(28, 'Hello Jack i can help you to find a key, you need a....');
@@ -88,6 +89,7 @@ INSERT INTO actionTable VALUES(211, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(212, 'Hello! Your starship is broken? you can find some parts in those box');
 INSERT INTO actionTable VALUES(213, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(214, 'UPDATE object SET usable = 1 WHERE objectID = 24');
+INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213')
 # HIP-17710
 INSERT INTO actiontable VALUES (31, "As Jack approaches, it makes some kind of growling noice but doesn't seem to be reluctant.");
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
@@ -99,7 +101,7 @@ INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 30
 INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
 
 #storyMode
-INSERT INTO actiontable VALUES (880, "The ladder shoots down from the ceiling and you begin to climb it. You stop for a moment to wait if you could hear what the creatures are speaking in the shop. As you get closer to the ceiling it's obvious to you that you have no idea even what language they are speaking.");
+INSERT INTO actiontable VALUES (880, "The ladder shoots down from the ceiling and you begin to climb it. You stop for a moment to wait if you could hear what the creatures are speaking in the shop. As you get closer to the ceiling it's obvious to you that you have no idea even what language they are speaking. You wait for the conversation to end.");
 INSERT INTO actiontable VALUES (881, "The holographic device suddenly starts to translate the ongoing conversation to you. It surely is a remarkable piece of technology.");
 INSERT INTO actiontable VALUES (882, "HOLOGRAPHIC DEVICE: 'You buy me good product last week gooooooood.' 'Yesss very goood you like yes.' 'I very like yesssss.' 'HuehueHEUE:DHEUHEUYHUE:DD' ");
 INSERT INTO actiontable VALUES (883, "The device starts to make strage noices so you decide to just ignore it. Maybe it's not perfect after all. The 'creatures' seem to be leaving the shop.");
@@ -166,7 +168,7 @@ INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good sh
 INSERT INTO object VALUES (6, 'food-store', 'Its a food store, here you can buy food and its deliverd into this device instantly. It has a button on it', 1, 1, NULL, 32, 4);
 INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 32, 5);
 INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (9, 'red-button', 'Big red button', 3, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (9, 'red-button', 'Big red button used to travel with the ship.', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in. Press to activate the doorbell', 1, 0, NULL, 2, NULL);
 INSERT INTO object VALUES (11, 'two-agents', 'They look pretty dense, they just stand there doing nothing.', 2, NULL, NULL, NULL, NULL);
 # Proteus
@@ -183,7 +185,7 @@ INSERT INTO object VALUES (215, "litter", "Just some litter on the ground.", 22,
 INSERT INTO object VALUES (219, "camera", "Big brother can see you. It looks broken.", 23, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (220, "ladder", "A drop down ladder that seems to lead to a shop. You can hear talking near the ladder.", 26, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (222, "lifeform", "Looks like some kind of animal, like a cat or something.", 26, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (226, "seller", "Seller looks like my boss. He's wandering near the booth.", 21, 1, NULL, NULL, 212);
+INSERT INTO object VALUES (226, "seller", "Seller looks like my boss. He's wandering near the booth.", 22, 1, NULL, NULL, 212);
 INSERT INTO object VALUES (227, "camera", "Big brother can see you.", 21, 1, NULL, NULL, 210);
 INSERT INTO object VALUES (228, "box", "A box of different parts.", 21, 1, NULL, NULL, 210);
 INSERT INTO object VALUES (229, "exit-door", "Door to landing place", 25, NULL ,NULL, NULL, 22);
@@ -194,6 +196,8 @@ INSERT INTO object VALUES (233, "officer", "I dont want to speak with him, he lo
 INSERT INTO object VALUES (234, "vehicle", "An old vehicle parked near the pizza-hat restaurant. It has a keypad near the trunk.", 27, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (235, "keypad", "Strange looking keypad with buttons on it. Press to activate the keypad", 27, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (236, "trunk", "Trunk of the car", NULL, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (237, "shelf", "A shelf full of stuff", 21, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28)
 
 # HIP-17710
 INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 31, 1, NULL, NULL, NULL);
@@ -228,10 +232,11 @@ INSERT INTO movingTable VALUES (25 , 23, "w", 24, 24);
 INSERT INTO movingTable VALUES (26 , 24, "e", 23, NULL);
 INSERT INTO movingTable VALUES (27 , 26, "n", 23, NULL);
 INSERT INTO movingTable VALUES (28 , 23, "s", 26, NULL);
-INSERT INTO movingTable VALUES (29 , 21, "n", 26, NULL);
+INSERT INTO movingTable VALUES (29 , 21, "n", NULL, NULL);
 INSERT INTO movingTable VALUES (210, 26, "s", 21, NULL);
 INSERT INTO movingTable VALUES (211, 27, "s", 25, NULL);
 INSERT INTO movingTable VALUES (212, 25, "n", 27, NULL);
+INSERT INTO movingTable VALUES (213, 28, "e", NULL, NULL);
 #HIP-17710
 INSERT INTO movingtable VALUES (31, 37, 'n', 33, NULL);
 INSERT INTO movingtable VALUES (32, 33, 's', 37, NULL);
@@ -281,11 +286,14 @@ INSERT INTO item VALUES (5, 'banana-peel', 'its a banana peel, very slipery if y
 #Proteus
 INSERT INTO item VALUES (21, 'engine-parts', 'Its a part for you ship.', 1, NULL, 228, 277, NULL, NULL);
 INSERT INTO item VALUES (22, 'tools', 'Its a special engine tools, combine it with you parts.', 1, NULL, 236, 277, NULL, NULL);
-INSERT INTO item VALUES (288, 'new-engine' , 'Its a new engine for you starship, use it to starship.', 1, NULL, 231, NULL, NULL, NULL);
+INSERT INTO item VALUES (288, 'new-engine' , 'Its a new engine for you starship, use it to starship.', 1, NULL, 231, NULL, NULL, 215);
 INSERT INTO item VALUES (23, 'key', 'Its a key from Pizza-hat door.', 1, NULL, 231, NULL, NULL, NULL);
 INSERT INTO item VALUES (24, "holographic-device", "A strange device that seems to project a hologram when you shine it against the sun.", 1, NULL, 215, NULL, 21, 214);
 INSERT INTO item VALUES (25, 'banana-peel', "Old banana peels.", 1, NULL, 215, NULL, NULL, NULL);
 INSERT INTO item VALUES (26, 'tin-can', "Used tin can. Smells like cat food.", 1, NULL, 215, NULL, NULL, NULL);
+INSERT INTO item VALUES (27, 'goo', "Odd goo. Not sure if it's living or not.", 1, NULL, 237, NULL, NULL, NULL);
+INSERT INTO item VALUES (28, 'metal-scraps', "A pile of metal scraps, nothing useful here.", 1, NULL, 237, NULL, NULL, NULL);
+INSERT INTO item VALUES (29, 'glass-container', "There is a strange crystal inside a glass container. It makes a strange standing wave noise when you get near it.", 5, NULL, 237, NULL, NULL, NULL);
 #HIP-17710
 INSERT INTO item VALUES (31, 'domestic-pet', "It's round six big eyes stare at you. You are not quite sure if it's cute or terrifying", 5, NULL, 31, 31, NULL, 31);
 INSERT INTO item VALUES (32, 'quantum-Flux', "Strange running substance, not like anything you have seen before.", 1, NULL, 32, 32, NULL, NULL);

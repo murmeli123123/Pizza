@@ -501,10 +501,25 @@ def storyMode(index):
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 880 AND 883")
         result = cur.fetchall()
-        myprint(result[0][0])
+
+        while wait == 0:
+            myprint(result[0][0])
+            command = input(">")
+            if command == 'wait' or command == 'WAIT':
+                wait += 1
+
         myprint(result[1][0])
         myprint(result[2][0])
         myprint(result[3][0])
+
+        while wait == 1:
+            command = input(">")
+            if command == 'wait' or command == 'WAIT':
+                wait += 1
+            else:
+                print("Mayby you should wait for the creatures to leave the shop!")
+        myprint("Once the creatures leave you push the sewer cover aside and a path opens which you can use to enter the shop.")
+        cur.execute("UPDATE movingTable SET placeID = 26 WHERE moveID = 29")
 
     elif index == 6:
         pass

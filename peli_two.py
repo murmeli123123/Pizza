@@ -479,7 +479,6 @@ def storyMode(index):
             target = "starchip-key-card"
             getFunc(target)
 
-<<<<<<< HEAD
     elif index == 3:
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1040 AND 1041")
@@ -527,8 +526,7 @@ def storyMode(index):
             getFunc(target)
             cur.execute("UPDATE player SET placeID = 43")
             cur.execute("UPDATE movingtable SET placeID = NULL WHERE moveID = 429")
-    else:
-=======
+
     elif index == 101:
         pass
 
@@ -572,7 +570,6 @@ def storyMode(index):
         cur.execute("UPDATE movingTable SET placeID = 26 WHERE moveID = 29")
 
     elif index == 6:
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
         pass
 
 
@@ -582,22 +579,19 @@ def pressFunc(locationID):
             storyMode(1)
         elif locationID == 1:
             storyMode(2)
-<<<<<<< HEAD
         elif locationID == 415:
             storyMode(4)
-=======
         elif locationID == 0:
             pass
         elif locationID == 27:
             storyMode(4)
         elif locationID == 26:
             storyMode(5)
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
+
 
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
-<<<<<<< HEAD
     r=0
     if locationID == 45:
         cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
@@ -619,11 +613,9 @@ def pressFunc(locationID):
             print("Okay")
         else:
             print("What?")
-=======
 
     if len(result) > 0 and result[0][0] == 1:
         travel()
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
     else:
         print("You can't press that yet!")
 

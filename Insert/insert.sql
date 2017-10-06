@@ -198,7 +198,7 @@ INSERT INTO object VALUES (234, "vehicle", "An old vehicle parked near the pizza
 INSERT INTO object VALUES (235, "keypad", "Strange looking keypad with buttons on it. Press to activate the keypad", 27, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (236, "trunk", "Trunk of the car", NULL, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (237, "shelf", "A shelf full of stuff", 21, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, 1, NULL, 2, NULL);
 
 # HIP-17710
 INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 31, 1, NULL, NULL, NULL);

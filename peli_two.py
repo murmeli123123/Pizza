@@ -568,7 +568,7 @@ def storyMode(index):
         myprint(result[1][0])
         myprint(result[2][0])
         myprint(result[3][0])
-    elif index == 7:
+
         while wait == 1:
             command = input(">")
             if command == 'wait' or command == 'WAIT':
@@ -578,8 +578,10 @@ def storyMode(index):
         myprint("Once the creatures leave you push the sewer cover aside and a path opens which you can use to enter the shop.")
         cur.execute("UPDATE movingTable SET placeID = 26 WHERE moveID = 29")
 
-    elif index == 6:
-        pass
+    elif index == 9:
+        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
+        if ask == 'yes' or ask == 'Y' or ask == 'y':
+            print("KOHTA LENNETÄÄN VITUN KOVAA HIP-1710 PLANEETALLE WUHUU !!")
 
 
 def pressFunc(locationID):
@@ -596,18 +598,11 @@ def pressFunc(locationID):
             storyMode(5)
         elif locationID == 45:
             storyMode(3)
+        elif locationID == 28:
+            storyMode(9)
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
-    if len(result) > 0 and result[0][0] == 1:
-        ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
-        if ask == 'Y' or ask == 'y':
-            travel()
-            return
-        elif ask == 'N' or ask == 'n':
-            print("Okay")
-        else:
-            print("What?")
     if len(result) > 0 and result[0][0] == 1:
         travel()
     else:
@@ -657,10 +652,10 @@ def combFunc(input_command):
             sql = "SELECT groupID FROM item WHERE name = '%s' or name = '%s'" % (item_one, item_two)
             cur.execute(sql)
             result = cur.fetchall()
-
+            print(result)
             if result[0][0] == result[1][0]:
-                print(result[0][0])
-                print(result[1][0])
+                # print(result[0][0])
+                # print(result[1][0])
                 cur = db.cursor()
                 sql = "UPDATE item SET playerID = NULL WHERE groupID = '%i'" % (result[0][0])
                 cur.execute(sql)
@@ -675,11 +670,17 @@ def combFunc(input_command):
                 cur.execute(sql)
                 groupid = cur.fetchall()
 
+                action = getAction(groupid[0][0], 1)
+                if action != None:
+                    cur.execute(action[0])
 
                 cur = db.cursor()
                 sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (groupid[0][0])
                 cur.execute(sql)
-                db.commit
+
+                #cur.execute("SELECT item.name FROM item WHERE item.itemID = %i" % groupid[0][0])
+                #result = cur.fetchall
+                #getFunc(result)
             else:
                 print("You can't do it! Try other items!")
         else:

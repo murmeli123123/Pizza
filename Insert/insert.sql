@@ -90,7 +90,7 @@ INSERT INTO actionTable VALUES(211, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(212, 'Hello! Your starship is broken? you can find some parts in those box');
 INSERT INTO actionTable VALUES(213, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(214, 'UPDATE object SET usable = 1 WHERE objectID = 24');
-INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213');
+INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213;');
 # HIP-17710
 INSERT INTO actiontable VALUES (31, "As Jack approaches, it makes some kind of growling noice but doesn't seem to be reluctant.");
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
@@ -198,7 +198,7 @@ INSERT INTO object VALUES (234, "vehicle", "An old vehicle parked near the pizza
 INSERT INTO object VALUES (235, "keypad", "Strange looking keypad with buttons on it. Press to activate the keypad", 27, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (236, "trunk", "Trunk of the car", NULL, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (237, "shelf", "A shelf full of stuff", 21, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, 1, NULL, NULL, NULL);
 
 # HIP-17710
 INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 31, 1, NULL, NULL, NULL);

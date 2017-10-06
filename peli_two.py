@@ -526,9 +526,13 @@ def storyMode(index):
             getFunc(target)
             cur.execute("UPDATE player SET placeID = 43")
             cur.execute("UPDATE movingtable SET placeID = NULL WHERE moveID = 429")
+<<<<<<< HEAD
     else:
         myprint(result[2][0])
         gameOver("Proteus")
+=======
+
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
     elif index == 101:
         pass
 
@@ -551,12 +555,31 @@ def storyMode(index):
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 880 AND 883")
         result = cur.fetchall()
-        myprint(result[0][0])
+
+        while wait == 0:
+            myprint(result[0][0])
+            command = input(">")
+            if command == 'wait' or command == 'WAIT':
+                wait += 1
+
         myprint(result[1][0])
         myprint(result[2][0])
         myprint(result[3][0])
 
+<<<<<<< HEAD
     elif index == 7:
+=======
+        while wait == 1:
+            command = input(">")
+            if command == 'wait' or command == 'WAIT':
+                wait += 1
+            else:
+                print("Mayby you should wait for the creatures to leave the shop!")
+        myprint("Once the creatures leave you push the sewer cover aside and a path opens which you can use to enter the shop.")
+        cur.execute("UPDATE movingTable SET placeID = 26 WHERE moveID = 29")
+
+    elif index == 6:
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
         pass
 
 
@@ -567,20 +590,34 @@ def pressFunc(locationID):
         elif locationID == 1:
             storyMode(2)
         elif locationID == 415:
+<<<<<<< HEAD
             storyMode(6)
+=======
+            storyMode(4)
+        elif locationID == 0:
+            pass
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
         elif locationID == 27:
             storyMode(4)
         elif locationID == 26:
             storyMode(5)
+<<<<<<< HEAD
         elif locationID == 0
             pass
+=======
+
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
 
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
+<<<<<<< HEAD
 
     if len(result) > 0 and result[0][0] == 1:
         travel()
+=======
+    r=0
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
     if locationID == 45:
         cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
         all_items = cur.fetchall()
@@ -602,6 +639,12 @@ def pressFunc(locationID):
             print("Okay")
         else:
             print("What?")
+<<<<<<< HEAD
+=======
+
+    if len(result) > 0 and result[0][0] == 1:
+        travel()
+>>>>>>> c2b7523eafe640198030f623c411349b7e458b6a
     else:
         print("You can't press that yet!")
 

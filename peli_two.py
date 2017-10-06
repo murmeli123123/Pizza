@@ -401,7 +401,6 @@ def storyMode(index):
             wait = 0
             cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 995 AND 998")
             result = cur.fetchall()
-
             if wait == 0:
                 myprint(result[0][0])
                 while wait == 0:
@@ -409,19 +408,16 @@ def storyMode(index):
                     if command == 'wait' or command == 'WAIT':
                         wait += 1
                 myprint(result[1][0])
-                # print('\n' + result[1][0] + '\n')
                 while wait == 1:
                     command = input("> ")
                     if command == 'wait' or command == 'WAIT':
                         wait += 1
                 myprint(result[2][0])
-                # print('\n' + result[2][0] + '\n')
                 while wait == 2:
                     command = input("> ")
                     if command == 'wait' or command == 'WAIT':
                         wait += 1
                 myprint(result[3][0])
-                # print('\n' + result[3][0] + '\n')
 
                 cur.execute("SELECT planet.name, planet.description FROM planet WHERE planet.planetID BETWEEN 21 and 26")
                 result = cur.fetchall()

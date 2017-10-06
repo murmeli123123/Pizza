@@ -479,7 +479,6 @@ def storyMode(index):
             target = "starchip-key-card"
             getFunc(target)
 
-<<<<<<< HEAD
     elif index == 3:
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1040 AND 1041")
@@ -500,7 +499,7 @@ def storyMode(index):
             target = "pizza"
             getFunc(target)
 
-    elif index == 4:
+    elif index == 6:
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1042 AND 1044")
         result = cur.fetchall()
@@ -528,7 +527,8 @@ def storyMode(index):
             cur.execute("UPDATE player SET placeID = 43")
             cur.execute("UPDATE movingtable SET placeID = NULL WHERE moveID = 429")
     else:
-=======
+        myprint(result[2][0])
+        gameOver("Proteus")
     elif index == 101:
         pass
 
@@ -556,8 +556,7 @@ def storyMode(index):
         myprint(result[2][0])
         myprint(result[3][0])
 
-    elif index == 6:
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
+    elif index == 7:
         pass
 
 
@@ -567,26 +566,25 @@ def pressFunc(locationID):
             storyMode(1)
         elif locationID == 1:
             storyMode(2)
-<<<<<<< HEAD
         elif locationID == 415:
-            storyMode(4)
-=======
-        elif locationID == 0:
-            pass
+            storyMode(6)
         elif locationID == 27:
             storyMode(4)
         elif locationID == 26:
             storyMode(5)
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
+        elif locationID == 0
+            pass
 
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
-<<<<<<< HEAD
-    r=0
+
+    if len(result) > 0 and result[0][0] == 1:
+        travel()
     if locationID == 45:
         cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
         all_items = cur.fetchall()
+        r=0
         for x in all_items:
             if 41 in x or 42 in x or 43 in x or 44 in x:
                 r+=1
@@ -604,11 +602,6 @@ def pressFunc(locationID):
             print("Okay")
         else:
             print("What?")
-=======
-
-    if len(result) > 0 and result[0][0] == 1:
-        travel()
->>>>>>> b633208544e85dfb4a8b1991f13cd52e9c9d7705
     else:
         print("You can't press that yet!")
 

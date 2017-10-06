@@ -533,15 +533,10 @@ def storyMode(index):
             getFunc(target)
             cur.execute("UPDATE player SET placeID = 43")
             cur.execute("UPDATE movingtable SET placeID = NULL WHERE moveID = 429")
-<<<<<<< HEAD
-    else:
-        myprint(result[2][0])
-        gameOver("Proteus")
+        else:
+            myprint(result[2][0])
+            gameOver("Proteus")
     if index == 101:
-=======
-
-    elif index == 101:
->>>>>>> e5a99d7c66599c3d72c7b02f7d7625363a35fd40
         pass
 
     elif index == 4:
@@ -573,11 +568,7 @@ def storyMode(index):
         myprint(result[1][0])
         myprint(result[2][0])
         myprint(result[3][0])
-<<<<<<< HEAD
     elif index == 7:
-=======
-
->>>>>>> e5a99d7c66599c3d72c7b02f7d7625363a35fd40
         while wait == 1:
             command = input(">")
             if command == 'wait' or command == 'WAIT':
@@ -599,43 +590,16 @@ def pressFunc(locationID):
             storyMode(2)
         elif locationID == 415:
             storyMode(6)
-<<<<<<< HEAD
-=======
-        elif locationID == 0:
-            pass
->>>>>>> e5a99d7c66599c3d72c7b02f7d7625363a35fd40
         elif locationID == 27:
             storyMode(4)
         elif locationID == 26:
             storyMode(5)
-<<<<<<< HEAD
         elif locationID == 45:
             storyMode(3)
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
     if len(result) > 0 and result[0][0] == 1:
-=======
-
-
-    cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
-            and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
-    result = cur.fetchall()
-    r=0
-    if locationID == 45:
-        cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
-        all_items = cur.fetchall()
-        for x in all_items:
-            if 41 in x or 42 in x or 43 in x or 44 in x:
-                r+=1
-            if r == 4:
-                storyMode(3)
-                return
-    elif locationID == 45 and r != 4:
-        print("You dont have all the ingredients to make the pizza.")
-        return
-    elif len(result) > 0 and result[0][0] == 1:
->>>>>>> e5a99d7c66599c3d72c7b02f7d7625363a35fd40
         ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
         if ask == 'Y' or ask == 'y':
             travel()
@@ -644,10 +608,6 @@ def pressFunc(locationID):
             print("Okay")
         else:
             print("What?")
-<<<<<<< HEAD
-=======
-
->>>>>>> e5a99d7c66599c3d72c7b02f7d7625363a35fd40
     if len(result) > 0 and result[0][0] == 1:
         travel()
     else:

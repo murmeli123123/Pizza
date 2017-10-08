@@ -603,14 +603,14 @@ def storyMode(index):
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1048 AND 1051")
         result = cur.fetchall()
         if wait == 0:
-            print('\n' + result[0][0] + '\n')
+            myprint('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
                 else:
                     print("Its probably best to just wait.")
-            print('\n' + result[1][0] + '\n')
+            myprint('\n' + result[1][0] + '\n')
             while wait == 1:
                 command = input("> ")
                 if command == 'y' or command == 'Y' or command == 'yes' or command == 'YES':
@@ -618,9 +618,11 @@ def storyMode(index):
                 elif command == 'n' or command == 'N' or command == 'no' or command == 'NO':
                     wait += 2
             if wait == 2:
-                print('\n' + result[2][0] + '\n')
+                myprint('\n' + result[2][0] + '\n')
+                print('You won the game')
             elif wait == 3:
-                print('\n' + result[3][0] + '\n')
+                myprint('\n' + result[3][0] + '\n')
+                print('you won the game')
 
 
 def pressFunc(locationID):

@@ -522,11 +522,6 @@ def storyMode(index):
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[1][0] + '\n')
-            while wait == 2:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
             print('\n' + result[2][0] + '\n')
             cur.execute("UPDATE item SET objectID = 41 WHERE itemID = 411;")
             target = "cernobog-note"
@@ -583,6 +578,50 @@ def storyMode(index):
         if ask == 'yes' or ask == 'Y' or ask == 'y':
             print("KOHTA LENNETÄÄN VITUN KOVAA HIP-1710 PLANEETALLE WUHUU !!")
 
+    elif index == 12:
+        cur.execute("UPDATE player SET placeID = 47;")
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 1045")
+        result = cur.fetchall()
+        print(result[0][0])
+    elif index == 13:
+        wait = 0
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1046 AND 1047")
+        result = cur.fetchall()
+        if wait == 0:
+            print('\n' + result[0][0] + '\n')
+            while wait == 0:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+                else:
+                    print("You should probably wait for a while before doing in.")
+            print('\n' + result[1][0] + '\n')
+            cur.execute("UPDATE object SET locked = 0 WHERE objectID = 47")
+    elif index == 14:
+        wait = 0
+        cur.execute("UPDATE player SET placeID = 1000;")
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1048 AND 1051")
+        result = cur.fetchall()
+        if wait == 0:
+            print('\n' + result[0][0] + '\n')
+            while wait == 0:
+                command = input("> ")
+                if command == 'wait' or command == 'WAIT':
+                    wait += 1
+                else:
+                    print("Its probably best to just wait.")
+            print('\n' + result[1][0] + '\n')
+            while wait == 1:
+                command = input("> ")
+                if command == 'y' or command == 'Y' or command == 'yes' or command == 'YES':
+                    wait += 1
+                elif command == 'n' or command == 'N' or command == 'no' or command == 'NO':
+                    wait += 2
+            if wait == 2:
+                print('\n' + result[2][0] + '\n')
+            elif wait == 3:
+                print('\n' + result[3][0] + '\n')
+
 
 def pressFunc(locationID):
     def travel():
@@ -600,6 +639,12 @@ def pressFunc(locationID):
             storyMode(3)
         elif locationID == 28:
             storyMode(9)
+        elif locationID == 416:
+            storyMode(12)
+        elif locationID == 48:
+            storyMode(13)
+        elif locationID == 417:
+            storyMode(14)
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

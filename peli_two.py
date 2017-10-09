@@ -615,7 +615,7 @@ def storyMode(index):
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 770 AND 772")
         result = cur.fetchall()
         myprint(result[0][0])
-        myprint(result[1[0])
+        myprint(result[1][0])
         myprint(result[2][0])
         count = 0
         while True:

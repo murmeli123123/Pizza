@@ -450,31 +450,40 @@ def storyMode(index):
 
     elif index == 2:
         wait = 0
-        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 990 AND 993")
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 899 AND 993")
         result = cur.fetchall()
+        inventory = getInventory()
+        license = False
 
-        if wait == 0:
-            myprint('\n' + result[0][0] + '\n')
-            while wait == 0:
-                command = input("> ")
-                if command == 'yes' or command == 'YES' or command == 'y' or command == 'Y':
-                    wait += 1
-            myprint('\n' + result[1][0] + '\n')
-            while wait == 1:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            myprint('\n' + result[2][0] + '\n')
-            while wait == 2:
-                command = input("> ")
-                if command == 'wait' or command == 'WAIT':
-                    wait += 1
-            myprint('\n' + result[3][0] + '\n')
+        for x in inventory:
+            if x[0] == 'drivers-license':
+                license = True
 
-            cur.execute("UPDATE player SET placeID = 2;")
-            target = "starchip-key-card"
-            getFunc(target)
+        if license == False:
+            print("Please pick up the required drivers-license first")
             return
+
+        myprint('\n' + result[1][0] + '\n')
+        while wait == 0:
+            command = input("> ")
+            myprint(result[0][0])
+            wait += 1
+
+        myprint('\n' + result[2][0] + '\n')
+        while wait == 1:
+            command = input("> ")
+            if command == 'wait' or command == 'WAIT':
+                wait += 1
+
+        myprint('\n' + result[3][0] + '\n')
+        print("")
+        myprint('\n' + result[4][0] + '\n')
+        print("")
+
+        cur.execute("UPDATE player SET placeID = 2;")
+        target = "starchip-key-card"
+        getFunc(target)
+        return
 
     elif index == 3:
         cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
@@ -656,7 +665,6 @@ def storyMode(index):
         print("\nJack travels to Cernobog")
         cur.execute("UPDATE player SET placeID = 42 WHERE playerID = 1")
 
-
     elif index == 12:
         cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
         items = cur.fetchall()
@@ -713,7 +721,6 @@ def storyMode(index):
             elif wait == 3:
                 myprint('\n' + result[3][0] + '\n')
                 print('You won the game')
-
 
 def pressFunc(locationID):
     def travel():
@@ -780,7 +787,6 @@ def combFunc(input_command):
 
         item_one = input_command[1].lower()
         item_two = input_command[len(input_command)-1].lower()
-        # if len(input_command) >= 3:
 
         count = 0
         cur = db.cursor()
@@ -788,7 +794,6 @@ def combFunc(input_command):
         cur.execute(sql)
         itemrez = cur.fetchall()
         for i in itemrez:
-
             if i[0] == item_one or i[0] == item_two:
                 count = count + 1
 
@@ -797,10 +802,9 @@ def combFunc(input_command):
             sql = "SELECT groupID FROM item WHERE name = '%s' or name = '%s'" % (item_one, item_two)
             cur.execute(sql)
             result = cur.fetchall()
-            print(result)
+
             if result[0][0] == result[1][0]:
-                # print(result[0][0])
-                # print(result[1][0])
+
                 cur = db.cursor()
                 sql = "UPDATE item SET playerID = NULL WHERE groupID = '%i'" % (result[0][0])
                 cur.execute(sql)
@@ -822,10 +826,10 @@ def combFunc(input_command):
                 cur = db.cursor()
                 sql = "UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (groupid[0][0])
                 cur.execute(sql)
+                cur.execute("SELECT name FROM item WHERE  itemID = '%i'" % (groupid[0][0]))
+                result = cur.fetchall()
+                myprint("Jack combines the two items and gets a " + result[0][0])
 
-                #cur.execute("SELECT item.name FROM item WHERE item.itemID = %i" % groupid[0][0])
-                #result = cur.fetchall
-                #getFunc(result)
             else:
                 print("You can't do it! Try other items!")
         else:
@@ -833,7 +837,6 @@ def combFunc(input_command):
 
     else:
         print("What you want to combine? ")
-
 
 def myprint(text):
     max_length = 70
@@ -851,11 +854,6 @@ def myprint(text):
             print(i, end='')
         count = count + len(i)
     print("")
-
-
-
-
-
 
 
 

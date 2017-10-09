@@ -122,8 +122,9 @@ INSERT INTO actiontable VALUES (883, "The device starts to make strage noices so
 INSERT INTO actiontable VALUES (895, "You press the button and a lid opens revealing the keypad. It's equipped with buttons from 1 to 9. Buttons 1, 2 and 3 are clearly dirty and have been used the most.");
 INSERT INTO actiontable VALUES (896, "The trunk opens and reveals a set of mechanical tools.");
 INSERT INTO actiontable VALUES (897, "!!BURGLARY DETECTED!!. The car alarm goes off and before you even realize what is going on a set of explosives blasts your waist completely off.");
+INSERT INTO actiontable VALUES (899, "They dont really care what you have to say. They just crab you by the arms and cram you in to their car.");
 INSERT INTO actiontable VALUES (990, "You opened THE DOOR... congrats. Outside the door is standing two big guys clad in black suits, they just stares you and in a moment they take something out of their pocket. It seems to be a goverments secret agents card. After that they put the cards away and asks you to come whit them. do you accept the offer? ");
-INSERT INTO actiontable VALUES (991, "You desided to follow the agents. You arive at the goverment building whit the agents, as you go inside the agents asks you to wait here for a while. The agents enters a room.");
+INSERT INTO actiontable VALUES (991, "You arive at the goverment building with the agents, as you go inside the agents asks you to wait here for a while. The agents enters a room.");
 INSERT INTO actiontable VALUES (992, "After a while the agents comes out of the room and asks you to go in. you enter the room and you can see the president sitting on the far end of the table. the president asks you to sit down and offers you a cup of tea. alltough you much more prefer coffee you take the offer and sit down. After you have sitted down, the president tells you that his wive has been kidnapped and he wants you to go rescue her, because you are the famous hero who has saved the humanity many times. Obviosly the guy that the president is talking about is not you, but you seem to have some problems opening your mouth to correct the fact, so you have to settle whit the idea of being a hero. The president dissmisses you and you leave the room.");
 INSERT INTO actiontable VALUES (993, "The two agents gives you a starchip key card and points you to your space ship which is located in east.");
 INSERT INTO actiontable VALUES (995, "You can feel the thrusters starting up and a quick yank as you begin to ascend away from your home planet. The poorly fitted space ship trembles and shakes vigorously, it feels like the ship is not meant to handle situations like this. You hear metallic rattling behind you but it's impossible to turn your head around and see what's making the noise as the acceleration pulls you to your seat. Your only option is to wait and see what happens.");
@@ -176,7 +177,6 @@ INSERT INTO itemgroup VALUES (43, 49);
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, 990);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
@@ -184,7 +184,7 @@ INSERT INTO object VALUES (6, 'food-store', 'Its a food store, here you can buy 
 INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 32, 5);
 INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (9, 'red-button', 'Big red button used to travel with the ship.', 3, 1, NULL, 2, NULL);
-INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in. Press to activate the doorbell', 1, 0, NULL, 2, NULL);
+INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in. Press to activate the doorbell', 1, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (11, 'two-agents', 'They look pretty dense, they just stand there doing nothing.', 2, NULL, NULL, NULL, NULL);
 # Proteus
 
@@ -247,7 +247,7 @@ INSERT INTO object VALUES (414, 'manacles', "These are used to chain people", 41
 INSERT INTO object VALUES (415, 'red-button', 'Big red button used to travel with the ship.', 417, 0, NULL, 2, NULL);
 # moveID , whereTo , direction , placeID , objectID
 #home-planet
-INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
+INSERT INTO movingtable VALUES (1, 2, 'e', 1, NULL);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
 INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
 INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
@@ -333,7 +333,7 @@ INSERT INTO item VALUES (5, 'banana-peel', 'its a banana peel, very slipery if y
 #Proteus
 INSERT INTO item VALUES (21, 'engine-parts', 'Its a part for you ship.', 1, NULL, 228, 277, NULL, NULL);
 INSERT INTO item VALUES (22, 'tools', 'Its a special engine tools, combine it with you parts.', 1, NULL, 236, 277, NULL, NULL);
-INSERT INTO item VALUES (288, 'new-engine' , 'Its a new engine for you starship, use it to starship.', 1, NULL, 231, NULL, NULL, 215);
+INSERT INTO item VALUES (288, 'new-engine' , 'Its a new engine for you starship, use it to starship.', 1, NULL, NULL, NULL, NULL, 215);
 INSERT INTO item VALUES (23, 'key', 'Its a key from Pizza-hat door.', 1, NULL, 231, NULL, NULL, NULL);
 INSERT INTO item VALUES (24, "holographic-device", "A strange device that seems to project a hologram when you shine it against the sun.", 1, NULL, 215, NULL, 21, 214);
 INSERT INTO item VALUES (25, 'banana-peel', "Old banana peels.", 1, NULL, 215, NULL, NULL, NULL);

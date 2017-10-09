@@ -39,15 +39,25 @@ def main():
         locationID = getLocID()
         location = getLocName()
         input_command=input("> ").split()
-        if len(input_command) >= 1:
-            action = input_command[0].lower()
+        filters = ["and","for","the","with","a","an","at","of","on","in","+",":"," ","/","*","?","!","'"]
+        final_command = []
+        for x in input_command:
+            if x in filters:
+                x = x.replace(x, "")
+            if len(x) > 0:
+                final_command.append(x)
+
+        if len(final_command) >= 1:
+            action = final_command[0].lower()
         else:
             action = ""
-        if len(input_command) >= 2:
-            target = input_command[len(input_command)-1].lower() #lower make the string to lowercase
+        if len(final_command) >= 2:
+            target = final_command[len(final_command)-1].lower() #lower make the string to lowercase
         else:
             target = ""
-
+        print(final_command)
+        print(target)
+        print(action)
         if action == "get" or action == "take":
             if target!="":
                 getFunc(target)
@@ -63,7 +73,7 @@ def main():
             inventoryfunc()
         #
         elif action == "combine":
-            combFunc(input_command)
+            combFunc(final_command)
         #
         # elif action == "look":to
         #     lookaroundfunc()
@@ -73,8 +83,8 @@ def main():
 
         elif action == "open":   # open object
             if target != '':
-                if len(input_command) == 3:
-                    objectname = input_command[1]
+                if len(final_command) == 3:
+                    objectname = final_command[1]
                     openFunc(locationID,target,objetctname)
                 else:
                     openFunc(locationID, target)
@@ -779,12 +789,12 @@ def gameOver(location):
     print("Jack dies a horrible death on " + location + '\n\n\n\n')
     sys.exit()
 
-def combFunc(input_command):
+def combFunc(final_command):
 
-    if len(input_command) >= 3:
+    if len(final_command) >= 3:
 
-        item_one = input_command[1].lower()
-        item_two = input_command[len(input_command)-1].lower()
+        item_one = final_command[1].lower()
+        item_two = final_command[len(final_command)-1].lower()
 
         count = 0
         cur = db.cursor()

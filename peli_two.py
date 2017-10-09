@@ -39,7 +39,7 @@ def main():
         locationID = getLocID()
         location = getLocName()
         input_command=input("> ").split()
-        filters = ["and","for","the","with","a","an","at","of","on","in","+",":"," ","/","*","?","!","'"]
+        filters = ["and","for","the","with","a","an","at","of","on","in"," "]
         final_command = []
         for x in input_command:
             if x in filters:
@@ -55,9 +55,6 @@ def main():
             target = final_command[len(final_command)-1].lower() #lower make the string to lowercase
         else:
             target = ""
-        print(final_command)
-        print(target)
-        print(action)
         if action == "get" or action == "take":
             if target!="":
                 getFunc(target)

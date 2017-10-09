@@ -30,8 +30,7 @@ def main():
                             # target object
     # Dont ask
     title = "*"*40 + "\n*" + '{:>28}'.format('PIZZA-HAT EXPRESS') + '{:>11}'.format('*') + ("\n*" + '{:>39}'.format('*')) +  '{:>2}'.format('\nTHE BEST TEXT ADVENTURE GAME IN THE WORLD') + ("\n*" + '{:>39}'.format('*'))*2 + "\n" + "*"*40
-    print(title)
-    print()
+    print(title + "\n")
     intro = "\n\nYour name is Jack. The year is 2318. You are just an ordinary pizza delivery guy for an intergalactic pizza company.\n\nYou have just woken from a late night shift. There seems to be some email on the computer. Please experience the world around you and maybe put on some clothes.\n\n"
     myprint(intro)
 
@@ -107,11 +106,15 @@ def main():
             print("I dont understand this command")
 
 def showitemfunc(target):
+    #For some reason ' causes the game to crash
+    if "'" in target:
+        print("This place doesn't contain this object")
+        return
     try:
+
         cur.execute("SELECT objectID, description \
         FROM object, player WHERE player.placeID = object.placeID AND object.name = '%s';" % (target))
         item_desc = cur.fetchall()
-        #
 
         cur.execute("SELECT name, description FROM item WHERE objectID = '%i';" % item_desc[0][0])
         items = cur.fetchall()
@@ -134,21 +137,17 @@ def showitemfunc(target):
             print(i[1])
         # print(item_desc[0][1])
 
-
 def lookaroundfunc():
     cur.execute("SELECT place.description, player.placeID FROM place, player WHERE player.placeID = place.placeID;")
     rez = cur.fetchall()
     myprint(rez[0][0])
-    # print(rez[0][1])
 
     cur.execute("SELECT name FROM object WHERE object.placeID = '%i';" % (rez[0][1]))
     objects = cur.fetchall()
     print("\nIn this place are:", end="\n")
 
     for i in objects:
-        # print(i[0], end=" | ")
         myprint(i[0])
-    #print(i[0], end=" | ")
     print("\nInput 'show' and object, if you want to see it.")
 
 def movefunc(dist):
@@ -358,7 +357,6 @@ def useFunc(target, locID):
     except:
         IndexError
         print("You can't use that!")
-
 
 def mapbase():
     base = list(" _______\n|\t|\n|\t|\n|_______|")

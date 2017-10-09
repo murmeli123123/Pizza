@@ -22,10 +22,11 @@ INSERT INTO planet VALUES (43, 'cernobog-planet-3', 'This planet contains the ev
 
 #placeID , name , description , planetID
 # home-planet
-INSERT INTO place VALUES (1, 'home', 'Its your home and as you look around you can see a small bed, food store, shower, table, computer, clothes on the floor and a door located in east.', 1);
+INSERT INTO place VALUES (1, 'home', 'Its your home, nice and tidy... Well not tidy but still nice. Basthroom is located in south and front door is located in east.', 1);
 INSERT INTO place VALUES (2, 'goverment-building', 'Nothing special here its just a giant hall for fancy people. The agents seems to wait at the door in east', 1);
 INSERT INTO place VALUES (3, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 1);
 INSERT INTO place VALUES (4, 'control-room', 'Everything inside the space ship looks outdated. Here is a control panel whit some old buttons in it also next to it is a giant red button. And in south is a gargo room.', 1);
+INSERT INTO place VALUES (5, "bathroom", "could use some cleaning", 1);
 # Proteus
 INSERT INTO place VALUES (21,"Shop", "In the shop you can to buy all what you need, from food to engine parts", 21);
 INSERT INTO place VALUES (22,"Entrance to Bazaar", "Entrance to Proteus bazaar. You are not welcome there, they do not accept outsiders.", 21);
@@ -34,7 +35,7 @@ INSERT INTO place VALUES (24,"Proteus Landing", "Proteus landing is a main stars
 INSERT INTO place VALUES (25,"Pizza-hat", "A Pizza-hat restaurant. They don't recognise you as one of their own. Down the road to south there is a vehicle parked.", 21);
 INSERT INTO place VALUES (26,"Sewer", "This stinky place has all kinds of living and dead junk in it. There seems to be a ladder at the end of it.", 21);
 INSERT INTO place VALUES (27, "Near the Pizza-Hat", "A vehicle is parked here. It seems like no one has touched the vehicle for weeks.", 21);
-INSERT INTO place VALUES (28, 'poorly-fitted-space-ship', "The new repaired ship. You have no idea how you got it to work, but it works like a charm.",21);
+INSERT INTO place VALUES (28, "poorly-fitted-space-ship", "The new repaired ship. You have no idea how you got it to work, but it works like a charm.",21);
 
 
 # HIP-17710
@@ -75,11 +76,14 @@ INSERT INTO player VALUES (1, 0, 80, 1);
 # actionID , description
 # home-planet
 INSERT INTO actiontable VALUES (2, 'FROM THE GLORIOUS GOVERMENT: Dear Jack, the goverment needs you on an urgent mission. Please take all of your clothes with you and head to the Goverment building. You will need your drivers license.\n\nAs Jack is done with the reading his doorbell starts to ring. Please press the button, the sound is very anoying.');
-INSERT INTO actiontable VALUES (3, 'As you go into shower, you start to feel like your life is being drained away. When you open the faucet and water comes down to you, you star to feel like your skin is melting away and you start to panick, you slip down and you hit your head... You are dead');
+INSERT INTO actiontable VALUES (3, 'As you go into shower, you start to feel like your life is being drained away. When you open the faucet and water comes down to you, you star to feel like your skin is melting away and you start to panick, you slip down and you hit your head...\n\nAfter a few hours you wake up. You completly forgot why you were here.');
 INSERT INTO actiontable VALUES (4, 'You press the button in food store, it makes little explosion and pops a banana out. After that it breaks down and starts to smoke. Great now you have to fix it');
 INSERT INTO actiontable VALUES (5, 'You press the button and nothing happens... You tougth that if you press the button it will work agian didnt you?');
 INSERT INTO actiontable VALUES (6, 'UPDATE object SET usable = 1 WHERE objectID = 2 or objectID= 10');
 INSERT INTO actiontable VALUES (7, 'You eat the banana.');
+INSERT INTO actiontable VALUES (8, "You try to flush the toilet but its stuffed whit shit and the water flows over. You need to clean the tolet, but you don't want to do it right now");
+INSERT INTO actiontable VALUES (9, "You wash your hands");
+INSERT INTO actiontable VALUES (10, "Yes you want to flip the table, but you don't want to clean it up.");
 # Proteus
 INSERT INTO actionTable VALUES(21, 'Hello men i am a halographic device');
 INSERT INTO actionTable VALUES(22, 'You opened the door');
@@ -175,10 +179,10 @@ INSERT INTO itemgroup VALUES (43, 49);
 
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
-INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, 1, NULL, NULL, 10);
 INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, 990);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 1, 1, NULL, NULL, 3);
+INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 5, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
 INSERT INTO object VALUES (6, 'food-store', 'Its a food store, here you can buy food and its deliverd into this device instantly. It has a button on it', 1, 1, NULL, 32, 4);
 INSERT INTO object VALUES (7, 'broken-food-store', 'Its broken and it smokes.', NULL, 1, NULL, 32, 5);
@@ -186,6 +190,8 @@ INSERT INTO object VALUES (8, 'small-bed', 'Its a one person bed', 1, NULL, NULL
 INSERT INTO object VALUES (9, 'red-button', 'Big red button used to travel with the ship.', 3, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (10, 'doorbell', 'Its a doorbell that rings if somebody wants in. Press to activate the doorbell', 1, 0, NULL, 2, NULL);
 INSERT INTO object VALUES (11, 'two-agents', 'They look pretty dense, they just stand there doing nothing.', 2, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (12, "sink", "Basic sink, its a little bit dirty.", 5, 1, NULL, NULL, 9);
+INSERT INTO object VALUES (13, "toilet", "Toilet full of crap. 'Somebody' forgot to flush yesterday.", 5, 1, NULL, NULL, 8);
 # Proteus
 
 INSERT INTO object VALUES (24, "sewer door", "Entrance to the city's waste dump. A horrible smells creeps to your nose near it.", 24, 0, 1, 1, NULL);
@@ -247,11 +253,13 @@ INSERT INTO object VALUES (414, 'manacles', "These are used to chain people", 41
 INSERT INTO object VALUES (415, 'red-button', 'Big red button used to travel with the ship.', 417, 0, NULL, 2, NULL);
 # moveID , whereTo , direction , placeID , objectID
 #home-planet
-INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
+INSERT INTO movingtable VALUES (1, 2, 'e', 1, NULL);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
 INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
 INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
 INSERT INTO movingtable VALUES (5, 2, 'w', 3, NULL);
+INSERT INTO movingtable VALUES (6, 1, 'n', 5, NULL);
+INSERT INTO movingtable VALUES (7, 5, 's', 1, NULL);
 # Proteus
 INSERT INTO movingTable VALUES (21 , 22, "n", 24, NULL);
 INSERT INTO movingTable VALUES (22 , 25, "s", 24, NULL);

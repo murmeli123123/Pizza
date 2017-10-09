@@ -39,7 +39,6 @@ def main():
         # location is current location
         locationID = getLocID()
         location = getLocName()
-
         input_command=input("> ").split()
         if len(input_command) >= 1:
             action = input_command[0].lower()
@@ -477,26 +476,27 @@ def storyMode(index):
             return
 
     elif index == 3:
-        if locationID == 45:
-            cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
-            all_items = cur.fetchall()
-            r=0
-            for x in all_items:
-                if 41 in x or 42 in x or 43 in x or 44 in x:
-                    r+=1
-            if locationID == 45 and r != 4:
-                print("You dont have all the ingredients to make the pizza.")
-                return
+        cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
+        all_items = cur.fetchall()
+        r=0
+        for x in all_items:
+            if 41 in x or 42 in x or 43 in x or 44 in x:
+                r+=1
+        if r != 4:
+            print("You dont have all the ingredients to make the pizza.")
+            return
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1040 AND 1041")
         result = cur.fetchall()
 
         if wait == 0:
-            print('\n' + result[0][0] + '\n')
+            myprint('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
+                else:
+                    print("Probably best if I wait for the pizza to be ready.")
             print('\n' + result[1][0] + '\n')
             cur.execute("UPDATE item SET objectID = 46 WHERE itemID = 46")
             cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 41")
@@ -512,17 +512,17 @@ def storyMode(index):
         result = cur.fetchall()
 
         if wait == 0:
-            print('\n' + result[0][0] + '\n')
+            myprint('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[1][0] + '\n')
+            myprint('\n' + result[1][0] + '\n')
             while wait == 1:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
                     wait += 1
-            print('\n' + result[2][0] + '\n')
+            myprint('\n' + result[2][0] + '\n')
             cur.execute("UPDATE item SET objectID = 41 WHERE itemID = 411;")
             target = "cernobog-note"
             getFunc(target)
@@ -579,16 +579,25 @@ def storyMode(index):
             print("KOHTA LENNETÄÄN VITUN KOVAA HIP-1710 PLANEETALLE WUHUU !!")
 
     elif index == 12:
-        cur.execute("UPDATE player SET placeID = 47;")
-        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 1045")
-        result = cur.fetchall()
-        print(result[0][0])
+        cur.execute("SELECT itemID FROM item WHERE playerID = 1;")
+        items = cur.fetchall()
+        r=0
+        for x in items:
+            if 49 in x or 411 in x:
+                r+=1
+        if r == 2:
+            cur.execute("UPDATE player SET placeID = 47;")
+            cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID = 1045")
+            result = cur.fetchall()
+            myprint(result[0][0])
+        elif r == 1:
+            print("I still need to make the poison pizza.")
     elif index == 13:
         wait = 0
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 1046 AND 1047")
         result = cur.fetchall()
         if wait == 0:
-            print('\n' + result[0][0] + '\n')
+            myprint('\n' + result[0][0] + '\n')
             while wait == 0:
                 command = input("> ")
                 if command == 'wait' or command == 'WAIT':
@@ -617,12 +626,14 @@ def storyMode(index):
                     wait += 1
                 elif command == 'n' or command == 'N' or command == 'no' or command == 'NO':
                     wait += 2
+                else:
+                    myprint("YES or NO that should not be so hard, after what you have been trough... Or was it all just pure luck?")
             if wait == 2:
                 myprint('\n' + result[2][0] + '\n')
                 print('You won the game')
             elif wait == 3:
                 myprint('\n' + result[3][0] + '\n')
-                print('you won the game')
+                print('You won the game')
 
 
 def pressFunc(locationID):
@@ -647,6 +658,7 @@ def pressFunc(locationID):
             storyMode(13)
         elif locationID == 417:
             storyMode(14)
+            sys.exit()
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

@@ -1,3 +1,4 @@
+
 # Insert script for Pizza-Hat Express
 # planetID , name , description
 # home-planet
@@ -13,6 +14,7 @@ INSERT INTO planet VALUES (26, "Marian", "The poorly-fitted-space-ship dives tow
 INSERT INTO planet VALUES (31, 'HIP-17710 Planet 1','This planet seems deserted');
 INSERT INTO planet VALUES (32, 'HIP-17710 Planet 2','A rocky planet with fiery winds.');
 INSERT INTO planet VALUES (33, 'HIP-17710 Planet 3','Small watery planet. This is the main living place for habitants of HIP-17710 system.');
+INSERT INTO planet VALUES (34, 'Fueling station', 'Please enjoy your stay.');
 # Cernobog
 INSERT INTO planet VALUES (41, 'cernobog-planet-1', 'An icy deserted planet that has nothing in it.');
 INSERT INTO planet VALUES (42, 'cernobog-planet-2', 'This planet contains the rebel forces.');
@@ -36,9 +38,9 @@ INSERT INTO place VALUES (28, 'poorly-fitted-space-ship', "The new repaired ship
 
 
 # HIP-17710
-INSERT INTO place VALUES (31, 'intergalactic-refueling-station', "This fueling station orbits the system at a close distance. The public transportation system can be used to travel to the other planets. They also sell all kinds of alien grocerys", NULL);
+INSERT INTO place VALUES (31, 'intergalactic-refueling-station', "This fueling station orbits the system at a close distance. The public transportation system can be used to travel to the other planets. They also sell all kinds of alien grocerys", 34);
 INSERT INTO place VALUES (32, 'landing-Zone', "This is the landing zone of planet 1. The sandy dunes seem to continue to the horizon and it's unlikely there is anything useful here", 31);
-INSERT INTO place VALUES (33, 'landing-Zzone', "This is the landing zone of planet 2. Looking West you can see some kind of alien residence. To the East of you there is an alien business that seems to be out of order.", 32);
+INSERT INTO place VALUES (33, 'landing-Zone', "This is the landing zone of planet 2. Looking West you can see some kind of alien residence. To the East of you there is an alien business that seems to be out of order.", 32);
 INSERT INTO place VALUES (34, 'landing-Zone', "This is the landing zone of planet 3. A beatiful landscape opens beneath your eyes. You can see the endless sea infront of you as the ocean breeze whisks your face. Looking East you see a colorful boulevard with high rise buildings. To your North there is a shop that is equipped with the same company logo as yours, but you are not quite sure about the spelling..", 33);
 INSERT INTO place VALUES (35, 'alien-business', "Sand dust and some planks covers the windows so you can't see inside of it. South of you there seems to be a way to get to the backyard.", 32);
 INSERT INTO place VALUES (36, 'backyard', "Filled with metallic containers, propably some kind of dumpster. You can hear something scratching inside one of the containers.", 32);
@@ -46,6 +48,7 @@ INSERT INTO place VALUES (37, 'pizza-Hat-alley', "Familiar smell hits your nose 
 INSERT INTO place VALUES (38, 'boulevard', "A beatiful boulevard with high rise buildings. At the North end of the boulevard you can see the intergalactic sign for a bar and an ID of 36.", 33);
 INSERT INTO place VALUES (39, 'bar-id:36', "This seems to be the go to place in HIP-17710. Someone hands you a flyer at the door written in native earth human language. 'Hjyvä bari hjyvä juoma.' You have no idea what it says. They sell all kinds of drinks from beer to alien extract.", 33);
 INSERT INTO place VALUES (310, 'alien-residence', "Some living creature is walking around the building looking for something",32);
+INSERT INTO place VALUES (311, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 34);
 # Cernobog
 INSERT INTO place VALUES (41, 'cernobog-planet-1-landing-zone', 'You cant see anything else than ice and its freaking cold out here. You better leave befor you freeze to death', 41);
 INSERT INTO place VALUES (42, 'cernobog-planet-2-landing-zone', 'In the west is a museum, south has a market, in east is a pizza-hat and in north has a poorly fitted space ship.', 42);
@@ -92,8 +95,9 @@ INSERT INTO actionTable VALUES(213, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(214, 'UPDATE object SET usable = 1 WHERE objectID = 24');
 INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213;');
 # HIP-17710
-INSERT INTO actiontable VALUES (31, "As Jack approaches, it makes some kind of growling noice but doesn't seem to be reluctant.");
+INSERT INTO actiontable VALUES (31, 'UPDATE item SET objectID = 32 WHERE itemID = 32');
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
+INSERT INTO actiontable VALUES (33, "UPDATE object SET usable = 1 WHERE objectID = 311");
 # Cernobog
 INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
@@ -103,6 +107,11 @@ INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID
 INSERT INTO actiontable VALUES (47, 'UPDATE object SET usable = 1 WHERE objectID = 413');
 INSERT INTO actiontable VALUES (48, 'UPDATE object SET usable = 1 WHERE objectID = 410');
 #storyMode
+
+INSERT INTO actiontable VALUES (770, "You use the elevator and ascend to the terrace. You can see far into the horizon. A strange looking man is staring you at the counter. You decide to just ignore him.");
+INSERT INTO actiontable VALUES (771, "As you explore the terrace the strange man comes near you and starts to talk with you.");
+INSERT INTO actiontable VALUES (772, "He asks you if you would like to answer some questions he has.");
+
 INSERT INTO actiontable VALUES (880, "The ladder shoots down from the ceiling and you begin to climb it. You stop for a moment to wait if you could hear what the creatures are speaking in the shop. As you get closer to the ceiling it's obvious to you that you have no idea even what language they are speaking. You wait for the conversation to end.");
 INSERT INTO actiontable VALUES (881, "The holographic device suddenly starts to translate the ongoing conversation to you. It surely is a remarkable piece of technology.");
 INSERT INTO actiontable VALUES (882, "HOLOGRAPHIC DEVICE: 'You buy me good product last week gooooooood.' 'Yesss very goood you like yes.' 'I very like yesssss.' 'HuehueHEUE:DHEUHEUYHUE:DD' ");
@@ -152,7 +161,7 @@ INSERT INTO itemGroup VALUES (277, 288);
 #HIP-17710
 INSERT INTO itemGroup VALUES (31, 36);
 INSERT INTO itemGroup VALUES (32, 38);
-INSERT INTO itemGroup VALUES (33, 310);
+INSERT INTO itemGroup VALUES (33, 311);
 #Cernobog
 INSERT INTO itemgroup VALUES (41, 45);
 INSERT INTO itemgroup VALUES (42, 46);
@@ -201,10 +210,19 @@ INSERT INTO object VALUES (237, "shelf", "A shelf full of stuff", 21, NULL, NULL
 INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, 1, NULL, 2, NULL);
 
 # HIP-17710
-INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 31, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 36, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (32, 'stranger', "It seems to be looking for something.", 310, NULL, NULL, NULL, NULL);
-INSERT INTO object VALUES (33, 'closed-pizza-box', "Dirty and soggy, looks discusting.", 37, 1, NULL, 32, 32);
-INSERT INTO object VALUES (34, 'opened-pizza-box', "Dirty and soggy, looks discusting. A note is lying on it.", 37, NULL, NULL, 32, NULL);
+INSERT INTO object VALUES (34, 'pizza-box', "Dirty and soggy, looks discusting. A note is lying on it.", 37, NULL, NULL, 32, NULL);
+INSERT INTO object VALUES (35, 'transportation-system', "Press to activate the public transportation system. You can use the system to travel between the planets.", 32, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (36, 'transportation-system', "Press to activate the public transportation system. You can use the system to travel between the planets.", 33, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (37, 'transportation-system', "Press to activate the public transportation system. You can use the system to travel between the planets.", 34, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (38, 'transportation-system', "Press to activate the public transportation system. You can use the system to travel between the planets.", 31, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (39, 'elevator',"Elevator which leads to the terrace. Press the elevator button to call the elevator car.", 39, 1, NULL, 2,NULL);
+INSERT INTO object VALUES (310, 'strange-man', "He looks strange", 39, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (311, 'red-button', "Big red button used to travel with the ship.", 311, NULL, NULL, 2, NULL);
+INSERT INTO object VALUES (312, 'fuel-vending-machine', "A vending machine that sells alien fuel.", 31, NULL, NULL, NULL, NULL);
+
+
 # Cernobog
 INSERT INTO object VALUES (41, 'toilet', 'Its a toilet, nothing more about that', 415, 1, NULL, NULL, 1043);
 INSERT INTO object VALUES (42, 'cold-pool', 'Its used to keep food fresh, there seems to be some tasty looking things.', 44, 1, NULL, 43, NULL);
@@ -241,12 +259,25 @@ INSERT INTO movingTable VALUES (211, 27, "s", 25, NULL);
 INSERT INTO movingTable VALUES (212, 25, "n", 27, NULL);
 INSERT INTO movingTable VALUES (213, 28, "e", NULL, NULL);
 #HIP-17710
-INSERT INTO movingtable VALUES (31, 37, 'n', 33, NULL);
-INSERT INTO movingtable VALUES (32, 33, 's', 37, NULL);
-INSERT INTO movingtable VALUES (33, 38, 'e', 33, NULL);
-INSERT INTO movingtable VALUES (34, 33, 'w', 38, NULL);
-INSERT INTO movingtable VALUES (35, 39, 'n', 38, NULL);
-INSERT INTO movingtable VALUES (36, 38, 's', 39, NULL);
+#Planet 2
+INSERT INTO movingtable VALUES (31, 310, 'w', 33, NULL);
+INSERT INTO movingtable VALUES (32, 33, 'e', 310, NULL);
+INSERT INTO movingtable VALUES (33, 35, 'e', 33, NULL);
+INSERT INTO movingtable VALUES (34, 33, 'w', 35, NULL);
+INSERT INTO movingtable VALUES (35, 36, 's', 35, NULL);
+INSERT INTO movingtable VALUES (36, 35, 'n', 36, NULL);
+#Planet 3
+INSERT INTO movingtable VALUES (37, 38, 'e', 34, NULL);
+INSERT INTO movingtable VALUES (38, 34, 'w', 38, NULL);
+INSERT INTO movingtable VALUES (39, 39, 'n', 38, NULL);
+INSERT INTO movingtable VALUES (310, 38, 's', 39, NULL);
+INSERT INTO movingtable VALUES (311, 37, 'n', 34, NULL);
+INSERT INTO movingtable VALUES (312, 34, 's', 37, NULL);
+#Fuel station
+INSERT INTO movingtable VALUES (313, 311, 'n', 31, NULL);
+INSERT INTO movingtable VALUES (314, 31, 's', 311, NULL);
+
+
 #Cernobog
 INSERT INTO movingtable VALUES (41, 42, NULL, 41, NULL);
 INSERT INTO movingtable VALUES (42, 41, NULL, 42, NULL);
@@ -302,14 +333,17 @@ INSERT INTO item VALUES (28, 'metal-scraps', "A pile of metal scraps, nothing us
 INSERT INTO item VALUES (29, 'glass-container', "There is a strange crystal inside a glass container. It makes a strange standing wave noise when you get near it.", 5, NULL, 237, NULL, NULL, NULL);
 #HIP-17710
 INSERT INTO item VALUES (31, 'domestic-pet', "It's round six big eyes stare at you. You are not quite sure if it's cute or terrifying", 5, NULL, 31, 31, NULL, 31);
-INSERT INTO item VALUES (32, 'quantum-Flux', "Strange running substance, not like anything you have seen before.", 1, NULL, 32, 32, NULL, NULL);
+INSERT INTO item VALUES (32, 'quantum-flux', "Strange running substance, not like anything you have seen before.", 1, NULL, NULL, 32, NULL, NULL);
 INSERT INTO item VALUES (33, 'note', "Strange note that has numbers writen on it: '-1/12'", 0, NULL, 34, NULL, NULL, NULL);
 INSERT INTO item VALUES (34, 'intergalactic', "A 'beer' suitable for almost any species in this galaxy.", 1, NULL, NULL, 31, NULL, NULL);
 INSERT INTO item VALUES (35, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, NULL, 31, NULL, NULL);
 INSERT INTO item VALUES (36, 'brown-jelly', "A mixture of Intergalactic and HIPA-17710. Digesting this will surely result in timetravel.", 2, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (37, 'glowing-vial', "Glows with a faint blue light, might be radioactive.", 1, NULL, NULL, 32, NULL, NULL);
-INSERT INTO item VALUES (38, 'vial-with-Quantum-flux', "Now glows even brighter. Definitely radioactive.", 2, NULL, NULL, 33, NULL, NULL);
-INSERT INTO item VALUES (39, 'alien-fuel', "High power fuel for space ships.", 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO item VALUES (38, 'vial-with-quantum-flux', "Now glows even brighter. Definitely radioactive.", 2, NULL, NULL, 33, NULL, NULL);
+INSERT INTO item VALUES (39, 'alien-fuel', "High power fuel for space ships.", 1, NULL, 312, 33, NULL, NULL);
+INSERT INTO item VALUES (310, 'elevator-button', "Press to call the elevator", NULL, NULL, 39, NULL, NULL, NULL);
+INSERT INTO item VALUES (311, 'poorly-combined-spacefuel', "Glowing green liquid. It makes a sizzling noice and some fumes are rising from the surface", NULL, NULL, NULL, NULL, NULL, 33);
+
 # Cernobog
 INSERT INTO item VALUES (41, 'pizza-dough', 'From this pizza dough yuo can make a good pizza', 2, NULL, 44, 41, 45, NULL);
 INSERT INTO item VALUES (42, 'alien-mushroom', 'Looks almost like normal mushrooms, but they smell like your socks.', 1, NULL, 43, 41, 45, NULL);

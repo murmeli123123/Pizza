@@ -67,7 +67,7 @@ def main():
         elif action == "combine":
             combFunc(input_command)
         #
-        # elif action == "look":
+        # elif action == "look":to
         #     lookaroundfunc()
 
         elif action == "help":
@@ -77,7 +77,7 @@ def main():
             if target != '':
                 if len(input_command) == 3:
                     objectname = input_command[1]
-                    openFunc(locationID,target,objectname)
+                    openFunc(locationID,target,objetctname)
                 else:
                     openFunc(locationID, target)
             else:
@@ -366,6 +366,7 @@ def mapbase():
     return base
 
 # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
+
 def moving():
     sql = "SELECT movingTable.direction \
             FROM player, place, movingTable \
@@ -581,7 +582,79 @@ def storyMode(index):
     elif index == 9:
         ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
         if ask == 'yes' or ask == 'Y' or ask == 'y':
-            print("KOHTA LENNETÄÄN VITUN KOVAA HIP-1710 PLANEETALLE WUHUU !!")
+            print("Jack fly to hip insert story here")
+            cur.execute("UPDATE player SET placeID = 31 WHERE playerID = 1")
+
+    elif index == 10:
+
+        cur.execute("SELECT planet.name FROM planet WHERE planet.planetID BETWEEN 31 and 34")
+        result = cur.fetchall()
+        y = 1
+        print("::Public transportation system::")
+        for x in result:
+            print(str(y) + '{:>25}'.format(x[0]))
+            y += 1
+
+        while True:
+            try:
+                selection = int(input("\nWelcome to the public transportation system. Choose a planet to travel to: "))
+                if selection > 1 or selection < 4:
+                    break
+            except ValueError:
+                print("Please use values between 1 and 4.")
+                continue
+            break
+
+        if selection == 1:
+            print("\nJack travels to %s" % result[selection - 1][0])
+            cur.execute("UPDATE player SET placeID = 32 WHERE playerID = 1")
+        elif selection == 2:
+            print("\nJack travels to %s" % result[selection - 1][0])
+            cur.execute("UPDATE player SET placeID = 33 WHERE playerID = 1")
+        elif selection == 3:
+            print("\nJack travels to %s" % result[selection - 1][0])
+            cur.execute("UPDATE player SET placeID = 34 WHERE playerID = 1")
+        elif selection == 4:
+            print("\nJack travels to %s" % result[selection - 1][0])
+            cur.execute("UPDATE player SET placeID = 31 WHERE playerID = 1")
+
+    elif index == 11:
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 770 AND 772")
+        result = cur.fetchall()
+        print(result[1][0])
+        #myprint(result[1][0])
+        #myprint(result[2][0])
+        #myprint(result[3][0])
+        count = 0
+        while True:
+            question = 'The stranger asks you a question: '
+
+            if count == 0:
+                answer = input(question + '1 + 1 = ? ')
+                if answer == '2':
+                    print("Correct!")
+                    count += 1
+            if count == 1:
+                answer = input(question + 'What earth animal has a long neck? ')
+                if answer  == 'giraffe':
+                    print("Correct!")
+                    count += 1
+            if count == 2:
+                answer = input(question + 'The sum of all the natural numbers? ')
+                if answer  == '-1/12':
+                    print("Correct!")
+                    target = "glowing-vial"
+                    cur.execute("UPDATE item SET objectID = 310 WHERE itemID = 37")
+                    getFunc(target)
+            break
+
+    elif index == 12:
+        print("jack uses the fuel and the journey can continue!! P.s runosuoni ei syki")
+        cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 311")
+        print("The fuel disappear from your inventory.")
+        print("\nJack travels to Cernobog")
+        cur.execute("UPDATE player SET placeID = 42 WHERE playerID = 1")
+
 
 
 def pressFunc(locationID):
@@ -600,6 +673,12 @@ def pressFunc(locationID):
             storyMode(3)
         elif locationID == 28:
             storyMode(9)
+        elif locationID == 31 or locationID == 32 or locationID == 33 or locationID == 34:
+            storyMode(10)
+        elif locationID == 39:
+            storyMode(11)
+        elif locationID == 311:
+            storyMode(12)
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

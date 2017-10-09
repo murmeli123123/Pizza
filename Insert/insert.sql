@@ -51,7 +51,7 @@ INSERT INTO place VALUES (310, 'alien-residence', "Some living creature is walki
 INSERT INTO place VALUES (311, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 34);
 # Cernobog
 INSERT INTO place VALUES (41, 'cernobog-planet-1-landing-zone', 'You cant see anything else than ice and its freaking cold out here. You better leave befor you freeze to death', 41);
-INSERT INTO place VALUES (42, 'cernobog-planet-2-landing-zone', 'In the west is a museum, south has a market, in east is a pizza-hat and in north has a poorly fitted space ship.', 42);
+INSERT INTO place VALUES (42, 'cernobog-planet-2-landing-zone', 'In the west is a museum, south has a market, in east is a pizza-hat and in north is a poorly fitted space ship.', 42);
 INSERT INTO place VALUES (43, 'museum', 'Strange looking things are in here, your not sure could these be called art or simply junk, but you never really understood art. In the east is a landing zone and in norht is a WC.', 42);
 INSERT INTO place VALUES (44, 'market', 'Here are some really strange things being sold, you cant even tell what they are. In the north is the landing zone and in east is a pharmacy.', 42);
 INSERT INTO place VALUES (45, 'pizza-hat', 'It seems that where ever you go, there is going to be pizza-hat in it. you cant escape your fate of beeing pizza delivery boy to the rest of your life. In the west is a landing zone.', 42);
@@ -66,6 +66,8 @@ INSERT INTO place VALUES (413, 'west-wing', 'Here seems to be three doors, all o
 INSERT INTO place VALUES (414, 'dungeon', 'Basic dungeon', 43);
 INSERT INTO place VALUES (415, 'wc', 'Here is a toilet and a huge line of people waiting their turn. Here is also a turn ticket button and for some reason you cant leave wc whitouth wc turn ticket.', 42);
 INSERT INTO place VALUES (416, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 42);
+INSERT INTO place VALUES (417, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 43);
+INSERT INTO place VALUES (1000, 'EXIT', "YOU WON THE GAME IF YOU ARE HERE.", 1);
 # player
 INSERT INTO player VALUES (1, 0, 80, 1);
 
@@ -93,7 +95,7 @@ INSERT INTO actionTable VALUES(211, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(212, 'Hello! Your starship is broken? you can find some parts in those box');
 INSERT INTO actionTable VALUES(213, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(214, 'UPDATE object SET usable = 1 WHERE objectID = 24');
-INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213;');
+INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213');
 # HIP-17710
 INSERT INTO actiontable VALUES (31, 'UPDATE item SET objectID = 32 WHERE itemID = 32');
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
@@ -102,10 +104,11 @@ INSERT INTO actiontable VALUES (33, "UPDATE object SET usable = 1 WHERE objectID
 INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
 INSERT INTO actiontable VALUES (44, 'You combine the pizza whit lethal poison 3000.');
-INSERT INTO actiontable VALUES (45, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
 INSERT INTO actiontable VALUES (46, 'UPDATE object SET usable = 1 WHERE objectID = 411');
 INSERT INTO actiontable VALUES (47, 'UPDATE object SET usable = 1 WHERE objectID = 413');
 INSERT INTO actiontable VALUES (48, 'UPDATE object SET usable = 1 WHERE objectID = 410');
+INSERT INTO actiontable VALUES (49, 'UPDATE object SET usable = 1 WHERE objectID = 48');
+INSERT INTO actiontable VALUES (410, 'UPDATE object SET usable = 1 WHERE objectID = 415');
 #storyMode
 
 INSERT INTO actiontable VALUES (770, "You use the elevator and ascend to the terrace. You can see far into the horizon. A strange looking man is staring you at the counter. You decide to just ignore him.");
@@ -135,10 +138,13 @@ INSERT INTO actiontable VALUES (1041, "Aftr a while you take the pizza out of th
 INSERT INTO actiontable VALUES (1042, "You take the wc turn ticket it has nuber 4783 and the ongoing number is 4768. It seems that you have to wait for a while.");
 INSERT INTO actiontable VALUES (1043, "As you are waiting you notice that you actualy need to use wc. The longer you are waiting the more it feels that your ass is going to explode. The ongoing number is 4776");
 INSERT INTO actiontable VALUES (1044, "Finaly its your turn to use the wc. You put the ticket in the door and it opens. You go in and take of your pants and sit in the toilet. The moment you sit on the toilet, your ass explodes and you feel great relief, you can hear cliring noise and as you turn to watch the toilet you see that the toilet has broken in half... It seems that inside the toilet is a note. you take the note, whipe your ass, put the pant on and leave the wc");
-INSERT INTO actiontable VALUES (1045, "");
-INSERT INTO actiontable VALUES (1046, "");
-INSERT INTO actiontable VALUES (1047, "");
-
+INSERT INTO actiontable VALUES (1045, "You input the information on the note to your space ship and then you press the button. After a few moments your lands in a cernobog planet 3 landing zone.");
+INSERT INTO actiontable VALUES (1046, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
+INSERT INTO actiontable VALUES (1047, "As you are waiting you look around to see anything where you could go inside and you realize that the guard who came to open the gate left with such a hurry that he forgot to close the gate. Its probably safe to go inside now.");
+INSERT INTO actiontable VALUES (1048, "You leave the Cernobog whit the princess and head home. After several hours of flying you arive to your home planet. You land on a goverments landing pad and you come out of the poorly fitted space ship with the princess. The two agents welcoms both the both of you and then they ask you to wait here and they escort the princess to the presidents room.");
+INSERT INTO actiontable VALUES (1049, "After a while the agents come back from the room and offers you a huge amount of money and new position in goverment. Do you accetp the new position? (Y/N)");
+INSERT INTO actiontable VALUES (1050, "You accept the new position and the two agents gives you the money and a letter containing all the information you need to know about your new position. Never again you need to deliver pizza, alltough it seems that your peacfull live ends today.");
+INSERT INTO actiontable VALUES (1051, "You refuse the new position and the two agents gives you the money. You head back home and look the amount of money you got. Never again you need to deliver pizza and you can peacfully spend the rest of your life doing anything you like.");
 # typeID , typename
 #home-planet
 INSERT INTO objecttype VALUES (1, 'door');
@@ -230,13 +236,15 @@ INSERT INTO object VALUES (43, 'vegetable-shelf', 'Here seems to be all kinds of
 INSERT INTO object VALUES (44, 'dry-food-shelf', 'Its full of dry food ingredients.', 44, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (45, 'drug-shelf', 'Its full of all kinds of drugs', 46, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (46, 'pizza-oven', 'Its used to make delicios pizzas', 45, 1, NULL, 44, NULL);
-INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 1, NULL, 41, NULL);
-INSERT INTO object VALUES (48, 'doorbell', 'Its a white button that rings a doorbell.', 48, 1, NULL, 42, 45);
+INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 1, 1, 1, NULL);
+INSERT INTO object VALUES (48, 'doorbell', 'Its a white button that rings a doorbell.', 48, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (49, 'fallen-guard', 'Seem like the pizza did its job.', 411, 1, NULL, NULL, NULL);
-INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 0, NULL, NULL, NULL);
-INSERT INTO object VALUES (411, 'pizza-maker', 'Its used to make pizza base by putting ingredints in it, it has a button in it.', 45, 0, NULL, 2, 1040);
+INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 0, 1, 1, NULL);
+INSERT INTO object VALUES (411, 'pizza-maker', 'Its used to make pizza base by putting ingredints in it, it has a button in it.', 45, 1, NULL, 2, 1040);
 INSERT INTO object VALUES (412, 'wc-turn-ticket-button', 'It gives you a turn ticket to wc.', 415, 1, NULL, 2, NULL);
-INSERT INTO object VALUES (413, 'red-button', 'Its a red button', 416, 0, NULL, 2, NULL);
+INSERT INTO object VALUES (413, 'red-button', 'Big red button used to travel with the ship.', 416, 0, 1, 2, NULL);
+INSERT INTO object VALUES (414, 'manacles', "These are used to chain people", 414, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (415, 'red-button', 'Big red button used to travel with the ship.', 417, 0, NULL, 2, NULL);
 # moveID , whereTo , direction , placeID , objectID
 #home-planet
 INSERT INTO movingtable VALUES (1, 2, 'e', 1, 2);
@@ -295,7 +303,7 @@ INSERT INTO movingtable VALUES (413, 41, NULL, 47, NULL);
 INSERT INTO movingtable VALUES (414, 42, NULL, 47, NULL);
 INSERT INTO movingtable VALUES (415, 48, 'n', 47, NULL);
 INSERT INTO movingtable VALUES (416, 47, 's', 48, NULL);
-INSERT INTO movingtable VALUES (417, 49, 'n', 48, NULL);
+INSERT INTO movingtable VALUES (417, 49, 'n', 48, 47);
 INSERT INTO movingtable VALUES (418, 48, 's', 49, NULL);
 INSERT INTO movingtable VALUES (419, 410, 'e', 49, NULL);
 INSERT INTO movingtable VALUES (420, 412, 'w', 49, NULL);
@@ -310,6 +318,8 @@ INSERT INTO movingtable VALUES (428, 413, 's', 414, NULL);
 INSERT INTO movingtable VALUES (429, 415, 'n', 43, NULL);
 INSERT INTO movingtable VALUES (430, 416, 'n', 42, NULL);
 INSERT INTO movingtable VALUES (431, 42, 's', 416, NULL);
+INSERT INTO movingtable VALUES (432, 47, 'n', 417, NULL);
+INSERT INTO movingtable VALUES (433, 417, 's', 47, NULL);
 
 
 # itemID , name , description , #weight , playerID , objectID , #groupID , resultID , actionID
@@ -350,9 +360,10 @@ INSERT INTO item VALUES (42, 'alien-mushroom', 'Looks almost like normal mushroo
 INSERT INTO item VALUES (43, 'alien-cheese', 'Looks like normal cheese, exept its blue.', 5, NULL, 42, 41, 45, NULL);
 INSERT INTO item VALUES (44, 'alien-meat', 'Its delisious looki meat, thats all.', 5, NULL, 42, 41, 45, NULL);
 INSERT INTO item VALUES (45, 'raw-pizza', 'Looks good but its still raw.', 5, NULL, NULL, 42, 46, NULL);
-INSERT INTO item VALUES (46, 'pizza', 'Freshly made pizza, its smells a bit odd.', 5, NULL, NULL, 43, 49, NULL);
+INSERT INTO item VALUES (46, 'pizza', 'Freshly made pizza, its smells a bit odd.', 5, NULL, NULL, 43, 49, 49);
 INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, dont f***ing drink it, dont even smell it, just by looking it hurts. So did you get the point? I hope so...', 3, NULL, 45, 43, 49, NULL);
 INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, NULL);
 INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 48);
-INSERT INTO item VALUES (411, 'cernobog-note', "This note contains detailed location of the third planet thats is in Cernobog.", 1, NULL, NULL, NULL, NULL, 47);
+INSERT INTO item VALUES (411, 'cernobog-note', "This note contains detailed location of the third planet thats is in Cernobog. Also it contains the information that the evil forces likes pizza and they are dump enough to eat it, even if its full of poison.", 1, NULL, NULL, NULL, NULL, 47);
+INSERT INTO item VALUES (412, 'princess', "Its the princess.", 0, NULL, 414, NULL, NULL, 410);

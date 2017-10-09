@@ -626,11 +626,17 @@ def storyMode(index):
                 if answer == '2':
                     print("Correct!")
                     count += 1
+                else:
+                    print("That's not quite right..")
+                    break
             if count == 1:
                 answer = input(question + 'What earth animal has a long neck? ')
                 if answer  == 'giraffe':
                     print("Correct!")
                     count += 1
+                else:
+                    print("That's not quite right..")
+                    break
             if count == 2:
                 answer = input(question + 'The sum of all the natural numbers? ')
                 if answer  == '-1/12':
@@ -638,6 +644,9 @@ def storyMode(index):
                     target = "glowing-vial"
                     cur.execute("UPDATE item SET objectID = 310 WHERE itemID = 37")
                     getFunc(target)
+                else:
+                    print("That's not quite right..")
+                    break
             break
 
     elif index == 20:

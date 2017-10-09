@@ -49,7 +49,7 @@ def main():
         else:
             target = ""
 
-        if action == "get":
+        if action == "get" or action == "take":
             if target!="":
                 getFunc(target)
             else:
@@ -532,8 +532,6 @@ def storyMode(index):
         else:
             myprint(result[2][0])
             gameOver("Proteus")
-    if index == 101:
-        pass
 
     elif index == 4:
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 895 AND 897")
@@ -616,10 +614,9 @@ def storyMode(index):
     elif index == 11:
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 770 AND 772")
         result = cur.fetchall()
-        print(result[1][0])
-        #myprint(result[1][0])
-        #myprint(result[2][0])
-        #myprint(result[3][0])
+        myprint(result[0][0])
+        myprint(result[1][0])
+        myprint(result[2][0])
         count = 0
         while True:
             question = 'The stranger asks you a question: '
@@ -737,6 +734,7 @@ def pressFunc(locationID):
             storyMode(13)
         elif locationID == 417:
             storyMode(14)
+            import sys
             sys.exit()
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)

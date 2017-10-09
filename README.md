@@ -1,6 +1,6 @@
 # Pizza-Hat Express
 
-<br>Pizza-Hat Express the simple text adventure game. Made with Python 3.4 and Mysql database.
+#### Pizza-Hat Express the simple text adventure game. Made with Python 3.4 and Mysql database.
 
 ## Super Easy Install
 1. Install Database (

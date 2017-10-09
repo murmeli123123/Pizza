@@ -49,7 +49,7 @@ def main():
         else:
             target = ""
 
-        if action == "get":
+        if action == "get" or action == "take":
             if target!="":
                 getFunc(target)
             else:
@@ -532,8 +532,6 @@ def storyMode(index):
         else:
             myprint(result[2][0])
             gameOver("Proteus")
-    if index == 101:
-        pass
 
     elif index == 4:
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 895 AND 897")
@@ -616,10 +614,9 @@ def storyMode(index):
     elif index == 11:
         cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 770 AND 772")
         result = cur.fetchall()
-        print(result[1][0])
-        #myprint(result[1][0])
-        #myprint(result[2][0])
-        #myprint(result[3][0])
+        myprint(result[0][0])
+        myprint(result[1[0])
+        myprint(result[2][0])
         count = 0
         while True:
             question = 'The stranger asks you a question: '
@@ -643,7 +640,7 @@ def storyMode(index):
                     getFunc(target)
             break
 
-    elif index == 12:
+    elif index == 20:
         print("jack uses the fuel and the journey can continue!! P.s runosuoni ei syki")
         cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 311")
         print("The fuel disappear from your inventory.")
@@ -725,22 +722,20 @@ def pressFunc(locationID):
             storyMode(3)
         elif locationID == 28:
             storyMode(9)
-<<<<<<< HEAD
         elif locationID == 31 or locationID == 32 or locationID == 33 or locationID == 34:
             storyMode(10)
         elif locationID == 39:
             storyMode(11)
         elif locationID == 311:
-            storyMode(12)
-=======
+            storyMode(20)
         elif locationID == 416:
             storyMode(12)
         elif locationID == 48:
             storyMode(13)
         elif locationID == 417:
             storyMode(14)
+            import sys
             sys.exit()
->>>>>>> eb4f66d88e09cf200c5c85ac9352e5b8a51cba77
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

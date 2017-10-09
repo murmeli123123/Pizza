@@ -643,7 +643,7 @@ def storyMode(index):
                     getFunc(target)
             break
 
-    elif index == 12:
+    elif index == 20:
         print("jack uses the fuel and the journey can continue!! P.s runosuoni ei syki")
         cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 311")
         print("The fuel disappear from your inventory.")
@@ -725,14 +725,12 @@ def pressFunc(locationID):
             storyMode(3)
         elif locationID == 28:
             storyMode(9)
-<<<<<<< HEAD
         elif locationID == 31 or locationID == 32 or locationID == 33 or locationID == 34:
             storyMode(10)
         elif locationID == 39:
             storyMode(11)
         elif locationID == 311:
-            storyMode(12)
-=======
+            storyMode(20)
         elif locationID == 416:
             storyMode(12)
         elif locationID == 48:
@@ -740,7 +738,6 @@ def pressFunc(locationID):
         elif locationID == 417:
             storyMode(14)
             sys.exit()
->>>>>>> eb4f66d88e09cf200c5c85ac9352e5b8a51cba77
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

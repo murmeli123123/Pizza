@@ -236,7 +236,7 @@ INSERT INTO object VALUES (43, 'vegetable-shelf', 'Here seems to be all kinds of
 INSERT INTO object VALUES (44, 'dry-food-shelf', 'Its full of dry food ingredients.', 44, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (45, 'drug-shelf', 'Its full of all kinds of drugs', 46, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (46, 'pizza-oven', 'Its used to make delicios pizzas', 45, 1, NULL, 44, NULL);
-INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 1, 1, 1, NULL);
+INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 0, 1, 1, NULL);
 INSERT INTO object VALUES (48, 'doorbell', 'Its a white button that rings a doorbell.', 48, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (49, 'fallen-guard', 'Seem like the pizza did its job.', 411, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 0, 1, 1, NULL);
@@ -365,5 +365,5 @@ INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, do
 INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, NULL);
 INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 48);
-INSERT INTO item VALUES (411, 'cernobog-note', "This note contains detailed location of the third planet thats is in Cernobog. Also it contains the information that the evil forces likes pizza and they are dump enough to eat it, even if its full of poison.", 1, NULL, NULL, NULL, NULL, 47);
+INSERT INTO item VALUES (411, 'shitty-note', "It's covered in poop and it smells terrible. This note contains detailed location of the third planet thats is in Cernobog. Also it contains the information that the evil forces likes pizza and they are dump enough to eat it, even if its full of poison.", 1, NULL, NULL, NULL, NULL, 47);
 INSERT INTO item VALUES (412, 'princess', "Its the princess.", 0, NULL, 414, NULL, NULL, 410);

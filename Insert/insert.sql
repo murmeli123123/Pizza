@@ -90,16 +90,22 @@ INSERT INTO actionTable VALUES(22, 'You opened the door');
 INSERT INTO actionTable VALUES(23, 'Old notebook, not interested');
 INSERT INTO actionTable VALUES(24, 'I am security number 185749464.');
 INSERT INTO actionTable VALUES(25, 'You have to repair it first!');
-INSERT INTO actionTable VALUES(26, 'No now');
-INSERT INTO actionTable VALUES(27, '...');
+INSERT INTO actionTable VALUES(26, 'You sit on it and then you stand up again. Stop wasting your time.');
+INSERT INTO actionTable VALUES(27, 'The garbage is over there!');
 INSERT INTO actionTable VALUES(28, 'Hello Jack i can help you to find a key, you need a....');
 INSERT INTO actionTable VALUES(29, 'Hei, man it just a table');
-INSERT INTO actionTable VALUES(210, 'Yes, i want to broke it, but not now');
-INSERT INTO actionTable VALUES(211, 'Hei, man it just a table');
-INSERT INTO actionTable VALUES(212, 'Hello! Your starship is broken? you can find some parts in those box');
+INSERT INTO actionTable VALUES(210, "You don't have any currency on you!");
+INSERT INTO actionTable VALUES(211, 'Please explain yourself?');
+INSERT INTO actionTable VALUES(212, 'Hello! Your starship is broken? Thats too bad.');
 INSERT INTO actionTable VALUES(213, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(214, 'UPDATE object SET usable = 1 WHERE objectID = 24');
 INSERT INTO actionTable VALUES(215, 'UPDATE movingTable SET placeID = 24 WHERE moveID = 213');
+INSERT INTO actionTable VALUES(216, 'Stealing is fine if you are starving, who am I to judge..');
+INSERT INTO actionTable VALUES(217, "You like it, don't you?");
+INSERT INTO actionTable VALUES(218, "You really think you are going to need this??");
+INSERT INTO actionTable VALUES(219, "I don't know what you think you are but a locksmith ain't one of those things.");
+INSERT INTO actionTable VALUES(220, "RAWR!");
+
 # HIP-17710
 INSERT INTO actiontable VALUES (31, 'UPDATE item SET objectID = 32 WHERE itemID = 32');
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
@@ -189,7 +195,6 @@ INSERT INTO itemgroup VALUES (43, 49);
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, 1, NULL, NULL, 10);
-INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, 990);
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 5, 1, NULL, NULL, 3);
@@ -204,8 +209,8 @@ INSERT INTO object VALUES (12, "sink", "Basic sink, its a little bit dirty.", 5,
 INSERT INTO object VALUES (13, "toilet", "Toilet full of crap. 'Somebody' forgot to flush yesterday.", 5, 1, NULL, NULL, 8);
 # Proteus
 
-INSERT INTO object VALUES (24, "sewer door", "Entrance to the city's waste dump. A horrible smells creeps to your nose near it.", 24, 0, 1, 1, NULL);
-INSERT INTO object VALUES (25, "empty-box", "An empty box on the floor", 24, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (24, "sewer-door", "Entrance to the city's waste dump. A horrible smells creeps to your nose near it.", 24, 0, 1, 1, NULL);
+INSERT INTO object VALUES (25, "empty-box", "An empty box.", 24, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (26, "floor", "Dirty floor", 24, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (27, "laptop", "It's broken", 24, NULL, NULL, NULL, 23);
 INSERT INTO object VALUES (28, "security-guard", "I don't want to say anything to him.", 24,NULL, NULL, NULL, 24);
@@ -220,9 +225,9 @@ INSERT INTO object VALUES (222, "lifeform", "Looks like some kind of animal, lik
 INSERT INTO object VALUES (226, "seller", "Seller looks like my boss. He's wandering near the booth.", 22, 1, NULL, NULL, 212);
 INSERT INTO object VALUES (227, "camera", "Big brother can see you.", 21, 1, NULL, NULL, 210);
 INSERT INTO object VALUES (228, "box", "A box of different parts.", 21, 1, NULL, NULL, 210);
-INSERT INTO object VALUES (229, "exit-door", "Door to landing place", 25, NULL ,NULL, NULL, 22);
+INSERT INTO object VALUES (229, "table", "A table with some items on top", 25, NULL, NULL, NULL, 211);
 INSERT INTO object VALUES (230, "camera", "Big brother can see you.", 25, NULL, NULL, NULL, 210);
-INSERT INTO object VALUES (231, "counter", "Here you could place your order, if you had time for that..", 25, NULL, NULL, NULL, 211);
+INSERT INTO object VALUES (231, "counter", "Here you could place your order, if you had time for that..", 25, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (232, 'button', "A button near the ladder. What could possibly go wrong?", 26, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (233, "officer", "I dont want to speak with him, he looks tough", 22, 1, NULL, NULL, 27);
 INSERT INTO object VALUES (234, "vehicle", "An old vehicle parked near the pizza-hat restaurant. It has a keypad near the trunk.", 27, NULL, NULL, NULL, NULL);
@@ -230,6 +235,11 @@ INSERT INTO object VALUES (235, "keypad", "Strange looking keypad with buttons o
 INSERT INTO object VALUES (236, "trunk", "Trunk of the car", NULL, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (237, "shelf", "A shelf full of stuff", 21, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (238, "red-button", "Big red button used to travel with the ship.", 28, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (239, "green-slime", "Green slime is hanging from the roof. Maybe stay away from it.", 26, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (240, "old-bicycle", "An old bicycle with both of its wheels bend. You didn't know these aliens could ride a bike.", 26, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (241, "safe", "A gigantic safe that has to weight more than your space ship", 21, NULL, NULL, NULL, 219);
+INSERT INTO object VALUES (242, "stuffed-animal", "Looks like a crossover of a lion and a koala. Very strange..", 21, NULL, NULL, NULL, 220);
+
 
 # HIP-17710
 INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 36, 1, NULL, NULL, NULL);
@@ -359,6 +369,17 @@ INSERT INTO item VALUES (26, 'tin-can', "Used tin can. Smells like cat food.", 1
 INSERT INTO item VALUES (27, 'goo', "Odd goo. Not sure if it's living or not.", 1, NULL, 237, NULL, NULL, NULL);
 INSERT INTO item VALUES (28, 'metal-scraps', "A pile of metal scraps, nothing useful here.", 1, NULL, 237, NULL, NULL, NULL);
 INSERT INTO item VALUES (29, 'glass-container', "There is a strange crystal inside a glass container. It makes a strange standing wave noise when you get near it.", 5, NULL, 237, NULL, NULL, NULL);
+INSERT INTO item VALUES (210, 'ketchup', "It's the same stuff as in earth! Incredible, though these guys use it with the pizza..", NULL, NULL, 229, NULL, NULL, 216);
+INSERT INTO item VALUES (211, 'pepper', "A glass container of ground up pepper seeds.", NULL, NULL, 229, NULL, NULL, 216);
+INSERT INTO item VALUES (212, 'old-crust', "Someone left the crust of their pizza on the plate.", NULL, NULL, 229, NULL, NULL, 217);
+INSERT INTO item VALUES (213, 'smelly-fruit', "Somekind of fruit, smells terrible.", NULL, NULL, 212, NULL, NULL, 216);
+INSERT INTO item VALUES (214, 'red-fruit', "Somekind of red fruit, no idea if it's edible.", NULL, NULL, 212, NULL, NULL, 216);
+INSERT INTO item VALUES (215, 'clock', "Old digital watch, used for timekeepping", NULL, NULL, 212, NULL, NULL, 218);
+INSERT INTO item VALUES (216, 'shoes', "Fresh looking shoes with three stripes", NULL, NULL, 212, NULL, NULL, 216);
+INSERT INTO item VALUES (217, 'oily-rags', "Kind of looks like your clothes", NULL, NULL, 228, NULL, NULL, 217);
+INSERT INTO item VALUES (218, 'bolts', "A handful of bolts", NULL, NULL, 228, NULL, NULL, 216);
+INSERT INTO item VALUES (219, 'lightbuld', "An oldschool lightbuld, probably used to replace headlights", NULL, NULL, 237, NULL, NULL, 216);
+
 #HIP-17710
 INSERT INTO item VALUES (31, 'domestic-pet', "It's round six big eyes stare at you. You are not quite sure if it's cute or terrifying", 5, NULL, 31, 31, NULL, 31);
 INSERT INTO item VALUES (32, 'quantum-flux', "Strange running substance, not like anything you have seen before.", 1, NULL, NULL, 32, NULL, NULL);

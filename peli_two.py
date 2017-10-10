@@ -260,7 +260,10 @@ def getFunc(target):
 
         action = getAction(target_item_id, 1)
         if action != None:
-            cur.execute(action[0])
+            if 'UPDATE' in action[0]:
+                cur.execute(action[0])
+            else:
+                print(action[0])
 
         if player_id != 1:
             cur.execute("UPDATE item SET playerID = 1 WHERE itemID = '%i'" % (target_item_id))

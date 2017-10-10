@@ -118,11 +118,19 @@ INSERT INTO actiontable VALUES (410, 'UPDATE object SET usable = 1 WHERE objectI
 INSERT INTO actiontable VALUES (770, "You use the elevator and ascend to the terrace. You can see far into the horizon. A strange looking man is staring you at the counter. You decide to just ignore him.");
 INSERT INTO actiontable VALUES (771, "As you explore the terrace the strange man comes near you and starts to talk with you.");
 INSERT INTO actiontable VALUES (772, "He asks you if you would like to answer some questions he has.");
+INSERT INTO actiontable VALUES (777, "The fuel seems to be working. The engines run like a charm and you are able to leave the system for good.");
+INSERT INTO actiontable VALUES (778, "It seems that the destination system is relatively close by. As the hyperdrive travel takes only two earth hours.");
 
 INSERT INTO actiontable VALUES (880, "The ladder shoots down from the ceiling and you begin to climb it. You stop for a moment to wait if you could hear what the creatures are speaking in the shop. As you get closer to the ceiling it's obvious to you that you have no idea even what language they are speaking. You wait for the conversation to end.");
 INSERT INTO actiontable VALUES (881, "The holographic device suddenly starts to translate the ongoing conversation to you. It surely is a remarkable piece of technology.");
 INSERT INTO actiontable VALUES (882, "HOLOGRAPHIC DEVICE: 'You buy me good product last week gooooooood.' 'Yesss very goood you like yes.' 'I very like yesssss.' 'HuehueHEUE:DHEUHEUYHUE:DD' ");
 INSERT INTO actiontable VALUES (883, "The device starts to make strage noices so you decide to just ignore it. Maybe it's not perfect after all. The 'creatures' seem to be leaving the shop.");
+INSERT INTO actiontable VALUES (884, "You climb in to your trusty seat and push the star ship keycard into into the keyhole. As you press the button nothing happens. Smoke starts to rise from the control panel and desperation takes over your mind. You have failed once again, who knows how long you will be stuck in this god forbidden place.");
+INSERT INTO actiontable VALUES (885, "Anger takes over you and you hit the panel with your fist.");
+INSERT INTO actiontable VALUES (886, "You hear a load BANG from behind and the whole ship trembles from the shockwave. Suddenly the ship's systems power up and the engines start to rev up. ");
+INSERT INTO actiontable VALUES (887, "You and the poorly-fitted-space-ship made it! The two of you leave the Proteus solar system and continue your journey. As you rushed the repairs you had to take off the movie display, what a shame, there is no movie to display now. You decide to rest your eyes, after all it has been a rough journey so far.");
+INSERT INTO actiontable VALUES (888, "You snap out of your dreams as the ships alarm system is screaming at you. Almost every warning light is flashing on the dashboard. You have no idea what is wrong this time. The graphical interface inform you that you are about to land on HIP-17710. You have no idea what that is.");
+INSERT INTO actiontable VALUES (889, "It seems that the new poorly-modified-engine eats a lot more fuel than the factory one. You almost ran out of fuel in the middle of the deep cold space. Imagine what that would have been like, just drifting through space waiting for the inevitable death. Luckily the ships graphical interface saves you again!");
 INSERT INTO actiontable VALUES (895, "You press the button and a lid opens revealing the keypad. It's equipped with buttons from 1 to 9. Buttons 1, 2 and 3 are clearly dirty and have been used the most.");
 INSERT INTO actiontable VALUES (896, "The trunk opens and reveals a set of mechanical tools.");
 INSERT INTO actiontable VALUES (897, "!!BURGLARY DETECTED!!. The car alarm goes off and before you even realize what is going on a set of explosives blasts your waist completely off.");
@@ -180,12 +188,9 @@ INSERT INTO itemgroup VALUES (43, 49);
 
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
-<<<<<<< HEAD
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, 1, NULL, NULL, 10);
 INSERT INTO object VALUES (2, 'door', 'Ordinary door, what did you expect?', 1, 0, 1, 1, 990);
-=======
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
->>>>>>> 67ada88de706d2f3df0dbd13f8939ed43e6342a4
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 5, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
@@ -348,7 +353,7 @@ INSERT INTO item VALUES (21, 'engine-parts', 'Its a part for you ship.', 1, NULL
 INSERT INTO item VALUES (22, 'tools', 'Its a special engine tools, combine it with you parts.', 1, NULL, 236, 277, NULL, NULL);
 INSERT INTO item VALUES (288, 'new-engine' , 'Its a new engine for you starship, use it to starship.', 1, NULL, NULL, NULL, NULL, 215);
 INSERT INTO item VALUES (23, 'key', 'Its a key from Pizza-hat door.', 1, NULL, 231, NULL, NULL, NULL);
-INSERT INTO item VALUES (24, "holographic-device", "A strange device that seems to project a hologram when you shine it against the sun.", 1, NULL, 215, NULL, 21, 214);
+INSERT INTO item VALUES (24, "holographic-device", "A strange device. When you shine it against the sun a projection of an opened door can be seen.", 1, NULL, 215, NULL, 21, 214);
 INSERT INTO item VALUES (25, 'banana-peel', "Old banana peels.", 1, NULL, 215, NULL, NULL, NULL);
 INSERT INTO item VALUES (26, 'tin-can', "Used tin can. Smells like cat food.", 1, NULL, 215, NULL, NULL, NULL);
 INSERT INTO item VALUES (27, 'goo', "Odd goo. Not sure if it's living or not.", 1, NULL, 237, NULL, NULL, NULL);

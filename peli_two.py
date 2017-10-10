@@ -587,9 +587,33 @@ def storyMode(index):
         cur.execute("UPDATE movingTable SET placeID = 26 WHERE moveID = 29")
 
     elif index == 9:
+        wait = 0
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 884 AND 889")
+        result = cur.fetchall()
+
         ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
         if ask == 'yes' or ask == 'Y' or ask == 'y':
-            print("Jack fly to hip insert story here")
+            cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 288")
+            myprint(result[0][0])
+            myprint(result[1][0])
+            while wait == 0:
+                command = input("> ").split()
+                if 'hit' in command:
+                    wait += 1
+                else:
+                    print("Please hit the dashboard.")
+            myprint(result[2][0])
+            myprint(result[3][0])
+            while wait == 1:
+                command = input("> ").split()
+                if 'sleep' or 'rest' or 'wait' in command:
+                    wait += 1
+                else:
+                    print("You need to rest now!")
+            print("...\n...\n...\nzzz\nzZz\n...\nzZZ\n..")
+            myprint(result[4][0])
+            myprint(result[5][0])
+            print("\n\nJack arrives at HIP-17710 refueling station.")
             cur.execute("UPDATE player SET placeID = 31 WHERE playerID = 1")
 
     elif index == 10:
@@ -664,10 +688,20 @@ def storyMode(index):
             break
 
     elif index == 20:
-        print("jack uses the fuel and the journey can continue!! P.s runosuoni ei syki")
+        wait = 0
         cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 311")
-        print("The fuel disappear from your inventory.")
-        print("\nJack travels to Cernobog")
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 777 AND 778")
+        result = cur.fetchall()
+        myprint(result[0][0])
+        myprint(result[1][0])
+        while wait == 0:
+            command = input("> ")
+            if command == 'wait':
+                wait += 1
+            else:
+                print("You should wait for the hyperdrive travel to complete")
+
+        print("\nJack arrives to Cernobog")
         cur.execute("UPDATE player SET placeID = 42 WHERE playerID = 1")
 
     elif index == 12:

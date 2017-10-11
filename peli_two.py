@@ -1,19 +1,10 @@
 import mysql.connector
 
-
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
                               passwd = "salasana",
                               db = "pizzaDB",
                               buffered = True)
-
-
-# db = mysql.connector.connect(host = "localhost",/Users/andrei/Documents/home_works/Coding/PYTHON/Pizza/Peli.py
-#                                 port="4444",
-#                               user = "andreiva",
-#                               passwd = "root",
-#                               db = "andreiva",
-#                               buffered = True)
 
 cur = db.cursor()
 
@@ -38,8 +29,10 @@ def main():
         # location is current location
         locationID = getLocID()
         location = getLocName()
+        # input_command is the initial inputted command
         input_command=input("> ").split()
         filters = ["and","for","the","with","a","an","at","of","on","in"," "]
+        # final_command is the command that is fed to the game
         final_command = []
         for x in input_command:
             if x in filters:
@@ -61,24 +54,16 @@ def main():
             else:
               print("It's just a verb!, Try again!")
 
-        elif action == "drop":
-            if target!="":
-                dropfunc(target)
-            else:
-                print("It's just a verb!, Try again!")
         elif action == "i" or action == "inventory":
             inventoryfunc()
-        #
+
         elif action == "combine":
             combFunc(final_command)
-        #
-        # elif action == "look":to
-        #     lookaroundfunc()
 
         elif action == "help":
             getHelp()
 
-        elif action == "open":   # open object
+        elif action == "open":
             if target != '':
                 if len(final_command) == 3:
                     objectname = final_command[1]
@@ -88,7 +73,7 @@ def main():
             else:
                 print("Try again")
 
-        elif action == "use":  # Use objects
+        elif action == "use":
             if target != '':
                 useFunc(target, locationID)
 
@@ -113,20 +98,18 @@ def main():
             print("I dont understand this command")
 
 def showitemfunc(target):
-    #For some reason ' causes the game to crash
-    if "'" in target:
-        print("This place doesn't contain this object")
-        return
-    try:
 
+    try:
+        # Get object descriptions from the same placeID that the player is in
         cur.execute("SELECT objectID, description \
         FROM object, player WHERE player.placeID = object.placeID AND object.name = '%s';" % (target))
         item_desc = cur.fetchall()
-
+        # Get item names and descriptions from the objects
         cur.execute("SELECT name, description FROM item WHERE objectID = '%i';" % item_desc[0][0])
         items = cur.fetchall()
     except IndexError:
         desc = ''
+        # If error is raised check player inventory
         for x in getInventory():
             if x[0] == target:
                 desc = x[1]
@@ -136,13 +119,10 @@ def showitemfunc(target):
             print("This place doesn't contain this object")
 
     else:
-        # print("This object contain some items, input 'get' + object, if you want to take it")
-        # print()
         myprint(item_desc[0][1])
         for i in items:
             print("| " + i[0] + " |",end=" : ")
             print(i[1])
-        # print(item_desc[0][1])
 
 def lookaroundfunc():
     cur.execute("SELECT place.description, player.placeID FROM place, player WHERE player.placeID = place.placeID;")
@@ -218,24 +198,6 @@ def getAction(Id, Req): # For getting actions, Req 0 = Object, Req 1 = Item
         return result[[0][0]]
     except IndexError:
         return None
-
-def dropfunc(target):
-    cur.execute("SELECT name FROM item WHERE playerID = 1;")
-    all_items = cur.fetchall()
-    item_list = []
-    for i in all_items:
-        item_list.append(*i)
-
-    cur.execute("SELECT name FROM item WHERE playerID = 1;")
-
-
-    if target in item_list:
-        cur.execute("SELECT itemID FROM item WHERE name = '%s';" % (target))
-        item_name = cur.fetchall()[0][0]
-        cur.execute("UPDATE item SET playerID = NULL WHERE itemID = '%i'  " % (item_name))
-        print("You dropped " + target)
-    else:
-        print("Item is not in your inventory!")
 
 def getFunc(target):
     cur.execute("SELECT placeID FROM player;")
@@ -327,7 +289,7 @@ def openFunc(loc, request, *objectname):
             multiple += ' ' + x[1] + ' ' + x[2] # Add to the string
             if y != len(result):        # While y is smaller than lenght of result
                 multiple += ','      # add a comma
-        print(multiple)
+        print(multiple)             # print the string
         return
 
     elif len(result) == 1 : # If there is only one result
@@ -361,19 +323,14 @@ def useFunc(target, locID):
         cur.execute("SELECT object.name, object.actionID, object.objectID FROM object WHERE name = '%s' and placeID = '%i' " % (target, locID))
         result = cur.fetchall()
         if result[0][1] != None:
-            print(getAction(result[0][2], 0)[0])
+            myprint(getAction(result[0][2], 0)[0])
         else:
             print("You can't use that!")
     except:
         IndexError
         print("You can't use that!")
 
-def mapbase():
-    base = list(" _______\n|\t|\n|\t|\n|_______|")
-    return base
-
 # Ilmansuunnat Minne pelaaja voi mennä olemastaan ruudusta
-
 def moving():
     sql = "SELECT movingTable.direction \
             FROM player, place, movingTable \
@@ -384,6 +341,9 @@ def moving():
     movements = str(move)
     return movements
 
+def mapbase():
+    base = list(" _______\n|\t|\n|\t|\n|_______|")
+    return base
 # Kartta siitä ruudusta missä pelaaja on
 def getmap():
     base = mapbase()
@@ -401,7 +361,7 @@ def getmap():
         print(x, end='')
     print('\n')
 
-def storyMode(index):
+def storyMode(index):       # Used for storytelling. Activated by pressing by buttons.
 
     if index == 1:
         ask = input("Are you sure you want to advance to the next area ? (Y/N) ")
@@ -781,7 +741,6 @@ def storyMode(index):
         else:
             myprint(result[1][0])
 
-
 def pressFunc(locationID):
     def travel():
         if locationID == 3:
@@ -814,6 +773,7 @@ def pressFunc(locationID):
             sys.exit()
         elif locationID == 310:
             storyMode(15)
+
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()
@@ -833,10 +793,8 @@ def getHelp():
     Open: To open doors and various objects.\n \
     Inventory or i: To examine your inventory.\n \
     Get or take: To pick up an item.\n \
-    Drop: To drop an item to the ground.\n \
     Combine: To combine two items together.\n \
     Quit: To quit the game. You wouldn't want to do that, would you?")
-
 
 def gameOver(location):
     import sys
@@ -916,10 +874,6 @@ def myprint(text):
             print(i, end='')
         count = count + len(i)
     print("")
-
-
-
-
 
 
 main()

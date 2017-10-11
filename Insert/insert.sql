@@ -91,7 +91,7 @@ INSERT INTO actionTable VALUES(23, 'Old notebook, not interested');
 INSERT INTO actionTable VALUES(24, 'I am security number 185749464.');
 INSERT INTO actionTable VALUES(25, 'You have to repair it first!');
 INSERT INTO actionTable VALUES(26, 'You sit on it and then you stand up again. Stop wasting your time.');
-INSERT INTO actionTable VALUES(27, 'The garbage is over there!');
+INSERT INTO actionTable VALUES(27, 'He points you to the litter. Maybe his implying that you are worth the same.');
 INSERT INTO actionTable VALUES(28, 'Hello Jack i can help you to find a key, you need a....');
 INSERT INTO actionTable VALUES(29, 'Hei, man it just a table');
 INSERT INTO actionTable VALUES(210, "You don't have any currency on you!");
@@ -200,7 +200,6 @@ INSERT INTO itemgroup VALUES (43, 49);
 # objectID , name , description , placeID , usable , locked,  typeID , actionID
 # home-planet
 INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, 1, NULL, NULL, 10);
-INSERT INTO object VALUES (1, 'table', 'Its just a table', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (3, 'floor', 'The floor of your home, it has a nice pattern in it.', 1, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (4, 'Shower', 'Shower that looks like its havent been used in ages...', 5, 1, NULL, NULL, 3);
 INSERT INTO object VALUES (5, 'computer', 'A computer which is in pretty good shape. It seems that you have a new email for you.', 1, 1, NULL, NULL, 2);
@@ -284,7 +283,6 @@ INSERT INTO object VALUES (414, 'manacles', "These are used to chain people", 41
 INSERT INTO object VALUES (415, 'red-button', 'Big red button used to travel with the ship.', 417, 0, NULL, 2, NULL);
 # moveID , whereTo , direction , placeID , objectID
 #home-planet
-INSERT INTO movingtable VALUES (1, 2, 'e', 1, NULL);
 INSERT INTO movingtable VALUES (2, 3, 'e', 2, NULL);
 INSERT INTO movingtable VALUES (3, 4, 'n', 3, NULL);
 INSERT INTO movingtable VALUES (4, 3, 's', 4, NULL);
@@ -305,6 +303,7 @@ INSERT INTO movingTable VALUES (210, 26, "s", 21, NULL);
 INSERT INTO movingTable VALUES (211, 27, "s", 25, NULL);
 INSERT INTO movingTable VALUES (212, 25, "n", 27, NULL);
 INSERT INTO movingTable VALUES (213, 28, "e", NULL, NULL);
+INSERT INTO movingTable VALUES (214, 24, "w", 28, NULL);
 #HIP-17710
 #Planet 2
 INSERT INTO movingtable VALUES (31, 310, 'w', 33, NULL);

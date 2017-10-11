@@ -4,10 +4,10 @@
 
 ## Super Easy Install
 1. Install Database (
-user = "dbuser"
+user = "dbuser04"
 passwd = "salasana"
 db = "pizzaDB")
-2. Input `python3 peli.py` to the terminal
+2. Input `python3 pizza-hat-express.py` to the terminal
 3. enjoy the game
  
  

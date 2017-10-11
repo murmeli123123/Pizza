@@ -450,7 +450,7 @@ def storyMode(index):       # Used for storytelling. Activated by pressing by bu
         print("")
 
         cur.execute("UPDATE player SET placeID = 2;")
-        target = "starchip-key-card"
+        target = "starship-key-card"
         getFunc(target)
         return
 

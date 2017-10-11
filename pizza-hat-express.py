@@ -2,7 +2,7 @@ import mysql.connector
 import sys
 
 db = mysql.connector.connect(host = "localhost",
-                              user = "dbuser",
+                              user = "dbuser04",
                               passwd = "salasana",
                               db = "pizzaDB",
                               buffered = True)
@@ -404,13 +404,13 @@ def storyMode(index):       # Used for storytelling. Activated by pressing by bu
                         continue
                     break
 
-                print(result[command - 1][1])
+                myprint(result[command - 1][1])
                 if command == 4 or command == 6:
                     print("GAME OVER LOSER")
                     gameOver(result[command -1][0])
                 else:
                     cur.execute("UPDATE player SET placeID = 24 WHERE playerID = 1" )
-                    print('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
+                    myprint('\nJack crashes to ' + result[command - 1][0]  + ' and barely makes it alive.\n\nThe poorly fitted space ship is badly damaged and Jack has to repair his engine before advancing his journey.')
         elif ask == 'n' or ask == 'N' or ask == 'no':
             print("press again when you are ready")
             return

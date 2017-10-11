@@ -449,4 +449,4 @@ INSERT INTO item VALUES (416, "bread", "Brown bread, dosen't look edible.", 1, N
 INSERT INTO item VALUES (417, "pink-botle", "A botle containing pink liquid, no idea what is it", 1, NULL, 45, NULL, NULL, NULL);
 INSERT INTO item VALUES (418, "green-botle", "A botle containing green liquid, it dosen't look very healty", 1, NULL, 45, NULL, NULL, NULL);
 INSERT INTO item VALUES (419, "papers", "dosen't look very important, few of them contains some hand dravings.", 1, NULL, 421, NULL, NULL, NULL);
-INSERT INTO item VALUES (420, "book", "'SQL for dummies' a book containing information about sql.", 1, NULL, 423, NULL, NULL, NULL);
+INSERT INTO item VALUES (420, "book", "'SQL for dummies' a book containing information about sql.", 1, NULL, 423, NULL, NULL, 218);

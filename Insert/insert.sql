@@ -256,7 +256,7 @@ INSERT INTO object VALUES (312, 'fuel-vending-machine', "A vending machine that 
 
 
 # Cernobog
-INSERT INTO object VALUES (41, 'toilet', 'Its a toilet, nothing more about that', 415, 1, NULL, NULL, 1043);
+INSERT INTO object VALUES (41, 'toilet', 'Its a toilet, nothing more about that', 415, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (42, 'cold-pool', 'Its used to keep food fresh, there seems to be some tasty looking things.', 44, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (43, 'vegetable-shelf', 'Here seems to be all kinds of vegetables.', 44, 1, NULL, 43, NULL);
 INSERT INTO object VALUES (44, 'dry-food-shelf', 'Its full of dry food ingredients.', 44, 1, NULL, 43, NULL);
@@ -264,13 +264,28 @@ INSERT INTO object VALUES (45, 'drug-shelf', 'Its full of all kinds of drugs', 4
 INSERT INTO object VALUES (46, 'pizza-oven', 'Its used to make delicios pizzas', 45, 1, NULL, 44, NULL);
 INSERT INTO object VALUES (47, 'gate', 'Its really big gate', 48, 0, 1, 1, NULL);
 INSERT INTO object VALUES (48, 'doorbell', 'Its a white button that rings a doorbell.', 48, 1, NULL, 2, NULL);
-INSERT INTO object VALUES (49, 'fallen-guard', 'Seem like the pizza did its job.', 411, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (49, 'fallen-guards', 'Seem like the pizza did its job. At least ten guards is lying dead in the ground.', 411, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (410, 'dungeon-door', 'Its a door to the dungeon.', 413, 0, 1, 1, NULL);
-INSERT INTO object VALUES (411, 'pizza-maker', 'Its used to make pizza base by putting ingredints in it, it has a button in it.', 45, 1, NULL, 2, 1040);
+INSERT INTO object VALUES (411, 'pizza-maker', 'Its used to make pizza base by putting ingredints in it, it has a button in it.', 45, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (412, 'wc-turn-ticket-button', 'It gives you a turn ticket to wc.', 415, 1, NULL, 2, NULL);
 INSERT INTO object VALUES (413, 'red-button', 'Big red button used to travel with the ship.', 416, 0, 1, 2, NULL);
-INSERT INTO object VALUES (414, 'manacles', "These are used to chain people", 414, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (414, 'handcuffs', "These are used to chain people", 414, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (415, 'red-button', 'Big red button used to travel with the ship.', 417, 0, NULL, 2, NULL);
+INSERT INTO object VALUES (416, "painting", "Painting of a strange alien structure. No idea what it is.", 43, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (417, "sculpture", "A human sized sculpture, that looks like an alien soldier.", 43, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (418, "table", "A lonely table in a corner, maybe its some form of art.", 43, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (419, "pizza-hat-owner", "He dosen't seem to care that I'am here.", 45, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (420, "pizza-hat-worker", "He seems to be busy, beter not to disturb him.", 45, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (421, "desk", "Just a desk", 45, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (422, "Warning-sing", "A sing that has something writen on it.", 48, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (423, "desk", "Just a desk, nothing else.", 49, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (424, "key-shelf", "Its full of keys, unfortunately it's locked.", 49, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (435, "blue-carpet", "Its a long blue carpet, covering the whole floor of the hallway.", 410, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (436, "red-carpet", "Its a long red carpet, covering the whole floor of the hallway.", 412, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (437, "double-beds", "Here is six double bed, I don't know why guards would have double beds, but not my problem.", 411, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (438, "cabinet", "Here is twelve cabinets, every one of them has a padlock in it.", 411, NULL, NULL, NULL, NULL);
+
+
 # moveID , whereTo , direction , placeID , objectID
 #home-planet
 INSERT INTO movingtable VALUES (1, 2, 'e', 1, NULL);
@@ -404,5 +419,13 @@ INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do whit it, do
 INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle whit hulk potion labeled in it, no idea what it means.', 4, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks suprisingly good and smell really good, even tough it will kill you the second your lips touch it.', 6, NULL, NULL, 42, 46, NULL);
 INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', 1, NULL, 49, NULL, NULL, 48);
-INSERT INTO item VALUES (411, 'shitty-note', "It's covered in poop and it smells terrible. This note contains detailed location of the third planet thats is in Cernobog. Also it contains the information that the evil forces likes pizza and they are dump enough to eat it, even if its full of poison.", 1, NULL, NULL, NULL, NULL, 47);
-INSERT INTO item VALUES (412, 'princess', "Its the princess.", 0, NULL, 414, NULL, NULL, 410);
+INSERT INTO item VALUES (411, 'shitty-note', "It's covered in poop and it smells terrible. This note contains detailed location of the third planet thats is in Cernobog. Also it contains the information that the evil forces likes pizza with cheese, meat and mushrooms. They are all so dump enough to eat it, even if its full of poison.", 1, NULL, NULL, NULL, NULL, 47);
+INSERT INTO item VALUES (412, 'princess', "Its the princess, she seems to be unconscious.", 0, NULL, 414, NULL, NULL, 410);
+INSERT INTO item VALUES (413, "cabbage", "Nice looking purple cabbage.", 1, NULL, 43, NULL, NULL, NULL);
+INSERT INTO item VALUES (414, "carrot", "Moldy pink carrot.", 1, NULL, 43, NULL, NULL, NULL);
+INSERT INTO item VALUES (415, "rice", "bag of rice", 2, NULL, 44, NULL, NULL, NULL);
+INSERT INTO item VALUES (416, "bread", "Brown bread, dosen't look edible.", 1, NULL, 44, NULL, NULL, NULL);
+INSERT INTO item VALUES (417, "pink-botle", "A botle containing pink liquid, no idea what is it", 1, NULL, 45, NULL, NULL, NULL);
+INSERT INTO item VALUES (418, "green-botle", "A botle containing green liquid, it dosen't look very healty", 1, NULL, 45, NULL, NULL, NULL);
+INSERT INTO item VALUES (419, "papers", "dosen't look very important, few of them contains some hand dravings.", 1, NULL, 421, NULL, NULL, NULL);
+INSERT INTO item VALUES (420, "book", "'SQL for dummies' a book containing information about sql.", 1, NULL, 423, NULL, NULL, NULL);

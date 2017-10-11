@@ -270,11 +270,7 @@ INSERT INTO actiontable VALUES (1040, "You put all the pizza ingredients into th
 INSERT INTO actiontable VALUES (1041, "After a while you take the pizza out of the oven and now you have a freshly made pizza whit you.");
 INSERT INTO actiontable VALUES (1042, "You take the wc turn ticket it has number 4783 and the ongoing number is 4768. It seems that you have to wait for a while.");
 INSERT INTO actiontable VALUES (1043, "As you are waiting you notice that you actualy need to use wc. The longer you are waiting the more it feels that your ass is going to explode. The ongoing number is 4776");
-<<<<<<< HEAD
-INSERT INTO actiontable VALUES (1044, "Finally its your turn to use the wc. You put the ticket in the door and it opens. You go in and take of your pants and sit in the toilet. The moment you sit on the toilet, your ass explodes and you feel great relief, you can hear clearing noise and as you turn to watch the toilet you see that the toilet has broken in half... It seems that inside the toilet is a note. you take the note, wipe your ass, put the pant on and leave the wc");
-=======
 INSERT INTO actiontable VALUES (1044, "Finaly its your turn to use the wc. You put the ticket in the door and it opens. You go in and take of your pants and sit on the toilet. The moment you sit on the toilet, your ass explodes and you feel great relief. As you finished you business and take toilet paper a note drops from the toilet paper stand. you take the note, finish your business and then you leave the wc.");
->>>>>>> 8a865965b19e21b9d645e2f8460f0d67061d8c66
 INSERT INTO actiontable VALUES (1045, "You input the information on the note to your space ship and then you press the button. After a few moments your lands in a cernobog planet 3 landing zone.");
 INSERT INTO actiontable VALUES (1046, 'You press the doorbell after a while guard comes and asks you what do you want. You give him the poison pizza 3000 and you say that somebody ordered pizza to be delivered here. Guard takes the pizza, he thanks you and leaves. After that you can hear the guard yelling "Boys looks like we have some pizza to breakfast."');
 INSERT INTO actiontable VALUES (1047, "As you are waiting, you look around to see anything where you could go inside and you realize that the guard who came to open the gate left with such a hurry that he forgot to close the gate. Its probably safe to go inside now.");
@@ -553,13 +549,8 @@ INSERT INTO item VALUES (47, 'lethal-poison-3000', 'What ever you do with it, do
 INSERT INTO item VALUES (48, 'hulk-potion', 'A little bottle with hulk potion label on it, no idea what it means.', NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (49, 'poison-pizza-3000', 'It looks surprisingly good and smells really good, even though it will kill you the second your lips touch it.', NULL, NULL, 42, NULL);
 INSERT INTO item VALUES (410, 'dungeon-key-card', 'A key card to the dungeon where the princess is probably kept.', NULL, 49, NULL, 48);
-<<<<<<< HEAD
-INSERT INTO item VALUES (411, 'shitty-note', "It's covered in poo and it smells terrible. This note contains the detailed location of the third planet in Cernobog. Also, it contains the information that the evil forces like to eat pizza with cheese, meat and mushrooms. They all are dumb enough to eat it, even if its full of poison.", NULL, NULL, NULL, 47);
-INSERT INTO item VALUES (412, 'princess', "It's the princess, she seems to be unconscious.", NULL, 414, NULL, 410);
-=======
-INSERT INTO item VALUES (411, 'secret-note', "It's a note that containing secret information, it smells terrible. This note has detailed location of the third planet thats is in Cernobog system. Also it contains the information that the evil forces likes pizza with cheese, meat and mushrooms. They are also dump enough to eat it, even if its full of poison.", NULL, NULL, NULL, 47);
+INSERT INTO item VALUES (411, 'secret-note', "It's a note that containing secret information, it smells terrible. This note has detailed location of the third planet that is in Cernobog system. It also contains the information that the evil forces likes pizza with cheese, meat and mushrooms. They are also dump enough to eat it, even if its full of poison.", NULL, NULL, NULL, 47);
 INSERT INTO item VALUES (412, 'princess', "Its the princess, she seems to be unconscious.", NULL, 414, NULL, 410);
->>>>>>> 8a865965b19e21b9d645e2f8460f0d67061d8c66
 INSERT INTO item VALUES (413, "cabbage", "Nice looking purple cabbage.", NULL, 43, NULL, NULL);
 INSERT INTO item VALUES (414, "carrot", "Moldy pink carrot.", NULL, 43, NULL, NULL);
 INSERT INTO item VALUES (415, "rice", "bag of rice", NULL, 44, NULL, NULL);

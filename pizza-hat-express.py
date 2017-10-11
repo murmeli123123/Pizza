@@ -503,7 +503,7 @@ def storyMode(index):       # Used for storytelling. Activated by pressing by bu
                     wait += 1
             myprint('\n' + result[2][0] + '\n')
             cur.execute("UPDATE item SET objectID = 41 WHERE itemID = 411;")
-            target = "cernobog-note"
+            target = "secret-note"
             getFunc(target)
             cur.execute("UPDATE player SET placeID = 43")
             cur.execute("UPDATE movingtable SET placeID = NULL WHERE moveID = 429")

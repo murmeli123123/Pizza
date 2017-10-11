@@ -829,11 +829,6 @@ def combFunc(final_command):
                 cur.execute(sql)
 
                 cur = db.cursor()
-                sql =  "SELECT resultID FROM item WHERE groupID = '%i'" % (result[0][0])
-                cur.execute(sql)
-                groupid = cur.fetchall()
-
-                cur = db.cursor()
                 sql =  "SELECT resultID FROM itemGroup WHERE groupID = '%i'" % (result[0][0])
                 cur.execute(sql)
                 groupid = cur.fetchall()

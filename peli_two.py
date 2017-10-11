@@ -763,6 +763,24 @@ def storyMode(index):
             elif wait == 3:
                 myprint('\n' + result[3][0] + '\n')
                 print('You won the game')
+    elif index == 15:
+        cur.execute("SELECT actiontable.description FROM actiontable WHERE actionID BETWEEN 765 AND 768")
+        result = cur.fetchall()
+        inventory = getInventory()
+        hasItem = False
+
+        myprint(result[0][0])
+        for item in inventory:
+            if item[0] == 'domestic-pet':
+                hasItem = True
+        if hasItem:
+            myprint(result[2][0])
+            myprint(result[3][0])
+            getFunc('quantum-flux')
+            cur.execute("UPDATE item SET playerID = NULL WHERE itemID = 31")
+        else:
+            myprint(result[1][0])
+
 
 def pressFunc(locationID):
     def travel():
@@ -794,6 +812,8 @@ def pressFunc(locationID):
             storyMode(14)
             import sys
             sys.exit()
+        elif locationID == 310:
+            storyMode(15)
     cur.execute("SELECT object.usable FROM object join objecttype WHERE object.placeID = %i \
             and objecttype.typename = 'button' and object.typeID = objecttype.typeID" % locationID)
     result = cur.fetchall()

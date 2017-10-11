@@ -48,7 +48,7 @@ INSERT INTO place VALUES (36, 'backyard', "Filled with metallic containers, prop
 INSERT INTO place VALUES (37, 'pizza-Hat-alley', "Familiar smell hits your nose upon entering the alley. It is no doubt a Pizza-Hat restaurant. You had no idea they had a restaurant at HIP-17710.", 33);
 INSERT INTO place VALUES (38, 'boulevard', "A beatiful boulevard with high rise buildings. At the North end of the boulevard you can see the intergalactic sign for a bar and an ID of 36.", 33);
 INSERT INTO place VALUES (39, 'bar-id:36', "This seems to be the go to place in HIP-17710. Someone hands you a flyer at the door written in native earth human language. 'Hjyvä bari hjyvä juoma.' You have no idea what it says. They sell all kinds of drinks from beer to alien extract.", 33);
-INSERT INTO place VALUES (310, 'alien-residence', "Some living creature is walking around the building looking for something",32);
+INSERT INTO place VALUES (310, 'alien-residence', "Some living creature is walking around the building looking for something. It is surrounded with a fence that has a doorbell on it.",32);
 INSERT INTO place VALUES (311, 'poorly-fitted-space-ship', 'This ship has seen better days. Its inside out full of rust and couple of holes here and there. Its just a miracle that this ship can even fly...', 34);
 # Cernobog
 INSERT INTO place VALUES (41, 'cernobog-planet-1-landing-zone', 'You cant see anything else than ice and its freaking cold out here. You better leave befor you freeze to death', 41);
@@ -110,6 +110,8 @@ INSERT INTO actionTable VALUES(220, "RAWR!");
 INSERT INTO actiontable VALUES (31, 'UPDATE item SET objectID = 32 WHERE itemID = 32');
 INSERT INTO actiontable VALUES (32, "Jack opens the box and sees a note in it.");
 INSERT INTO actiontable VALUES (33, "UPDATE object SET usable = 1 WHERE objectID = 311");
+INSERT INTO actiontable VALUES (34, "Drinks can be seen at the end of this table.");
+INSERT INTO actiontable VALUES (36, "It's locked!");
 # Cernobog
 INSERT INTO actiontable VALUES (42, 'You combine all the pizza ingredients.');
 INSERT INTO actiontable VALUES (43, 'You put the raw pizza in the oven. after a while you take the pizza out and now you have a frehly made pizza whit you.');
@@ -120,7 +122,10 @@ INSERT INTO actiontable VALUES (48, 'UPDATE object SET usable = 1 WHERE objectID
 INSERT INTO actiontable VALUES (49, 'UPDATE object SET usable = 1 WHERE objectID = 48');
 INSERT INTO actiontable VALUES (410, 'UPDATE object SET usable = 1 WHERE objectID = 415');
 #storyMode
-
+INSERT INTO actiontable VALUES (765, "The creature walks to you and opens its mouth. 'RARARA RARA AKAKAKKAKA RARA KAKA RAKA.' You have no idea what the creature just said..");
+INSERT INTO actiontable VALUES (766, "Suddenly the holographic-device starts to work again: 'HAVE YOU FOUND IT? YOU HAVE IT RIGHT?' You have no clue what the creature wants and decide to leave the scene.");
+INSERT INTO actiontable VALUES (767, "It must be talking about the strange pet you found. You show the pet to it and the creature grabs it from your hands before you can say anything. The creature seems to be happy about it.");
+INSERT INTO actiontable VALUES (768, "The creature opens its mouth again 'LOLOLO LALALA LOLLEROOOO LALALLALAAA LOL' He hands you a bag of some strange substance.");
 INSERT INTO actiontable VALUES (770, "You use the elevator and ascend to the terrace. You can see far into the horizon. A strange looking man is staring you at the counter. You decide to just ignore him.");
 INSERT INTO actiontable VALUES (771, "As you explore the terrace the strange man comes near you and starts to talk with you.");
 INSERT INTO actiontable VALUES (772, "He asks you if you would like to answer some questions he has.");
@@ -242,7 +247,7 @@ INSERT INTO object VALUES (242, "stuffed-animal", "Looks like a crossover of a l
 
 
 # HIP-17710
-INSERT INTO object VALUES (31, 'dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 36, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (31, 'red-dumpster', "A heavy metallic container with a stained smell near it. Something living is making noices inside it.", 36, 1, NULL, NULL, NULL);
 INSERT INTO object VALUES (32, 'stranger', "It seems to be looking for something.", 310, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (34, 'pizza-box', "Dirty and soggy, looks discusting. A note is lying on it.", 37, NULL, NULL, 32, NULL);
 INSERT INTO object VALUES (35, 'transportation-system', "Press to activate the public transportation system. You can use the system to travel between the planets.", 32, 1, NULL, 2, NULL);
@@ -253,6 +258,12 @@ INSERT INTO object VALUES (39, 'elevator',"Elevator which leads to the terrace. 
 INSERT INTO object VALUES (310, 'strange-man', "He looks strange", 39, NULL, NULL, NULL, NULL);
 INSERT INTO object VALUES (311, 'red-button', "Big red button used to travel with the ship.", 311, NULL, NULL, 2, NULL);
 INSERT INTO object VALUES (312, 'fuel-vending-machine', "A vending machine that sells alien fuel.", 31, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (313, 'kiosk', "A kiosk of unnecessary things.", 31, NULL, NULL, NULL, NULL);
+INSERT INTO object VALUES (314, 'bar-counter', "You can order drinks from here", 39, NULL, NULL, NULL, 34);
+INSERT INTO object VALUES (315, 'green-dumpster', "A heavy metallic container with a stained smell near it.", 36, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (316, 'yellow-dumpster', "A heavy metallic container with a stained smell near it.", 36, 1, NULL, NULL, NULL);
+INSERT INTO object VALUES (317, 'doorbell', "Doorbell near the fence gate. Press to use it", 310, 1, NULL, 2, NULL);
+INSERT INTO object VALUES (318, 'fence-gate', "It's locked.", 310, 1, NULL, NULL, 36);
 
 
 # Cernobog
@@ -380,18 +391,29 @@ INSERT INTO item VALUES (217, 'oily-rags', "Kind of looks like your clothes", NU
 INSERT INTO item VALUES (218, 'bolts', "A handful of bolts", NULL, NULL, 228, NULL, NULL, 216);
 INSERT INTO item VALUES (219, 'lightbuld', "An oldschool lightbuld, probably used to replace headlights", NULL, NULL, 237, NULL, NULL, 216);
 
+
 #HIP-17710
-INSERT INTO item VALUES (31, 'domestic-pet', "It's round six big eyes stare at you. You are not quite sure if it's cute or terrifying", 5, NULL, 31, 31, NULL, 31);
+INSERT INTO item VALUES (31, 'domestic-pet', "It's round six big eyes stare at you. You are not quite sure if it's cute or terrifying", 5, NULL, 31, NULL, NULL, 31);
 INSERT INTO item VALUES (32, 'quantum-flux', "Strange running substance, not like anything you have seen before.", 1, NULL, NULL, 32, NULL, NULL);
 INSERT INTO item VALUES (33, 'note', "Strange note that has numbers writen on it: '-1/12'", 0, NULL, 34, NULL, NULL, NULL);
-INSERT INTO item VALUES (34, 'intergalactic', "A 'beer' suitable for almost any species in this galaxy.", 1, NULL, NULL, 31, NULL, NULL);
-INSERT INTO item VALUES (35, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, NULL, 31, NULL, NULL);
+INSERT INTO item VALUES (34, 'intergalactic', "A 'beer' suitable for almost any species in this galaxy.", 1, NULL, 314, 31, NULL, NULL);
+INSERT INTO item VALUES (35, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 314, 31, NULL, NULL);
 INSERT INTO item VALUES (36, 'brown-jelly', "A mixture of Intergalactic and HIPA-17710. Digesting this will surely result in timetravel.", 2, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO item VALUES (37, 'glowing-vial', "Glows with a faint blue light, might be radioactive.", 1, NULL, NULL, 32, NULL, NULL);
 INSERT INTO item VALUES (38, 'vial-with-quantum-flux', "Now glows even brighter. Definitely radioactive.", 2, NULL, NULL, 33, NULL, NULL);
 INSERT INTO item VALUES (39, 'alien-fuel', "High power fuel for space ships.", 1, NULL, 312, 33, NULL, NULL);
 INSERT INTO item VALUES (310, 'elevator-button', "Press to call the elevator", NULL, NULL, 39, NULL, NULL, NULL);
 INSERT INTO item VALUES (311, 'poorly-combined-spacefuel', "Glowing green liquid. It makes a sizzling noice and some fumes are rising from the surface", NULL, NULL, NULL, NULL, NULL, 33);
+INSERT INTO item VALUES (320, 'party-cone-hat', "No idea why they sell these here.", NULL, NULL, 313, NULL, NULL, NULL);
+INSERT INTO item VALUES (321, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 314, 31, NULL, NULL);
+INSERT INTO item VALUES (322, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 31, 31, NULL, NULL);
+INSERT INTO item VALUES (323, 'movie', "The latest Adam Sandler movie! Every spacetraveller must have one.", 1, NULL, 313, NULL, NULL, 217);
+INSERT INTO item VALUES (324, 'sun-glasses', "These look so slick, wearing these _has to_ increase the speed of space ships by 100%", 1 , NULL, 313, NULL, NULL, 217);
+INSERT INTO item VALUES (325, 'book', "Python for dummies.", 1, NULL, 31, NULL, NULL, 218);
+INSERT INTO item VALUES (326, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 315, 31, NULL, NULL);
+INSERT INTO item VALUES (327, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 316, 31, NULL, NULL);
+INSERT INTO item VALUES (328, 'hipa-17710', "Unique craft beer of HIP-17710. It has not been tested with earth humans before.", 1, NULL, 315, 31, NULL, NULL);
+INSERT INTO item VALUES (329, 'trash', "Pile of trash", 1, NULL, 315, NULL, NULL, NULL);
 
 # Cernobog
 INSERT INTO item VALUES (41, 'pizza-dough', 'From this pizza dough yuo can make a good pizza', 2, NULL, 44, 41, 45, NULL);

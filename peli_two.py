@@ -1,4 +1,5 @@
 import mysql.connector
+import sys
 
 db = mysql.connector.connect(host = "localhost",
                               user = "dbuser",
@@ -769,7 +770,6 @@ def pressFunc(locationID):
             storyMode(13)
         elif locationID == 417:
             storyMode(14)
-            import sys
             sys.exit()
         elif locationID == 310:
             storyMode(15)
@@ -797,7 +797,6 @@ def getHelp():
     Quit: To quit the game. You wouldn't want to do that, would you?")
 
 def gameOver(location):
-    import sys
     print("Jack dies a horrible death on " + location + '\n\n\n\n')
     sys.exit()
 

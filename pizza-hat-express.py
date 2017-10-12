@@ -81,7 +81,7 @@ def main():
         elif action == "press":
             pressFunc(locationID)
 
-        elif action == "show" or action == "look":
+        elif action == "show" or action == "look" or action == "examine":
             if target != "":
                 showitemfunc(target)
             else:

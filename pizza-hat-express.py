@@ -32,7 +32,7 @@ def main():
         location = getLocName()
         # input_command is the initial inputted command
         input_command=input("> ").split()
-        filters = ["and","for","the","with","a","an","at","of","on","in"," "]
+        filters = ["and","for","the","with","a","an","at","of","on","in"," ", "'"]
         # final_command is the command that is fed to the game
         final_command = []
         for x in input_command:

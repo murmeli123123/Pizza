@@ -87,7 +87,7 @@ def main():
             else:
                 lookaroundfunc()
 
-        elif action == "n" or action == 's' or action == 'w' or action == 'e' or action == 'north' or action == 'south' or action == 'west' or action == 'e':
+        elif action == "n" or action == 's' or action == 'w' or action == 'e' or action == 'north' or action == 'south' or action == 'west' or action == 'east':
             movefunc(action)
 
         elif action == 'map':
